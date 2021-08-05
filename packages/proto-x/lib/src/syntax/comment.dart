@@ -5,20 +5,15 @@ enum CommentType {
   inline,
 }
 
-class Comment implements Syntax {
+abstract class Comment implements Built<Comment, CommentBuilder>, Syntax {
   @override
-  final SyntaxSpan span;
+  SyntaxType get syntaxType => SyntaxType.comment;
 
-  @override
-  final SyntaxType type = SyntaxType.comment;
+  String get text;
 
-  final String text;
+  CommentType get commentType;
 
-  final CommentType commentType;
+  Comment._();
 
-  const Comment({
-    required this.span,
-    required this.text,
-    required this.commentType,
-  });
+  factory Comment([void Function(CommentBuilder)? updates]) = _$Comment;
 }

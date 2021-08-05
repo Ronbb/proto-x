@@ -1,13 +1,15 @@
 part of 'syntax.dart';
 
-class SyntaxDeclaration implements Syntax {
+abstract class SyntaxDeclaration
+    with KeywordMixin, SemicolonMixin, EqualSignMixin
+    implements Built<SyntaxDeclaration, SyntaxDeclarationBuilder>, Syntax {
   @override
-  final SyntaxSpan span;
+  SyntaxType get syntaxType => SyntaxType.syntaxDeclaration;
 
-  @override
-  final SyntaxType type = SyntaxType.syntaxDeclaration;
+  StringLiteral get value;
 
-  SyntaxDeclaration({
-    required this.span,
-  });
+  SyntaxDeclaration._();
+
+  factory SyntaxDeclaration(
+      [void Function(SyntaxDeclarationBuilder)? updates]) = _$SyntaxDeclaration;
 }
