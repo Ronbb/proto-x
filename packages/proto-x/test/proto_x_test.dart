@@ -1,3 +1,6 @@
+import 'package:proto_x/src/grammar/grammar.dart';
+import 'package:proto_x/src/grammar/protox/protox.dart' as protox;
+import 'package:proto_x/src/syntax/syntax.dart' as syntaxes;
 import 'package:source_span/source_span.dart';
 import 'package:string_scanner/string_scanner.dart';
 import 'package:test/test.dart';
@@ -20,7 +23,7 @@ void main() {
       // Additional setup goes here.
     });
 
-    test('First Test', () {
+    test('scan', () {
       SourceFile file = SourceFile.fromString(
         text,
         url: r'C:\Project\tmp\test.protox',
@@ -38,6 +41,45 @@ void main() {
       expect(scanner.scan(RegExp(r'package\s*([\w\.]+);')), isTrue);
       expect(scanner.lastMatch![1] == "main.A", isTrue);
       print(scanner.lastSpan);
+    });
+
+    test('grammar syntax', () {
+      SourceFile file = SourceFile.fromString(
+        text,
+        url: r'C:\Project\tmp\test.protox',
+      );
+
+      final grammar = protox.SyntaxDeclaration();
+      final context = GrammarContext<syntaxes.SyntaxDeclaration>(
+        scanner: SpanScanner.within(file.span(0)),
+        syntax: syntaxes.SyntaxDeclaration((builder) {
+          final syntaxPosition = syntaxes.SyntaxPosition((builder) {
+            builder
+              ..column = 0
+              ..line = 0;
+          });
+
+          final syntaxSpan = syntaxes.SyntaxSpan((builder) {
+            builder
+              ..from = syntaxPosition.toBuilder()
+              ..to = syntaxPosition.toBuilder();
+          });
+
+          builder.equalSign.syntaxSpan = syntaxSpan.toBuilder();
+
+          builder.keyword
+            ..keywordType = syntaxes.KeywordType.syntax
+            ..syntaxSpan = syntaxSpan.toBuilder();
+
+          builder.semicolon.syntaxSpan = syntaxSpan.toBuilder();
+          builder.syntaxSpan = syntaxSpan.toBuilder();
+          builder.value
+            ..syntaxSpan = syntaxSpan.toBuilder()
+            ..string = '';
+        }),
+      );
+      expect(grammar.scan(context), isTrue);
+      expect(context.syntax.value.string, equals('protox'));
     });
   });
 }

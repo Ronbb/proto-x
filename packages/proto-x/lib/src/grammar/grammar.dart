@@ -15,7 +15,7 @@ abstract class Grammar<S extends syntaxes.Syntax> {
   /// Successful if returns true.
   bool scan(GrammarContext<S> context);
 
-  bool check(GrammarContext<S> context) => context.syntax.error != null;
+  bool check(GrammarContext<S> context) => context.syntax.error == null;
 
   const Grammar();
 }

@@ -21,7 +21,13 @@ class SyntaxDeclarationLiteral extends Grammar<syntaxes.SyntaxDeclaration> {
 
   @override
   bool scan(GrammarContext<syntaxes.SyntaxDeclaration> context) {
-    // TODO: implement scan
-    throw UnimplementedError();
+    final stringLiteral = context.scanStringLiteral(unescape: true);
+    if (stringLiteral != null) {
+      context.syntax = context.syntax.rebuild(
+        (builder) => builder.value = stringLiteral,
+      );
+      return true;
+    }
+    return false;
   }
 }

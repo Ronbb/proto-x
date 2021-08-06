@@ -9,6 +9,6 @@ abstract class StringLiteral
 
   StringLiteral._();
 
-  factory StringLiteral([void Function(StringLiteralBuilder) updates]) =
-      _$StringValue;
+  factory StringLiteral([void Function(StringLiteralBuilder)? updates]) =
+      _$StringLiteral;
 }

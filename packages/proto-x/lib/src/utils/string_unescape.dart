@@ -1,3 +1,5 @@
+part of 'utils.dart';
+
 String unescape(String input) {
   final sb = StringBuffer();
 

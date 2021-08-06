@@ -35,22 +35,25 @@ extension ScanX on GrammarContext {
   }
 
   syntaxes.EqualSignBuilder? scanEqualSign() {
-    if (scanner.scan(r'=')) {
+    if (scanner.scan(RegExp(r'='))) {
       final equalSign = syntaxes.EqualSignBuilder()..syntaxSpan = lastSpan();
       return equalSign;
     }
   }
 
-  syntaxes.StringLiteralBuilder? scanStringLiteral() {
-    if (scanner.scan(r'(?<=")([^"]|(?<=\\)")*(?=")')) {
+  syntaxes.StringLiteralBuilder? scanStringLiteral({bool? unescape}) {
+    // don't use lookahead or lookbehind here
+    if (scanner.scan(RegExp(r'"([^"]|(?<=\\)")*"'))) {
+      final matched = scanner.lastMatch![0];
+      final trimmed = matched!.substring(1, matched.length - 1);
       final stringLiteral = syntaxes.StringLiteralBuilder()
         ..syntaxSpan = lastSpan()
-        ..string = scanner.lastMatch![1];
+        ..string = unescape == true ? utils.unescape(trimmed) : trimmed;
       return stringLiteral;
     }
   }
 
   bool scanSpace() {
-    return scanner.scan(r'\s*');
+    return scanner.scan(RegExp(r'\s*'));
   }
 }

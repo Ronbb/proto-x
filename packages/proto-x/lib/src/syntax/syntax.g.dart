@@ -488,7 +488,7 @@ class SemicolonBuilder implements Builder<Semicolon, SemicolonBuilder> {
   }
 }
 
-class _$StringValue extends StringLiteral {
+class _$StringLiteral extends StringLiteral {
   @override
   final String string;
   @override
@@ -496,14 +496,15 @@ class _$StringValue extends StringLiteral {
   @override
   final SyntaxError? error;
 
-  factory _$StringValue([void Function(StringLiteralBuilder)? updates]) =>
+  factory _$StringLiteral([void Function(StringLiteralBuilder)? updates]) =>
       (new StringLiteralBuilder()..update(updates)).build();
 
-  _$StringValue._({required this.string, required this.syntaxSpan, this.error})
+  _$StringLiteral._(
+      {required this.string, required this.syntaxSpan, this.error})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(string, 'StringValue', 'string');
+    BuiltValueNullFieldError.checkNotNull(string, 'StringLiteral', 'string');
     BuiltValueNullFieldError.checkNotNull(
-        syntaxSpan, 'StringValue', 'syntaxSpan');
+        syntaxSpan, 'StringLiteral', 'syntaxSpan');
   }
 
   @override
@@ -530,7 +531,7 @@ class _$StringValue extends StringLiteral {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('StringValue')
+    return (newBuiltValueToStringHelper('StringLiteral')
           ..add('string', string)
           ..add('syntaxSpan', syntaxSpan)
           ..add('error', error))
@@ -538,8 +539,9 @@ class _$StringValue extends StringLiteral {
   }
 }
 
-class StringLiteralBuilder implements Builder<StringLiteral, StringLiteralBuilder> {
-  _$StringValue? _$v;
+class StringLiteralBuilder
+    implements Builder<StringLiteral, StringLiteralBuilder> {
+  _$StringLiteral? _$v;
 
   String? _string;
   String? get string => _$this._string;
@@ -571,7 +573,7 @@ class StringLiteralBuilder implements Builder<StringLiteral, StringLiteralBuilde
   @override
   void replace(StringLiteral other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$StringValue;
+    _$v = other as _$StringLiteral;
   }
 
   @override
@@ -580,13 +582,13 @@ class StringLiteralBuilder implements Builder<StringLiteral, StringLiteralBuilde
   }
 
   @override
-  _$StringValue build() {
-    _$StringValue _$result;
+  _$StringLiteral build() {
+    _$StringLiteral _$result;
     try {
       _$result = _$v ??
-          new _$StringValue._(
+          new _$StringLiteral._(
               string: BuiltValueNullFieldError.checkNotNull(
-                  string, 'StringValue', 'string'),
+                  string, 'StringLiteral', 'string'),
               syntaxSpan: syntaxSpan.build(),
               error: _error?.build());
     } catch (_) {
@@ -598,7 +600,7 @@ class StringLiteralBuilder implements Builder<StringLiteral, StringLiteralBuilde
         _error?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'StringValue', _$failedField, e.toString());
+            'StringLiteral', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -694,7 +696,8 @@ class SyntaxDeclarationBuilder
   _$SyntaxDeclaration? _$v;
 
   StringLiteralBuilder? _value;
-  StringLiteralBuilder get value => _$this._value ??= new StringLiteralBuilder();
+  StringLiteralBuilder get value =>
+      _$this._value ??= new StringLiteralBuilder();
   set value(StringLiteralBuilder? value) => _$this._value = value;
 
   SyntaxSpanBuilder? _syntaxSpan;
