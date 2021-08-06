@@ -4,9 +4,13 @@ import 'package:built_value/built_value.dart';
 part 'comment.dart';
 part 'equal_sign.dart';
 part 'keyword.dart';
+part 'package.dart';
 part 'semicolon.dart';
 part 'string_literal.dart';
 part 'syntax_declaration.dart';
+
+part 'proto_x.dart';
+
 part 'utils/syntax_error.dart';
 part 'utils/syntax_getter.dart';
 part 'utils/syntax_type.dart';

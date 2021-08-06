@@ -7,11 +7,14 @@ part of 'syntax.dart';
 // **************************************************************************
 
 const KeywordType _$keywordTypeSyntax = const KeywordType._('syntax');
+const KeywordType _$keywordTypePackage = const KeywordType._('package');
 
 KeywordType _$keywordTypeValueOf(String name) {
   switch (name) {
     case 'syntax':
       return _$keywordTypeSyntax;
+    case 'package':
+      return _$keywordTypePackage;
     default:
       throw new ArgumentError(name);
   }
@@ -20,6 +23,7 @@ KeywordType _$keywordTypeValueOf(String name) {
 final BuiltSet<KeywordType> _$keywordTypeValues =
     new BuiltSet<KeywordType>(const <KeywordType>[
   _$keywordTypeSyntax,
+  _$keywordTypePackage,
 ]);
 
 class _$Comment extends Comment {
@@ -376,6 +380,281 @@ class KeywordBuilder implements Builder<Keyword, KeywordBuilder> {
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Keyword', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Package extends Package {
+  @override
+  final PackageName name;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+  @override
+  final Keyword keyword;
+  @override
+  final Semicolon semicolon;
+
+  factory _$Package([void Function(PackageBuilder)? updates]) =>
+      (new PackageBuilder()..update(updates)).build();
+
+  _$Package._(
+      {required this.name,
+      required this.syntaxSpan,
+      this.error,
+      required this.keyword,
+      required this.semicolon})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, 'Package', 'name');
+    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Package', 'syntaxSpan');
+    BuiltValueNullFieldError.checkNotNull(keyword, 'Package', 'keyword');
+    BuiltValueNullFieldError.checkNotNull(semicolon, 'Package', 'semicolon');
+  }
+
+  @override
+  Package rebuild(void Function(PackageBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PackageBuilder toBuilder() => new PackageBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Package &&
+        name == other.name &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error &&
+        keyword == other.keyword &&
+        semicolon == other.semicolon;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc($jc($jc(0, name.hashCode), syntaxSpan.hashCode),
+                error.hashCode),
+            keyword.hashCode),
+        semicolon.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Package')
+          ..add('name', name)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error)
+          ..add('keyword', keyword)
+          ..add('semicolon', semicolon))
+        .toString();
+  }
+}
+
+class PackageBuilder implements Builder<Package, PackageBuilder> {
+  _$Package? _$v;
+
+  PackageNameBuilder? _name;
+  PackageNameBuilder get name => _$this._name ??= new PackageNameBuilder();
+  set name(PackageNameBuilder? name) => _$this._name = name;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  KeywordBuilder? _keyword;
+  KeywordBuilder get keyword => _$this._keyword ??= new KeywordBuilder();
+  set keyword(KeywordBuilder? keyword) => _$this._keyword = keyword;
+
+  SemicolonBuilder? _semicolon;
+  SemicolonBuilder get semicolon =>
+      _$this._semicolon ??= new SemicolonBuilder();
+  set semicolon(SemicolonBuilder? semicolon) => _$this._semicolon = semicolon;
+
+  PackageBuilder();
+
+  PackageBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name.toBuilder();
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _keyword = $v.keyword.toBuilder();
+      _semicolon = $v.semicolon.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Package other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Package;
+  }
+
+  @override
+  void update(void Function(PackageBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Package build() {
+    _$Package _$result;
+    try {
+      _$result = _$v ??
+          new _$Package._(
+              name: name.build(),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build(),
+              keyword: keyword.build(),
+              semicolon: semicolon.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'name';
+        name.build();
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+        _$failedField = 'keyword';
+        keyword.build();
+        _$failedField = 'semicolon';
+        semicolon.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Package', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$PackageName extends PackageName {
+  @override
+  final BuiltList<String> path;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$PackageName([void Function(PackageNameBuilder)? updates]) =>
+      (new PackageNameBuilder()..update(updates)).build();
+
+  _$PackageName._({required this.path, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(path, 'PackageName', 'path');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'PackageName', 'syntaxSpan');
+  }
+
+  @override
+  PackageName rebuild(void Function(PackageNameBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PackageNameBuilder toBuilder() => new PackageNameBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PackageName &&
+        path == other.path &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, path.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('PackageName')
+          ..add('path', path)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class PackageNameBuilder implements Builder<PackageName, PackageNameBuilder> {
+  _$PackageName? _$v;
+
+  ListBuilder<String>? _path;
+  ListBuilder<String> get path => _$this._path ??= new ListBuilder<String>();
+  set path(ListBuilder<String>? path) => _$this._path = path;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  PackageNameBuilder();
+
+  PackageNameBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _path = $v.path.toBuilder();
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PackageName other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$PackageName;
+  }
+
+  @override
+  void update(void Function(PackageNameBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$PackageName build() {
+    _$PackageName _$result;
+    try {
+      _$result = _$v ??
+          new _$PackageName._(
+              path: path.build(),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'path';
+        path.build();
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'PackageName', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -781,6 +1060,129 @@ class SyntaxDeclarationBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'SyntaxDeclaration', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$ProtoX extends ProtoX {
+  @override
+  final SyntaxDeclaration syntaxDeclaration;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$ProtoX([void Function(ProtoXBuilder)? updates]) =>
+      (new ProtoXBuilder()..update(updates)).build();
+
+  _$ProtoX._(
+      {required this.syntaxDeclaration, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxDeclaration, 'ProtoX', 'syntaxDeclaration');
+    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'ProtoX', 'syntaxSpan');
+  }
+
+  @override
+  ProtoX rebuild(void Function(ProtoXBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ProtoXBuilder toBuilder() => new ProtoXBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ProtoX &&
+        syntaxDeclaration == other.syntaxDeclaration &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc($jc(0, syntaxDeclaration.hashCode), syntaxSpan.hashCode),
+        error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('ProtoX')
+          ..add('syntaxDeclaration', syntaxDeclaration)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class ProtoXBuilder implements Builder<ProtoX, ProtoXBuilder> {
+  _$ProtoX? _$v;
+
+  SyntaxDeclarationBuilder? _syntaxDeclaration;
+  SyntaxDeclarationBuilder get syntaxDeclaration =>
+      _$this._syntaxDeclaration ??= new SyntaxDeclarationBuilder();
+  set syntaxDeclaration(SyntaxDeclarationBuilder? syntaxDeclaration) =>
+      _$this._syntaxDeclaration = syntaxDeclaration;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  ProtoXBuilder();
+
+  ProtoXBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _syntaxDeclaration = $v.syntaxDeclaration.toBuilder();
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ProtoX other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$ProtoX;
+  }
+
+  @override
+  void update(void Function(ProtoXBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$ProtoX build() {
+    _$ProtoX _$result;
+    try {
+      _$result = _$v ??
+          new _$ProtoX._(
+              syntaxDeclaration: syntaxDeclaration.build(),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxDeclaration';
+        syntaxDeclaration.build();
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'ProtoX', _$failedField, e.toString());
       }
       rethrow;
     }

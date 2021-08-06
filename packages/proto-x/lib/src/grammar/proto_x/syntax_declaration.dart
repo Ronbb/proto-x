@@ -1,4 +1,4 @@
-part of 'protox.dart';
+part of 'proto_x.dart';
 
 class SyntaxDeclaration extends ChainableGrammar<syntaxes.SyntaxDeclaration> {
   const SyntaxDeclaration();

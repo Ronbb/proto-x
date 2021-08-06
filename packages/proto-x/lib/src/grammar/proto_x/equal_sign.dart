@@ -1,4 +1,4 @@
-part of 'protox.dart';
+part of 'proto_x.dart';
 
 class EqualSign<S extends syntaxes.EqualSignMixin> extends Grammar<S> {
   const EqualSign();

@@ -1,4 +1,4 @@
-part of 'protox.dart';
+part of 'proto_x.dart';
 
 class Space<S extends syntaxes.Syntax> extends Grammar<S> {
   const Space();

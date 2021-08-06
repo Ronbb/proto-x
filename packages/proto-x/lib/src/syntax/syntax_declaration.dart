@@ -12,4 +12,15 @@ abstract class SyntaxDeclaration
 
   factory SyntaxDeclaration(
       [void Function(SyntaxDeclarationBuilder)? updates]) = _$SyntaxDeclaration;
+
+  factory SyntaxDeclaration.withDefault() {
+    return SyntaxDeclaration((builder) {
+      builder
+        ..equalSign = EqualSign.withDefault().toBuilder()
+        ..keyword = Keyword.withDefault().toBuilder()
+        ..semicolon = Semicolon.withDefault().toBuilder()
+        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder()
+        ..value = StringLiteral.withDefault().toBuilder();
+    });
+  }
 }

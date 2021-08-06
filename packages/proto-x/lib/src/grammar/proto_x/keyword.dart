@@ -1,4 +1,4 @@
-part of 'protox.dart';
+part of 'proto_x.dart';
 
 class Keyword<S extends syntaxes.KeywordMixin> extends Grammar<S> {
   final syntaxes.KeywordType type;

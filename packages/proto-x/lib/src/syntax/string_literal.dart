@@ -11,4 +11,12 @@ abstract class StringLiteral
 
   factory StringLiteral([void Function(StringLiteralBuilder)? updates]) =
       _$StringLiteral;
+
+  factory StringLiteral.withDefault() {
+    return StringLiteral((builder) {
+      builder
+        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder()
+        ..string = '';
+    });
+  }
 }

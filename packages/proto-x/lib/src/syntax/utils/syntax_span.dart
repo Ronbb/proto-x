@@ -25,6 +25,14 @@ abstract class SyntaxPosition
 
   factory SyntaxPosition([void Function(SyntaxPositionBuilder) updates]) =
       _$SyntaxPosition;
+
+  factory SyntaxPosition.withDefault() {
+    return SyntaxPosition((builder) {
+      builder
+        ..column = 0
+        ..line = 0;
+    });
+  }
 }
 
 abstract class SyntaxSpan implements Built<SyntaxSpan, SyntaxSpanBuilder> {
@@ -34,4 +42,12 @@ abstract class SyntaxSpan implements Built<SyntaxSpan, SyntaxSpanBuilder> {
   SyntaxSpan._();
 
   factory SyntaxSpan([void Function(SyntaxSpanBuilder) updates]) = _$SyntaxSpan;
+
+  factory SyntaxSpan.withDefault() {
+    return SyntaxSpan((builder) {
+      builder
+        ..from = SyntaxPosition.withDefault().toBuilder()
+        ..to = SyntaxPosition.withDefault().toBuilder();
+    });
+  }
 }

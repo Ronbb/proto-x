@@ -38,21 +38,21 @@ abstract class ChainableGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
 }
 
 abstract class BlockGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
-  Grammar<S> get begin;
-  Grammar<S> get end;
+  Grammar<S>? get begin => null;
+  Grammar<S>? get end => null;
   Iterable<Grammar<S>> get includes;
 
   const BlockGrammar();
 
   @override
   bool scan(GrammarContext<S> context) {
-    if (!begin.scan(context) || context.scanner.isDone) {
+    if (begin?.scan(context) == false || context.scanner.isDone) {
       return false;
     }
 
     out:
     while (!context.scanner.isDone) {
-      if (end.scan(context)) {
+      if (end?.scan(context) == true) {
         break out;
       }
 
@@ -62,7 +62,7 @@ abstract class BlockGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
         }
       }
 
-      end.scan(context);
+      end?.scan(context);
       break out;
     }
 

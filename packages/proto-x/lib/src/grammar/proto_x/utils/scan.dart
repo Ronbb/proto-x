@@ -1,4 +1,4 @@
-part of '../protox.dart';
+part of '../proto_x.dart';
 
 extension ScanX on GrammarContext {
   syntaxes.SyntaxSpanBuilder? lastSpan() {

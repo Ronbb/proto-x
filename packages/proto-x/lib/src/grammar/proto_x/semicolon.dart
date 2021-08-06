@@ -1,4 +1,4 @@
-part of 'protox.dart';
+part of 'proto_x.dart';
 
 class Semicolon<S extends syntaxes.SemicolonMixin> extends Grammar<S> {
   const Semicolon();
