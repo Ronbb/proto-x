@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:proto_x/src/grammar/grammar.dart';
 import 'package:proto_x/src/grammar/proto_x/proto_x.dart' as protox;
 import 'package:proto_x/src/syntax/syntax.dart' as syntaxes;
@@ -49,13 +50,24 @@ void main() {
         url: r'C:\Project\tmp\test.protox',
       );
 
-      final grammar = protox.SyntaxDeclaration();
-      final context = GrammarContext<syntaxes.SyntaxDeclaration>(
-        scanner: SpanScanner.within(file.span(0)),
+      final scanner = SpanScanner.within(file.span(0));
+
+      final grammarSyntaxDeclaration = protox.SyntaxDeclaration();
+      final contextSyntaxDeclaration =
+          GrammarContext<syntaxes.SyntaxDeclaration>(
+        scanner: scanner,
         syntax: syntaxes.SyntaxDeclaration.withDefault(),
       );
-      expect(grammar.scan(context), isTrue);
-      expect(context.syntax.value.string, equals('protox'));
+      expect(grammarSyntaxDeclaration.scan(contextSyntaxDeclaration), isTrue);
+      expect(contextSyntaxDeclaration.syntax.value.string, equals('protox'));
+
+      final grammarPackage = protox.Package();
+      final contextPackage = GrammarContext<syntaxes.Package>(
+        scanner: scanner,
+        syntax: syntaxes.Package.withDefault(),
+      );
+      expect(grammarPackage.scan(contextPackage), isTrue);
+      expect(contextPackage.syntax.name.path, equals(BuiltList(['main', 'A'])));
     });
   });
 }

@@ -11,6 +11,16 @@ abstract class Package
   Package._();
 
   factory Package([void Function(PackageBuilder) updates]) = _$Package;
+
+  factory Package.withDefault() {
+    return Package((builder) {
+      builder
+        ..keyword = Keyword.withDefault().toBuilder()
+        ..name = PackageName.withDefault().toBuilder()
+        ..semicolon = Semicolon.withDefault().toBuilder()
+        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder();
+    });
+  }
 }
 
 abstract class PackageName
@@ -24,4 +34,12 @@ abstract class PackageName
 
   factory PackageName([void Function(PackageNameBuilder) updates]) =
       _$PackageName;
+
+  factory PackageName.withDefault() {
+    return PackageName((builder) {
+      builder
+        ..path = ListBuilder()
+        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder();
+    });
+  }
 }

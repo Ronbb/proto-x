@@ -1,12 +1,13 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 
+part 'basic/equal_sign.dart';
+part 'basic/keyword.dart';
+part 'basic/semicolon.dart';
+part 'basic/string_literal.dart';
+
 part 'comment.dart';
-part 'equal_sign.dart';
-part 'keyword.dart';
 part 'package.dart';
-part 'semicolon.dart';
-part 'string_literal.dart';
 part 'syntax_declaration.dart';
 
 part 'proto_x.dart';

@@ -1,4 +1,4 @@
-part of 'syntax.dart';
+part of '../syntax.dart';
 
 abstract class Keyword implements Built<Keyword, KeywordBuilder>, Syntax {
   @override

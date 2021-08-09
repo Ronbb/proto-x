@@ -4,7 +4,9 @@ abstract class ProtoX implements Built<ProtoX, ProtoXBuilder>, Syntax {
   @override
   SyntaxType get syntaxType => SyntaxType.protoX;
 
-  SyntaxDeclaration get syntaxDeclaration;
+  BuiltList<SyntaxDeclaration> get syntaxDeclarations;
+
+  BuiltList<Package> get packages;
 
   ProtoX._();
 

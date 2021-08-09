@@ -1,4 +1,4 @@
-part of 'syntax.dart';
+part of '../syntax.dart';
 
 abstract class EqualSign implements Built<EqualSign, EqualSignBuilder>, Syntax {
   @override

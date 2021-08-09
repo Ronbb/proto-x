@@ -1,4 +1,4 @@
-part of 'syntax.dart';
+part of '../syntax.dart';
 
 abstract class StringLiteral
     implements Built<StringLiteral, StringLiteralBuilder>, Syntax {

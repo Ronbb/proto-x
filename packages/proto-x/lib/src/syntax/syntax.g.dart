@@ -26,143 +26,29 @@ final BuiltSet<KeywordType> _$keywordTypeValues =
   _$keywordTypePackage,
 ]);
 
-class _$Comment extends Comment {
-  @override
-  final String text;
-  @override
-  final CommentType commentType;
-  @override
-  final SyntaxSpan syntaxSpan;
-  @override
-  final SyntaxError? error;
+const CommentType _$commentTypeUnknown = const CommentType._('unknown');
+const CommentType _$commentTypeBlock = const CommentType._('block');
+const CommentType _$commentTypeInline = const CommentType._('inline');
 
-  factory _$Comment([void Function(CommentBuilder)? updates]) =>
-      (new CommentBuilder()..update(updates)).build();
-
-  _$Comment._(
-      {required this.text,
-      required this.commentType,
-      required this.syntaxSpan,
-      this.error})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(text, 'Comment', 'text');
-    BuiltValueNullFieldError.checkNotNull(
-        commentType, 'Comment', 'commentType');
-    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Comment', 'syntaxSpan');
-  }
-
-  @override
-  Comment rebuild(void Function(CommentBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  CommentBuilder toBuilder() => new CommentBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is Comment &&
-        text == other.text &&
-        commentType == other.commentType &&
-        syntaxSpan == other.syntaxSpan &&
-        error == other.error;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, text.hashCode), commentType.hashCode),
-            syntaxSpan.hashCode),
-        error.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('Comment')
-          ..add('text', text)
-          ..add('commentType', commentType)
-          ..add('syntaxSpan', syntaxSpan)
-          ..add('error', error))
-        .toString();
+CommentType _$commentTypeValueOf(String name) {
+  switch (name) {
+    case 'unknown':
+      return _$commentTypeUnknown;
+    case 'block':
+      return _$commentTypeBlock;
+    case 'inline':
+      return _$commentTypeInline;
+    default:
+      throw new ArgumentError(name);
   }
 }
 
-class CommentBuilder implements Builder<Comment, CommentBuilder> {
-  _$Comment? _$v;
-
-  String? _text;
-  String? get text => _$this._text;
-  set text(String? text) => _$this._text = text;
-
-  CommentType? _commentType;
-  CommentType? get commentType => _$this._commentType;
-  set commentType(CommentType? commentType) =>
-      _$this._commentType = commentType;
-
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
-
-  SyntaxErrorBuilder? _error;
-  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
-  set error(SyntaxErrorBuilder? error) => _$this._error = error;
-
-  CommentBuilder();
-
-  CommentBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _text = $v.text;
-      _commentType = $v.commentType;
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
-      _error = $v.error?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(Comment other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$Comment;
-  }
-
-  @override
-  void update(void Function(CommentBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$Comment build() {
-    _$Comment _$result;
-    try {
-      _$result = _$v ??
-          new _$Comment._(
-              text: BuiltValueNullFieldError.checkNotNull(
-                  text, 'Comment', 'text'),
-              commentType: BuiltValueNullFieldError.checkNotNull(
-                  commentType, 'Comment', 'commentType'),
-              syntaxSpan: syntaxSpan.build(),
-              error: _error?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
-        _$failedField = 'error';
-        _error?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'Comment', _$failedField, e.toString());
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
+final BuiltSet<CommentType> _$commentTypeValues =
+    new BuiltSet<CommentType>(const <CommentType>[
+  _$commentTypeUnknown,
+  _$commentTypeBlock,
+  _$commentTypeInline,
+]);
 
 class _$EqualSign extends EqualSign {
   @override
@@ -380,6 +266,371 @@ class KeywordBuilder implements Builder<Keyword, KeywordBuilder> {
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Keyword', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Semicolon extends Semicolon {
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$Semicolon([void Function(SemicolonBuilder)? updates]) =>
+      (new SemicolonBuilder()..update(updates)).build();
+
+  _$Semicolon._({required this.syntaxSpan, this.error}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'Semicolon', 'syntaxSpan');
+  }
+
+  @override
+  Semicolon rebuild(void Function(SemicolonBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  SemicolonBuilder toBuilder() => new SemicolonBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Semicolon &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Semicolon')
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class SemicolonBuilder implements Builder<Semicolon, SemicolonBuilder> {
+  _$Semicolon? _$v;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  SemicolonBuilder();
+
+  SemicolonBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Semicolon other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Semicolon;
+  }
+
+  @override
+  void update(void Function(SemicolonBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Semicolon build() {
+    _$Semicolon _$result;
+    try {
+      _$result = _$v ??
+          new _$Semicolon._(
+              syntaxSpan: syntaxSpan.build(), error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Semicolon', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$StringLiteral extends StringLiteral {
+  @override
+  final String string;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$StringLiteral([void Function(StringLiteralBuilder)? updates]) =>
+      (new StringLiteralBuilder()..update(updates)).build();
+
+  _$StringLiteral._(
+      {required this.string, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(string, 'StringLiteral', 'string');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'StringLiteral', 'syntaxSpan');
+  }
+
+  @override
+  StringLiteral rebuild(void Function(StringLiteralBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  StringLiteralBuilder toBuilder() => new StringLiteralBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is StringLiteral &&
+        string == other.string &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, string.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('StringLiteral')
+          ..add('string', string)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class StringLiteralBuilder
+    implements Builder<StringLiteral, StringLiteralBuilder> {
+  _$StringLiteral? _$v;
+
+  String? _string;
+  String? get string => _$this._string;
+  set string(String? string) => _$this._string = string;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  StringLiteralBuilder();
+
+  StringLiteralBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _string = $v.string;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(StringLiteral other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$StringLiteral;
+  }
+
+  @override
+  void update(void Function(StringLiteralBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$StringLiteral build() {
+    _$StringLiteral _$result;
+    try {
+      _$result = _$v ??
+          new _$StringLiteral._(
+              string: BuiltValueNullFieldError.checkNotNull(
+                  string, 'StringLiteral', 'string'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'StringLiteral', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Comment extends Comment {
+  @override
+  final StringLiteral text;
+  @override
+  final CommentType commentType;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$Comment([void Function(CommentBuilder)? updates]) =>
+      (new CommentBuilder()..update(updates)).build();
+
+  _$Comment._(
+      {required this.text,
+      required this.commentType,
+      required this.syntaxSpan,
+      this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(text, 'Comment', 'text');
+    BuiltValueNullFieldError.checkNotNull(
+        commentType, 'Comment', 'commentType');
+    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Comment', 'syntaxSpan');
+  }
+
+  @override
+  Comment rebuild(void Function(CommentBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  CommentBuilder toBuilder() => new CommentBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Comment &&
+        text == other.text &&
+        commentType == other.commentType &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc(0, text.hashCode), commentType.hashCode),
+            syntaxSpan.hashCode),
+        error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Comment')
+          ..add('text', text)
+          ..add('commentType', commentType)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class CommentBuilder implements Builder<Comment, CommentBuilder> {
+  _$Comment? _$v;
+
+  StringLiteralBuilder? _text;
+  StringLiteralBuilder get text => _$this._text ??= new StringLiteralBuilder();
+  set text(StringLiteralBuilder? text) => _$this._text = text;
+
+  CommentType? _commentType;
+  CommentType? get commentType => _$this._commentType;
+  set commentType(CommentType? commentType) =>
+      _$this._commentType = commentType;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  CommentBuilder();
+
+  CommentBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _text = $v.text.toBuilder();
+      _commentType = $v.commentType;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Comment other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Comment;
+  }
+
+  @override
+  void update(void Function(CommentBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Comment build() {
+    _$Comment _$result;
+    try {
+      _$result = _$v ??
+          new _$Comment._(
+              text: text.build(),
+              commentType: BuiltValueNullFieldError.checkNotNull(
+                  commentType, 'Comment', 'commentType'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        text.build();
+
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Comment', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -663,231 +914,6 @@ class PackageNameBuilder implements Builder<PackageName, PackageNameBuilder> {
   }
 }
 
-class _$Semicolon extends Semicolon {
-  @override
-  final SyntaxSpan syntaxSpan;
-  @override
-  final SyntaxError? error;
-
-  factory _$Semicolon([void Function(SemicolonBuilder)? updates]) =>
-      (new SemicolonBuilder()..update(updates)).build();
-
-  _$Semicolon._({required this.syntaxSpan, this.error}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        syntaxSpan, 'Semicolon', 'syntaxSpan');
-  }
-
-  @override
-  Semicolon rebuild(void Function(SemicolonBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  SemicolonBuilder toBuilder() => new SemicolonBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is Semicolon &&
-        syntaxSpan == other.syntaxSpan &&
-        error == other.error;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc($jc(0, syntaxSpan.hashCode), error.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('Semicolon')
-          ..add('syntaxSpan', syntaxSpan)
-          ..add('error', error))
-        .toString();
-  }
-}
-
-class SemicolonBuilder implements Builder<Semicolon, SemicolonBuilder> {
-  _$Semicolon? _$v;
-
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
-
-  SyntaxErrorBuilder? _error;
-  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
-  set error(SyntaxErrorBuilder? error) => _$this._error = error;
-
-  SemicolonBuilder();
-
-  SemicolonBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
-      _error = $v.error?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(Semicolon other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$Semicolon;
-  }
-
-  @override
-  void update(void Function(SemicolonBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$Semicolon build() {
-    _$Semicolon _$result;
-    try {
-      _$result = _$v ??
-          new _$Semicolon._(
-              syntaxSpan: syntaxSpan.build(), error: _error?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
-        _$failedField = 'error';
-        _error?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'Semicolon', _$failedField, e.toString());
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$StringLiteral extends StringLiteral {
-  @override
-  final String string;
-  @override
-  final SyntaxSpan syntaxSpan;
-  @override
-  final SyntaxError? error;
-
-  factory _$StringLiteral([void Function(StringLiteralBuilder)? updates]) =>
-      (new StringLiteralBuilder()..update(updates)).build();
-
-  _$StringLiteral._(
-      {required this.string, required this.syntaxSpan, this.error})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(string, 'StringLiteral', 'string');
-    BuiltValueNullFieldError.checkNotNull(
-        syntaxSpan, 'StringLiteral', 'syntaxSpan');
-  }
-
-  @override
-  StringLiteral rebuild(void Function(StringLiteralBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  StringLiteralBuilder toBuilder() => new StringLiteralBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is StringLiteral &&
-        string == other.string &&
-        syntaxSpan == other.syntaxSpan &&
-        error == other.error;
-  }
-
-  @override
-  int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, string.hashCode), syntaxSpan.hashCode), error.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('StringLiteral')
-          ..add('string', string)
-          ..add('syntaxSpan', syntaxSpan)
-          ..add('error', error))
-        .toString();
-  }
-}
-
-class StringLiteralBuilder
-    implements Builder<StringLiteral, StringLiteralBuilder> {
-  _$StringLiteral? _$v;
-
-  String? _string;
-  String? get string => _$this._string;
-  set string(String? string) => _$this._string = string;
-
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
-
-  SyntaxErrorBuilder? _error;
-  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
-  set error(SyntaxErrorBuilder? error) => _$this._error = error;
-
-  StringLiteralBuilder();
-
-  StringLiteralBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _string = $v.string;
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
-      _error = $v.error?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(StringLiteral other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$StringLiteral;
-  }
-
-  @override
-  void update(void Function(StringLiteralBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$StringLiteral build() {
-    _$StringLiteral _$result;
-    try {
-      _$result = _$v ??
-          new _$StringLiteral._(
-              string: BuiltValueNullFieldError.checkNotNull(
-                  string, 'StringLiteral', 'string'),
-              syntaxSpan: syntaxSpan.build(),
-              error: _error?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
-        _$failedField = 'error';
-        _error?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'StringLiteral', _$failedField, e.toString());
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
 class _$SyntaxDeclaration extends SyntaxDeclaration {
   @override
   final StringLiteral value;
@@ -1070,7 +1096,9 @@ class SyntaxDeclarationBuilder
 
 class _$ProtoX extends ProtoX {
   @override
-  final SyntaxDeclaration syntaxDeclaration;
+  final BuiltList<SyntaxDeclaration> syntaxDeclarations;
+  @override
+  final BuiltList<Package> packages;
   @override
   final SyntaxSpan syntaxSpan;
   @override
@@ -1080,10 +1108,14 @@ class _$ProtoX extends ProtoX {
       (new ProtoXBuilder()..update(updates)).build();
 
   _$ProtoX._(
-      {required this.syntaxDeclaration, required this.syntaxSpan, this.error})
+      {required this.syntaxDeclarations,
+      required this.packages,
+      required this.syntaxSpan,
+      this.error})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        syntaxDeclaration, 'ProtoX', 'syntaxDeclaration');
+        syntaxDeclarations, 'ProtoX', 'syntaxDeclarations');
+    BuiltValueNullFieldError.checkNotNull(packages, 'ProtoX', 'packages');
     BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'ProtoX', 'syntaxSpan');
   }
 
@@ -1098,21 +1130,25 @@ class _$ProtoX extends ProtoX {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ProtoX &&
-        syntaxDeclaration == other.syntaxDeclaration &&
+        syntaxDeclarations == other.syntaxDeclarations &&
+        packages == other.packages &&
         syntaxSpan == other.syntaxSpan &&
         error == other.error;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, syntaxDeclaration.hashCode), syntaxSpan.hashCode),
+    return $jf($jc(
+        $jc($jc($jc(0, syntaxDeclarations.hashCode), packages.hashCode),
+            syntaxSpan.hashCode),
         error.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('ProtoX')
-          ..add('syntaxDeclaration', syntaxDeclaration)
+          ..add('syntaxDeclarations', syntaxDeclarations)
+          ..add('packages', packages)
           ..add('syntaxSpan', syntaxSpan)
           ..add('error', error))
         .toString();
@@ -1122,11 +1158,16 @@ class _$ProtoX extends ProtoX {
 class ProtoXBuilder implements Builder<ProtoX, ProtoXBuilder> {
   _$ProtoX? _$v;
 
-  SyntaxDeclarationBuilder? _syntaxDeclaration;
-  SyntaxDeclarationBuilder get syntaxDeclaration =>
-      _$this._syntaxDeclaration ??= new SyntaxDeclarationBuilder();
-  set syntaxDeclaration(SyntaxDeclarationBuilder? syntaxDeclaration) =>
-      _$this._syntaxDeclaration = syntaxDeclaration;
+  ListBuilder<SyntaxDeclaration>? _syntaxDeclarations;
+  ListBuilder<SyntaxDeclaration> get syntaxDeclarations =>
+      _$this._syntaxDeclarations ??= new ListBuilder<SyntaxDeclaration>();
+  set syntaxDeclarations(ListBuilder<SyntaxDeclaration>? syntaxDeclarations) =>
+      _$this._syntaxDeclarations = syntaxDeclarations;
+
+  ListBuilder<Package>? _packages;
+  ListBuilder<Package> get packages =>
+      _$this._packages ??= new ListBuilder<Package>();
+  set packages(ListBuilder<Package>? packages) => _$this._packages = packages;
 
   SyntaxSpanBuilder? _syntaxSpan;
   SyntaxSpanBuilder get syntaxSpan =>
@@ -1143,7 +1184,8 @@ class ProtoXBuilder implements Builder<ProtoX, ProtoXBuilder> {
   ProtoXBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _syntaxDeclaration = $v.syntaxDeclaration.toBuilder();
+      _syntaxDeclarations = $v.syntaxDeclarations.toBuilder();
+      _packages = $v.packages.toBuilder();
       _syntaxSpan = $v.syntaxSpan.toBuilder();
       _error = $v.error?.toBuilder();
       _$v = null;
@@ -1168,14 +1210,17 @@ class ProtoXBuilder implements Builder<ProtoX, ProtoXBuilder> {
     try {
       _$result = _$v ??
           new _$ProtoX._(
-              syntaxDeclaration: syntaxDeclaration.build(),
+              syntaxDeclarations: syntaxDeclarations.build(),
+              packages: packages.build(),
               syntaxSpan: syntaxSpan.build(),
               error: _error?.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'syntaxDeclaration';
-        syntaxDeclaration.build();
+        _$failedField = 'syntaxDeclarations';
+        syntaxDeclarations.build();
+        _$failedField = 'packages';
+        packages.build();
         _$failedField = 'syntaxSpan';
         syntaxSpan.build();
         _$failedField = 'error';

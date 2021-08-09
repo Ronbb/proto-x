@@ -53,6 +53,18 @@ extension ScanX on GrammarContext {
     }
   }
 
+  syntaxes.PackageNameBuilder? scanPackageName() {
+    if (scanner.scan(RegExp(r'[^\s;]+'))) {
+      final packageName = syntaxes.PackageNameBuilder()
+        ..syntaxSpan = lastSpan()
+        ..path = ListBuilder(
+          scanner.lastMatch![0]!.split('.'),
+        );
+
+      return packageName;
+    }
+  }
+
   bool scanSpace() {
     return scanner.scan(RegExp(r'\s*'));
   }

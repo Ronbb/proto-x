@@ -1,4 +1,4 @@
-part of 'syntax.dart';
+part of '../syntax.dart';
 
 abstract class Semicolon implements Built<Semicolon, SemicolonBuilder>, Syntax {
   @override
