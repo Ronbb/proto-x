@@ -13,8 +13,8 @@ const text =
 package main.A;
 
 message UserMessage {
-    string Username = 1;
-    string Text = 2;
+    string user_name = 1;
+    string text = 2;
 }
 ''';
 
@@ -68,6 +68,39 @@ void main() {
       );
       expect(grammarPackage.scan(contextPackage), isTrue);
       expect(contextPackage.syntax.name.path, equals(BuiltList(['main', 'A'])));
+
+      final grammarMessage = protox.Message();
+      final contextMessage = GrammarContext<syntaxes.Message>(
+        scanner: scanner,
+        syntax: syntaxes.Message.withDefault(),
+      );
+      expect(grammarMessage.scan(contextMessage), isTrue);
+      expect(contextMessage.syntax.name.value, equals('UserMessage'));
+      expect(contextMessage.syntax.fields.length, equals(2));
+      expect(
+        contextMessage.syntax.fields[0].fieldIndex.value,
+        equals(1),
+      );
+      expect(
+        contextMessage.syntax.fields[0].fieldName.value,
+        equals('user_name'),
+      );
+      expect(
+        contextMessage.syntax.fields[0].fieldType.value,
+        equals(syntaxes.MessageFieldTypes.string),
+      );
+      expect(
+        contextMessage.syntax.fields[1].fieldIndex.value,
+        equals(2),
+      );
+      expect(
+        contextMessage.syntax.fields[1].fieldName.value,
+        equals('text'),
+      );
+      expect(
+        contextMessage.syntax.fields[1].fieldType.value,
+        equals(syntaxes.MessageFieldTypes.string),
+      );
     });
   });
 }

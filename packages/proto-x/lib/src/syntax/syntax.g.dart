@@ -108,11 +108,15 @@ final BuiltSet<MessageFieldModifiers> _$messageFieldModifiersValues =
   _$messageFieldModifiersUnknown,
 ]);
 
+const MessageFieldTypes _$messageFieldTypesString =
+    const MessageFieldTypes._('string');
 const MessageFieldTypes _$messageFieldTypesUnknown =
     const MessageFieldTypes._('unknown');
 
 MessageFieldTypes _$messageFieldTypesValueOf(String name) {
   switch (name) {
+    case 'string':
+      return _$messageFieldTypesString;
     case 'unknown':
       return _$messageFieldTypesUnknown;
     default:
@@ -122,6 +126,7 @@ MessageFieldTypes _$messageFieldTypesValueOf(String name) {
 
 final BuiltSet<MessageFieldTypes> _$messageFieldTypesValues =
     new BuiltSet<MessageFieldTypes>(const <MessageFieldTypes>[
+  _$messageFieldTypesString,
   _$messageFieldTypesUnknown,
 ]);
 
@@ -983,6 +988,8 @@ class _$Message extends Message {
   final SyntaxError? error;
   @override
   final Block block;
+  @override
+  final Keyword keyword;
 
   factory _$Message([void Function(MessageBuilder)? updates]) =>
       (new MessageBuilder()..update(updates)).build();
@@ -992,12 +999,14 @@ class _$Message extends Message {
       required this.name,
       required this.syntaxSpan,
       this.error,
-      required this.block})
+      required this.block,
+      required this.keyword})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(fields, 'Message', 'fields');
     BuiltValueNullFieldError.checkNotNull(name, 'Message', 'name');
     BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Message', 'syntaxSpan');
     BuiltValueNullFieldError.checkNotNull(block, 'Message', 'block');
+    BuiltValueNullFieldError.checkNotNull(keyword, 'Message', 'keyword');
   }
 
   @override
@@ -1015,17 +1024,20 @@ class _$Message extends Message {
         name == other.name &&
         syntaxSpan == other.syntaxSpan &&
         error == other.error &&
-        block == other.block;
+        block == other.block &&
+        keyword == other.keyword;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, fields.hashCode), name.hashCode),
-                syntaxSpan.hashCode),
-            error.hashCode),
-        block.hashCode));
+            $jc(
+                $jc($jc($jc(0, fields.hashCode), name.hashCode),
+                    syntaxSpan.hashCode),
+                error.hashCode),
+            block.hashCode),
+        keyword.hashCode));
   }
 
   @override
@@ -1035,7 +1047,8 @@ class _$Message extends Message {
           ..add('name', name)
           ..add('syntaxSpan', syntaxSpan)
           ..add('error', error)
-          ..add('block', block))
+          ..add('block', block)
+          ..add('keyword', keyword))
         .toString();
   }
 }
@@ -1066,6 +1079,10 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
   BlockBuilder get block => _$this._block ??= new BlockBuilder();
   set block(BlockBuilder? block) => _$this._block = block;
 
+  KeywordBuilder? _keyword;
+  KeywordBuilder get keyword => _$this._keyword ??= new KeywordBuilder();
+  set keyword(KeywordBuilder? keyword) => _$this._keyword = keyword;
+
   MessageBuilder();
 
   MessageBuilder get _$this {
@@ -1076,6 +1093,7 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
       _syntaxSpan = $v.syntaxSpan.toBuilder();
       _error = $v.error?.toBuilder();
       _block = $v.block.toBuilder();
+      _keyword = $v.keyword.toBuilder();
       _$v = null;
     }
     return this;
@@ -1102,7 +1120,8 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
               name: name.build(),
               syntaxSpan: syntaxSpan.build(),
               error: _error?.build(),
-              block: block.build());
+              block: block.build(),
+              keyword: keyword.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -1116,6 +1135,8 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
         _error?.build();
         _$failedField = 'block';
         block.build();
+        _$failedField = 'keyword';
+        keyword.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Message', _$failedField, e.toString());
@@ -1248,7 +1269,7 @@ class MessageNameBuilder implements Builder<MessageName, MessageNameBuilder> {
 
 class _$MessageField extends MessageField {
   @override
-  final MessageFieldModifier fieldModifier;
+  final MessageFieldModifier? fieldModifier;
   @override
   final MessageFieldType fieldType;
   @override
@@ -1268,7 +1289,7 @@ class _$MessageField extends MessageField {
       (new MessageFieldBuilder()..update(updates)).build();
 
   _$MessageField._(
-      {required this.fieldModifier,
+      {this.fieldModifier,
       required this.fieldType,
       required this.fieldName,
       required this.fieldIndex,
@@ -1277,8 +1298,6 @@ class _$MessageField extends MessageField {
       required this.equalSign,
       required this.semicolon})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        fieldModifier, 'MessageField', 'fieldModifier');
     BuiltValueNullFieldError.checkNotNull(
         fieldType, 'MessageField', 'fieldType');
     BuiltValueNullFieldError.checkNotNull(
@@ -1400,7 +1419,7 @@ class MessageFieldBuilder
   MessageFieldBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _fieldModifier = $v.fieldModifier.toBuilder();
+      _fieldModifier = $v.fieldModifier?.toBuilder();
       _fieldType = $v.fieldType.toBuilder();
       _fieldName = $v.fieldName.toBuilder();
       _fieldIndex = $v.fieldIndex.toBuilder();
@@ -1430,7 +1449,7 @@ class MessageFieldBuilder
     try {
       _$result = _$v ??
           new _$MessageField._(
-              fieldModifier: fieldModifier.build(),
+              fieldModifier: _fieldModifier?.build(),
               fieldType: fieldType.build(),
               fieldName: fieldName.build(),
               fieldIndex: fieldIndex.build(),
@@ -1442,7 +1461,7 @@ class MessageFieldBuilder
       late String _$failedField;
       try {
         _$failedField = 'fieldModifier';
-        fieldModifier.build();
+        _fieldModifier?.build();
         _$failedField = 'fieldType';
         fieldType.build();
         _$failedField = 'fieldName';

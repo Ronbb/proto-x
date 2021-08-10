@@ -35,6 +35,14 @@ abstract class ChainableGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
 
     return check(context);
   }
+
+  @override
+  bool check(GrammarContext<S> context) {
+    return super.check(context) &&
+        grammars.every(
+          (grammar) => grammar.check(context),
+        );
+  }
 }
 
 abstract class BlockGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
@@ -67,6 +75,14 @@ abstract class BlockGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
     }
 
     return check(context);
+  }
+
+  @override
+  bool check(GrammarContext<S> context) {
+    return super.check(context) &&
+        [begin, end, ...includes].every(
+          (grammar) => grammar?.check(context) != false,
+        );
   }
 }
 

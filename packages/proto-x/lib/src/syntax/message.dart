@@ -1,7 +1,7 @@
 part of 'syntax.dart';
 
 abstract class Message
-    with BlockMixin
+    with BlockMixin, KeywordMixin
     implements Built<Message, MessageBuilder>, Syntax {
   @override
   SyntaxType get syntaxType => SyntaxType.message;
@@ -17,8 +17,9 @@ abstract class Message
     return Message((builder) {
       builder
         ..block = Block.withDefault().toBuilder()
-        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder()
-        ..name = MessageName.withDefault().toBuilder();
+        ..keyword = Keyword.withDefault().toBuilder()
+        ..name = MessageName.withDefault().toBuilder()
+        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder();
     });
   }
 }
@@ -50,7 +51,7 @@ abstract class MessageField
   @override
   SyntaxType get syntaxType => SyntaxType.messageField;
 
-  MessageFieldModifier get fieldModifier;
+  MessageFieldModifier? get fieldModifier;
   MessageFieldType get fieldType;
   MessageFieldName get fieldName;
   MessageFieldIndex get fieldIndex;
@@ -65,7 +66,6 @@ abstract class MessageField
       builder
         ..equalSign = EqualSign.withDefault().toBuilder()
         ..fieldIndex = MessageFieldIndex.withDefault().toBuilder()
-        ..fieldModifier = MessageFieldModifier.withDefault().toBuilder()
         ..fieldName = MessageFieldName.withDefault().toBuilder()
         ..fieldType = MessageFieldType.withDefault().toBuilder()
         ..semicolon = Semicolon.withDefault().toBuilder()
@@ -133,6 +133,7 @@ abstract class MessageFieldType
 
 class MessageFieldTypes extends EnumClass {
   // TODO
+  static const MessageFieldTypes string = _$messageFieldTypesString;
   static const MessageFieldTypes unknown = _$messageFieldTypesUnknown;
 
   const MessageFieldTypes._(String name) : super(name);

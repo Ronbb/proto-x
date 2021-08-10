@@ -31,6 +31,7 @@ class Message extends BlockGrammar<syntaxes.Message> {
 
   @override
   final Iterable<Grammar<syntaxes.Message>> includes = const [
+    Space(),
     CastedGrammar(
       builder: _fieldContextBuilder,
       caster: _fieldCaster,

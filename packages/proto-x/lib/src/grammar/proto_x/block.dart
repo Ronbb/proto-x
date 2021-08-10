@@ -36,6 +36,13 @@ class BlockBoundary<S extends syntaxes.BlockMixin> extends Grammar<S> {
       }
       return false;
     } catch (e) {
+      context.syntax = (context.syntax as dynamic).rebuild((builder) {
+        final error = syntaxes.SyntaxError.withDefault().toBuilder();
+        error
+          ..message = e.toString()
+          ..position = context.lastSpan()!.to;
+        builder.error = error;
+      });
       rethrow;
     }
   }

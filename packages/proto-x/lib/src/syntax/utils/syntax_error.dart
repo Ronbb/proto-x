@@ -8,4 +8,12 @@ abstract class SyntaxError implements Built<SyntaxError, SyntaxErrorBuilder> {
 
   factory SyntaxError([void Function(SyntaxErrorBuilder) updates]) =
       _$SyntaxError;
+
+  factory SyntaxError.withDefault() {
+    return SyntaxError((builder) {
+      builder
+        ..message = ''
+        ..position = SyntaxPosition.withDefault().toBuilder();
+    });
+  }
 }
