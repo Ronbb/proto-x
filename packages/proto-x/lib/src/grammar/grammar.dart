@@ -12,7 +12,6 @@ class GrammarContext<S extends syntaxes.Syntax> {
 }
 
 abstract class Grammar<S extends syntaxes.Syntax> {
-  /// Successful if returns true.
   bool scan(GrammarContext<S> context);
 
   bool check(GrammarContext<S> context) => context.syntax.error == null;
@@ -29,7 +28,7 @@ abstract class ChainableGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
   bool scan(GrammarContext<S> context) {
     for (final grammar in grammars) {
       if (!grammar.scan(context)) {
-        break;
+        return false;
       }
     }
 

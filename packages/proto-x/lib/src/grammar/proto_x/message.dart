@@ -31,7 +31,7 @@ class Message extends BlockGrammar<syntaxes.Message> {
 
   @override
   final Iterable<Grammar<syntaxes.Message>> includes = const [
-    Space(),
+    Space(isRequired: true),
     CastedGrammar(
       builder: _fieldContextBuilder,
       caster: _fieldCaster,
@@ -100,6 +100,8 @@ class _MessageField extends ChainableGrammar<syntaxes.MessageField> {
     Space(),
     _MessageFieldName(),
     Space(),
+    EqualSign(),
+    Space(),
     _MessageFieldIndex(),
     Space(),
     Semicolon(),
@@ -119,7 +121,7 @@ class _MessageFieldModifier extends Grammar<syntaxes.MessageField> {
       });
       return true;
     }
-    return false;
+    return true;
   }
 }
 
