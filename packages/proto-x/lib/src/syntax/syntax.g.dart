@@ -6,8 +6,46 @@ part of 'syntax.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const BlockBoundarySymbols _$blockBoundarySymbolsUnknown =
+    const BlockBoundarySymbols._('unknown');
+const BlockBoundarySymbols _$blockBoundarySymbolsBrace =
+    const BlockBoundarySymbols._('brace');
+const BlockBoundarySymbols _$blockBoundarySymbolsParenthesis =
+    const BlockBoundarySymbols._('parenthesis');
+const BlockBoundarySymbols _$blockBoundarySymbolsBracket =
+    const BlockBoundarySymbols._('bracket');
+const BlockBoundarySymbols _$blockBoundarySymbolsAngleBracket =
+    const BlockBoundarySymbols._('angleBracket');
+
+BlockBoundarySymbols _$blockBoundarySymbolsValueOf(String name) {
+  switch (name) {
+    case 'unknown':
+      return _$blockBoundarySymbolsUnknown;
+    case 'brace':
+      return _$blockBoundarySymbolsBrace;
+    case 'parenthesis':
+      return _$blockBoundarySymbolsParenthesis;
+    case 'bracket':
+      return _$blockBoundarySymbolsBracket;
+    case 'angleBracket':
+      return _$blockBoundarySymbolsAngleBracket;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<BlockBoundarySymbols> _$blockBoundarySymbolsValues =
+    new BuiltSet<BlockBoundarySymbols>(const <BlockBoundarySymbols>[
+  _$blockBoundarySymbolsUnknown,
+  _$blockBoundarySymbolsBrace,
+  _$blockBoundarySymbolsParenthesis,
+  _$blockBoundarySymbolsBracket,
+  _$blockBoundarySymbolsAngleBracket,
+]);
+
 const KeywordType _$keywordTypeSyntax = const KeywordType._('syntax');
 const KeywordType _$keywordTypePackage = const KeywordType._('package');
+const KeywordType _$keywordTypeMessage = const KeywordType._('message');
 
 KeywordType _$keywordTypeValueOf(String name) {
   switch (name) {
@@ -15,6 +53,8 @@ KeywordType _$keywordTypeValueOf(String name) {
       return _$keywordTypeSyntax;
     case 'package':
       return _$keywordTypePackage;
+    case 'message':
+      return _$keywordTypeMessage;
     default:
       throw new ArgumentError(name);
   }
@@ -24,6 +64,7 @@ final BuiltSet<KeywordType> _$keywordTypeValues =
     new BuiltSet<KeywordType>(const <KeywordType>[
   _$keywordTypeSyntax,
   _$keywordTypePackage,
+  _$keywordTypeMessage,
 ]);
 
 const CommentType _$commentTypeUnknown = const CommentType._('unknown');
@@ -49,6 +90,298 @@ final BuiltSet<CommentType> _$commentTypeValues =
   _$commentTypeBlock,
   _$commentTypeInline,
 ]);
+
+const MessageFieldModifiers _$messageFieldModifiersUnknown =
+    const MessageFieldModifiers._('unknown');
+
+MessageFieldModifiers _$messageFieldModifiersValueOf(String name) {
+  switch (name) {
+    case 'unknown':
+      return _$messageFieldModifiersUnknown;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<MessageFieldModifiers> _$messageFieldModifiersValues =
+    new BuiltSet<MessageFieldModifiers>(const <MessageFieldModifiers>[
+  _$messageFieldModifiersUnknown,
+]);
+
+const MessageFieldTypes _$messageFieldTypesUnknown =
+    const MessageFieldTypes._('unknown');
+
+MessageFieldTypes _$messageFieldTypesValueOf(String name) {
+  switch (name) {
+    case 'unknown':
+      return _$messageFieldTypesUnknown;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<MessageFieldTypes> _$messageFieldTypesValues =
+    new BuiltSet<MessageFieldTypes>(const <MessageFieldTypes>[
+  _$messageFieldTypesUnknown,
+]);
+
+class _$Block extends Block {
+  @override
+  final BlockBoundary open;
+  @override
+  final BlockBoundary close;
+  @override
+  final BlockBoundarySymbols symbol;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$Block([void Function(BlockBuilder)? updates]) =>
+      (new BlockBuilder()..update(updates)).build();
+
+  _$Block._(
+      {required this.open,
+      required this.close,
+      required this.symbol,
+      required this.syntaxSpan,
+      this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(open, 'Block', 'open');
+    BuiltValueNullFieldError.checkNotNull(close, 'Block', 'close');
+    BuiltValueNullFieldError.checkNotNull(symbol, 'Block', 'symbol');
+    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Block', 'syntaxSpan');
+  }
+
+  @override
+  Block rebuild(void Function(BlockBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  BlockBuilder toBuilder() => new BlockBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Block &&
+        open == other.open &&
+        close == other.close &&
+        symbol == other.symbol &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc($jc(0, open.hashCode), close.hashCode), symbol.hashCode),
+            syntaxSpan.hashCode),
+        error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Block')
+          ..add('open', open)
+          ..add('close', close)
+          ..add('symbol', symbol)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class BlockBuilder implements Builder<Block, BlockBuilder> {
+  _$Block? _$v;
+
+  BlockBoundaryBuilder? _open;
+  BlockBoundaryBuilder get open => _$this._open ??= new BlockBoundaryBuilder();
+  set open(BlockBoundaryBuilder? open) => _$this._open = open;
+
+  BlockBoundaryBuilder? _close;
+  BlockBoundaryBuilder get close =>
+      _$this._close ??= new BlockBoundaryBuilder();
+  set close(BlockBoundaryBuilder? close) => _$this._close = close;
+
+  BlockBoundarySymbols? _symbol;
+  BlockBoundarySymbols? get symbol => _$this._symbol;
+  set symbol(BlockBoundarySymbols? symbol) => _$this._symbol = symbol;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  BlockBuilder();
+
+  BlockBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _open = $v.open.toBuilder();
+      _close = $v.close.toBuilder();
+      _symbol = $v.symbol;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Block other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Block;
+  }
+
+  @override
+  void update(void Function(BlockBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Block build() {
+    _$Block _$result;
+    try {
+      _$result = _$v ??
+          new _$Block._(
+              open: open.build(),
+              close: close.build(),
+              symbol: BuiltValueNullFieldError.checkNotNull(
+                  symbol, 'Block', 'symbol'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'open';
+        open.build();
+        _$failedField = 'close';
+        close.build();
+
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Block', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$BlockBoundary extends BlockBoundary {
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$BlockBoundary([void Function(BlockBoundaryBuilder)? updates]) =>
+      (new BlockBoundaryBuilder()..update(updates)).build();
+
+  _$BlockBoundary._({required this.syntaxSpan, this.error}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'BlockBoundary', 'syntaxSpan');
+  }
+
+  @override
+  BlockBoundary rebuild(void Function(BlockBoundaryBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  BlockBoundaryBuilder toBuilder() => new BlockBoundaryBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BlockBoundary &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('BlockBoundary')
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class BlockBoundaryBuilder
+    implements Builder<BlockBoundary, BlockBoundaryBuilder> {
+  _$BlockBoundary? _$v;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  BlockBoundaryBuilder();
+
+  BlockBoundaryBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BlockBoundary other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$BlockBoundary;
+  }
+
+  @override
+  void update(void Function(BlockBoundaryBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$BlockBoundary build() {
+    _$BlockBoundary _$result;
+    try {
+      _$result = _$v ??
+          new _$BlockBoundary._(
+              syntaxSpan: syntaxSpan.build(), error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'BlockBoundary', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
 
 class _$EqualSign extends EqualSign {
   @override
@@ -631,6 +964,996 @@ class CommentBuilder implements Builder<Comment, CommentBuilder> {
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Comment', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Message extends Message {
+  @override
+  final BuiltList<MessageField> fields;
+  @override
+  final MessageName name;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+  @override
+  final Block block;
+
+  factory _$Message([void Function(MessageBuilder)? updates]) =>
+      (new MessageBuilder()..update(updates)).build();
+
+  _$Message._(
+      {required this.fields,
+      required this.name,
+      required this.syntaxSpan,
+      this.error,
+      required this.block})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(fields, 'Message', 'fields');
+    BuiltValueNullFieldError.checkNotNull(name, 'Message', 'name');
+    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Message', 'syntaxSpan');
+    BuiltValueNullFieldError.checkNotNull(block, 'Message', 'block');
+  }
+
+  @override
+  Message rebuild(void Function(MessageBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageBuilder toBuilder() => new MessageBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Message &&
+        fields == other.fields &&
+        name == other.name &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error &&
+        block == other.block;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc($jc($jc(0, fields.hashCode), name.hashCode),
+                syntaxSpan.hashCode),
+            error.hashCode),
+        block.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Message')
+          ..add('fields', fields)
+          ..add('name', name)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error)
+          ..add('block', block))
+        .toString();
+  }
+}
+
+class MessageBuilder implements Builder<Message, MessageBuilder> {
+  _$Message? _$v;
+
+  ListBuilder<MessageField>? _fields;
+  ListBuilder<MessageField> get fields =>
+      _$this._fields ??= new ListBuilder<MessageField>();
+  set fields(ListBuilder<MessageField>? fields) => _$this._fields = fields;
+
+  MessageNameBuilder? _name;
+  MessageNameBuilder get name => _$this._name ??= new MessageNameBuilder();
+  set name(MessageNameBuilder? name) => _$this._name = name;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  BlockBuilder? _block;
+  BlockBuilder get block => _$this._block ??= new BlockBuilder();
+  set block(BlockBuilder? block) => _$this._block = block;
+
+  MessageBuilder();
+
+  MessageBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _fields = $v.fields.toBuilder();
+      _name = $v.name.toBuilder();
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _block = $v.block.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Message other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Message;
+  }
+
+  @override
+  void update(void Function(MessageBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Message build() {
+    _$Message _$result;
+    try {
+      _$result = _$v ??
+          new _$Message._(
+              fields: fields.build(),
+              name: name.build(),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build(),
+              block: block.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'fields';
+        fields.build();
+        _$failedField = 'name';
+        name.build();
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+        _$failedField = 'block';
+        block.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Message', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MessageName extends MessageName {
+  @override
+  final String value;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$MessageName([void Function(MessageNameBuilder)? updates]) =>
+      (new MessageNameBuilder()..update(updates)).build();
+
+  _$MessageName._({required this.value, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(value, 'MessageName', 'value');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'MessageName', 'syntaxSpan');
+  }
+
+  @override
+  MessageName rebuild(void Function(MessageNameBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageNameBuilder toBuilder() => new MessageNameBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MessageName &&
+        value == other.value &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, value.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MessageName')
+          ..add('value', value)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class MessageNameBuilder implements Builder<MessageName, MessageNameBuilder> {
+  _$MessageName? _$v;
+
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  MessageNameBuilder();
+
+  MessageNameBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MessageName other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MessageName;
+  }
+
+  @override
+  void update(void Function(MessageNameBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MessageName build() {
+    _$MessageName _$result;
+    try {
+      _$result = _$v ??
+          new _$MessageName._(
+              value: BuiltValueNullFieldError.checkNotNull(
+                  value, 'MessageName', 'value'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MessageName', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MessageField extends MessageField {
+  @override
+  final MessageFieldModifier fieldModifier;
+  @override
+  final MessageFieldType fieldType;
+  @override
+  final MessageFieldName fieldName;
+  @override
+  final MessageFieldIndex fieldIndex;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+  @override
+  final EqualSign equalSign;
+  @override
+  final Semicolon semicolon;
+
+  factory _$MessageField([void Function(MessageFieldBuilder)? updates]) =>
+      (new MessageFieldBuilder()..update(updates)).build();
+
+  _$MessageField._(
+      {required this.fieldModifier,
+      required this.fieldType,
+      required this.fieldName,
+      required this.fieldIndex,
+      required this.syntaxSpan,
+      this.error,
+      required this.equalSign,
+      required this.semicolon})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        fieldModifier, 'MessageField', 'fieldModifier');
+    BuiltValueNullFieldError.checkNotNull(
+        fieldType, 'MessageField', 'fieldType');
+    BuiltValueNullFieldError.checkNotNull(
+        fieldName, 'MessageField', 'fieldName');
+    BuiltValueNullFieldError.checkNotNull(
+        fieldIndex, 'MessageField', 'fieldIndex');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'MessageField', 'syntaxSpan');
+    BuiltValueNullFieldError.checkNotNull(
+        equalSign, 'MessageField', 'equalSign');
+    BuiltValueNullFieldError.checkNotNull(
+        semicolon, 'MessageField', 'semicolon');
+  }
+
+  @override
+  MessageField rebuild(void Function(MessageFieldBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageFieldBuilder toBuilder() => new MessageFieldBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MessageField &&
+        fieldModifier == other.fieldModifier &&
+        fieldType == other.fieldType &&
+        fieldName == other.fieldName &&
+        fieldIndex == other.fieldIndex &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error &&
+        equalSign == other.equalSign &&
+        semicolon == other.semicolon;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc($jc(0, fieldModifier.hashCode),
+                                fieldType.hashCode),
+                            fieldName.hashCode),
+                        fieldIndex.hashCode),
+                    syntaxSpan.hashCode),
+                error.hashCode),
+            equalSign.hashCode),
+        semicolon.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MessageField')
+          ..add('fieldModifier', fieldModifier)
+          ..add('fieldType', fieldType)
+          ..add('fieldName', fieldName)
+          ..add('fieldIndex', fieldIndex)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error)
+          ..add('equalSign', equalSign)
+          ..add('semicolon', semicolon))
+        .toString();
+  }
+}
+
+class MessageFieldBuilder
+    implements Builder<MessageField, MessageFieldBuilder> {
+  _$MessageField? _$v;
+
+  MessageFieldModifierBuilder? _fieldModifier;
+  MessageFieldModifierBuilder get fieldModifier =>
+      _$this._fieldModifier ??= new MessageFieldModifierBuilder();
+  set fieldModifier(MessageFieldModifierBuilder? fieldModifier) =>
+      _$this._fieldModifier = fieldModifier;
+
+  MessageFieldTypeBuilder? _fieldType;
+  MessageFieldTypeBuilder get fieldType =>
+      _$this._fieldType ??= new MessageFieldTypeBuilder();
+  set fieldType(MessageFieldTypeBuilder? fieldType) =>
+      _$this._fieldType = fieldType;
+
+  MessageFieldNameBuilder? _fieldName;
+  MessageFieldNameBuilder get fieldName =>
+      _$this._fieldName ??= new MessageFieldNameBuilder();
+  set fieldName(MessageFieldNameBuilder? fieldName) =>
+      _$this._fieldName = fieldName;
+
+  MessageFieldIndexBuilder? _fieldIndex;
+  MessageFieldIndexBuilder get fieldIndex =>
+      _$this._fieldIndex ??= new MessageFieldIndexBuilder();
+  set fieldIndex(MessageFieldIndexBuilder? fieldIndex) =>
+      _$this._fieldIndex = fieldIndex;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  EqualSignBuilder? _equalSign;
+  EqualSignBuilder get equalSign =>
+      _$this._equalSign ??= new EqualSignBuilder();
+  set equalSign(EqualSignBuilder? equalSign) => _$this._equalSign = equalSign;
+
+  SemicolonBuilder? _semicolon;
+  SemicolonBuilder get semicolon =>
+      _$this._semicolon ??= new SemicolonBuilder();
+  set semicolon(SemicolonBuilder? semicolon) => _$this._semicolon = semicolon;
+
+  MessageFieldBuilder();
+
+  MessageFieldBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _fieldModifier = $v.fieldModifier.toBuilder();
+      _fieldType = $v.fieldType.toBuilder();
+      _fieldName = $v.fieldName.toBuilder();
+      _fieldIndex = $v.fieldIndex.toBuilder();
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _equalSign = $v.equalSign.toBuilder();
+      _semicolon = $v.semicolon.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MessageField other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MessageField;
+  }
+
+  @override
+  void update(void Function(MessageFieldBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MessageField build() {
+    _$MessageField _$result;
+    try {
+      _$result = _$v ??
+          new _$MessageField._(
+              fieldModifier: fieldModifier.build(),
+              fieldType: fieldType.build(),
+              fieldName: fieldName.build(),
+              fieldIndex: fieldIndex.build(),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build(),
+              equalSign: equalSign.build(),
+              semicolon: semicolon.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'fieldModifier';
+        fieldModifier.build();
+        _$failedField = 'fieldType';
+        fieldType.build();
+        _$failedField = 'fieldName';
+        fieldName.build();
+        _$failedField = 'fieldIndex';
+        fieldIndex.build();
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+        _$failedField = 'equalSign';
+        equalSign.build();
+        _$failedField = 'semicolon';
+        semicolon.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MessageField', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MessageFieldModifier extends MessageFieldModifier {
+  @override
+  final MessageFieldModifiers value;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$MessageFieldModifier(
+          [void Function(MessageFieldModifierBuilder)? updates]) =>
+      (new MessageFieldModifierBuilder()..update(updates)).build();
+
+  _$MessageFieldModifier._(
+      {required this.value, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        value, 'MessageFieldModifier', 'value');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'MessageFieldModifier', 'syntaxSpan');
+  }
+
+  @override
+  MessageFieldModifier rebuild(
+          void Function(MessageFieldModifierBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageFieldModifierBuilder toBuilder() =>
+      new MessageFieldModifierBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MessageFieldModifier &&
+        value == other.value &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, value.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MessageFieldModifier')
+          ..add('value', value)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class MessageFieldModifierBuilder
+    implements Builder<MessageFieldModifier, MessageFieldModifierBuilder> {
+  _$MessageFieldModifier? _$v;
+
+  MessageFieldModifiers? _value;
+  MessageFieldModifiers? get value => _$this._value;
+  set value(MessageFieldModifiers? value) => _$this._value = value;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  MessageFieldModifierBuilder();
+
+  MessageFieldModifierBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MessageFieldModifier other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MessageFieldModifier;
+  }
+
+  @override
+  void update(void Function(MessageFieldModifierBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MessageFieldModifier build() {
+    _$MessageFieldModifier _$result;
+    try {
+      _$result = _$v ??
+          new _$MessageFieldModifier._(
+              value: BuiltValueNullFieldError.checkNotNull(
+                  value, 'MessageFieldModifier', 'value'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MessageFieldModifier', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MessageFieldType extends MessageFieldType {
+  @override
+  final MessageFieldTypes value;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$MessageFieldType(
+          [void Function(MessageFieldTypeBuilder)? updates]) =>
+      (new MessageFieldTypeBuilder()..update(updates)).build();
+
+  _$MessageFieldType._(
+      {required this.value, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(value, 'MessageFieldType', 'value');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'MessageFieldType', 'syntaxSpan');
+  }
+
+  @override
+  MessageFieldType rebuild(void Function(MessageFieldTypeBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageFieldTypeBuilder toBuilder() =>
+      new MessageFieldTypeBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MessageFieldType &&
+        value == other.value &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, value.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MessageFieldType')
+          ..add('value', value)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class MessageFieldTypeBuilder
+    implements Builder<MessageFieldType, MessageFieldTypeBuilder> {
+  _$MessageFieldType? _$v;
+
+  MessageFieldTypes? _value;
+  MessageFieldTypes? get value => _$this._value;
+  set value(MessageFieldTypes? value) => _$this._value = value;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  MessageFieldTypeBuilder();
+
+  MessageFieldTypeBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MessageFieldType other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MessageFieldType;
+  }
+
+  @override
+  void update(void Function(MessageFieldTypeBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MessageFieldType build() {
+    _$MessageFieldType _$result;
+    try {
+      _$result = _$v ??
+          new _$MessageFieldType._(
+              value: BuiltValueNullFieldError.checkNotNull(
+                  value, 'MessageFieldType', 'value'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MessageFieldType', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MessageFieldName extends MessageFieldName {
+  @override
+  final String value;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$MessageFieldName(
+          [void Function(MessageFieldNameBuilder)? updates]) =>
+      (new MessageFieldNameBuilder()..update(updates)).build();
+
+  _$MessageFieldName._(
+      {required this.value, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(value, 'MessageFieldName', 'value');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'MessageFieldName', 'syntaxSpan');
+  }
+
+  @override
+  MessageFieldName rebuild(void Function(MessageFieldNameBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageFieldNameBuilder toBuilder() =>
+      new MessageFieldNameBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MessageFieldName &&
+        value == other.value &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, value.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MessageFieldName')
+          ..add('value', value)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class MessageFieldNameBuilder
+    implements Builder<MessageFieldName, MessageFieldNameBuilder> {
+  _$MessageFieldName? _$v;
+
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  MessageFieldNameBuilder();
+
+  MessageFieldNameBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MessageFieldName other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MessageFieldName;
+  }
+
+  @override
+  void update(void Function(MessageFieldNameBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MessageFieldName build() {
+    _$MessageFieldName _$result;
+    try {
+      _$result = _$v ??
+          new _$MessageFieldName._(
+              value: BuiltValueNullFieldError.checkNotNull(
+                  value, 'MessageFieldName', 'value'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MessageFieldName', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MessageFieldIndex extends MessageFieldIndex {
+  @override
+  final int value;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$MessageFieldIndex(
+          [void Function(MessageFieldIndexBuilder)? updates]) =>
+      (new MessageFieldIndexBuilder()..update(updates)).build();
+
+  _$MessageFieldIndex._(
+      {required this.value, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(value, 'MessageFieldIndex', 'value');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'MessageFieldIndex', 'syntaxSpan');
+  }
+
+  @override
+  MessageFieldIndex rebuild(void Function(MessageFieldIndexBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageFieldIndexBuilder toBuilder() =>
+      new MessageFieldIndexBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MessageFieldIndex &&
+        value == other.value &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, value.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MessageFieldIndex')
+          ..add('value', value)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class MessageFieldIndexBuilder
+    implements Builder<MessageFieldIndex, MessageFieldIndexBuilder> {
+  _$MessageFieldIndex? _$v;
+
+  int? _value;
+  int? get value => _$this._value;
+  set value(int? value) => _$this._value = value;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  MessageFieldIndexBuilder();
+
+  MessageFieldIndexBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MessageFieldIndex other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MessageFieldIndex;
+  }
+
+  @override
+  void update(void Function(MessageFieldIndexBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MessageFieldIndex build() {
+    _$MessageFieldIndex _$result;
+    try {
+      _$result = _$v ??
+          new _$MessageFieldIndex._(
+              value: BuiltValueNullFieldError.checkNotNull(
+                  value, 'MessageFieldIndex', 'value'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MessageFieldIndex', _$failedField, e.toString());
       }
       rethrow;
     }

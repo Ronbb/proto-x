@@ -69,3 +69,33 @@ abstract class BlockGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
     return check(context);
   }
 }
+
+typedef GrammarCaster<S extends syntaxes.Syntax, OS extends syntaxes.Syntax>
+    = void Function(GrammarContext<OS> previous, GrammarContext<S> next);
+
+typedef GrammarContextBuilder<S extends syntaxes.Syntax,
+        OS extends syntaxes.Syntax>
+    = GrammarContext<OS> Function(GrammarContext<S> context);
+
+class CastedGrammar<S extends syntaxes.Syntax, OS extends syntaxes.Syntax>
+    extends Grammar<S> {
+  final GrammarContextBuilder<S, OS> builder;
+  final GrammarCaster<S, OS> caster;
+  final Grammar<OS> grammar;
+
+  const CastedGrammar({
+    required this.builder,
+    required this.caster,
+    required this.grammar,
+  });
+
+  @override
+  bool scan(GrammarContext<S> context) {
+    final previousContext = builder(context);
+    if (grammar.scan(previousContext)) {
+      caster(previousContext, context);
+      return check(context);
+    }
+    return false;
+  }
+}

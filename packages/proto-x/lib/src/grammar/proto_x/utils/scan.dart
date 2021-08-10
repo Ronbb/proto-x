@@ -65,6 +65,95 @@ extension ScanX on GrammarContext {
     }
   }
 
+  static const Map<syntaxes.BlockBoundarySymbols,
+      Map<BlockBoundaryType, Pattern>> blockBoundarySymbolsMap = {
+    syntaxes.BlockBoundarySymbols.brace: {
+      BlockBoundaryType.open: '{',
+      BlockBoundaryType.close: '}',
+    },
+    syntaxes.BlockBoundarySymbols.bracket: {
+      BlockBoundaryType.open: '[',
+      BlockBoundaryType.close: ']',
+    },
+    syntaxes.BlockBoundarySymbols.parenthesis: {
+      BlockBoundaryType.open: '(',
+      BlockBoundaryType.close: ')',
+    },
+  };
+
+  syntaxes.BlockBoundaryBuilder? scanBlockBoundary({
+    required syntaxes.BlockBoundarySymbols symbol,
+    required BlockBoundaryType type,
+  }) {
+    final pattern = blockBoundarySymbolsMap[symbol]?[type];
+    if (pattern != null) {
+      if (scanner.scan(pattern)) {
+        final blockBoundary = syntaxes.BlockBoundaryBuilder()
+          ..syntaxSpan = lastSpan();
+
+        return blockBoundary;
+      }
+    }
+  }
+
+  static final namePattern = RegExp(r'[a-zA-Z_$][a-zA-Z0-9_$]*');
+
+  static final intPattern = RegExp(r'-?[0-9]*');
+
+  syntaxes.MessageNameBuilder? scanMessageName() {
+    if (scanner.scan(namePattern)) {
+      final messageName = syntaxes.MessageNameBuilder()
+        ..syntaxSpan = lastSpan()
+        ..value = scanner.lastMatch![0]!;
+
+      return messageName;
+    }
+  }
+
+  syntaxes.MessageFieldModifierBuilder? scanMessageFieldModifier() {
+    if (scanner.scan(namePattern)) {
+      final fieldModifier = syntaxes.MessageFieldModifierBuilder()
+        ..syntaxSpan = lastSpan()
+        ..value = syntaxes.MessageFieldModifiers.valueOf(
+          scanner.lastMatch![0]!,
+        );
+
+      return fieldModifier;
+    }
+  }
+
+  syntaxes.MessageFieldTypeBuilder? scanMessageFieldType() {
+    if (scanner.scan(namePattern)) {
+      final fieldType = syntaxes.MessageFieldTypeBuilder()
+        ..syntaxSpan = lastSpan()
+        ..value = syntaxes.MessageFieldTypes.valueOf(
+          scanner.lastMatch![0]!,
+        );
+
+      return fieldType;
+    }
+  }
+
+  syntaxes.MessageFieldNameBuilder? scanMessageFieldName() {
+    if (scanner.scan(namePattern)) {
+      final fieldName = syntaxes.MessageFieldNameBuilder()
+        ..syntaxSpan = lastSpan()
+        ..value = scanner.lastMatch![0]!;
+
+      return fieldName;
+    }
+  }
+
+  syntaxes.MessageFieldIndexBuilder? scanMessageIndex() {
+    if (scanner.scan(intPattern)) {
+      final fieldIndex = syntaxes.MessageFieldIndexBuilder()
+        ..syntaxSpan = lastSpan()
+        ..value = int.tryParse(scanner.lastMatch![0]!);
+
+      return fieldIndex;
+    }
+  }
+
   bool scanSpace() {
     return scanner.scan(RegExp(r'\s*'));
   }

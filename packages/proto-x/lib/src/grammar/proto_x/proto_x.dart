@@ -5,8 +5,10 @@ import 'package:proto_x/src/grammar/grammar.dart';
 import 'package:proto_x/src/syntax/syntax.dart' as syntaxes;
 import 'package:proto_x/src/utils/utils.dart' as utils;
 
+part 'block.dart';
 part 'equal_sign.dart';
 part 'keyword.dart';
+part 'message.dart';
 part 'package.dart';
 part 'semicolon.dart';
 part 'space.dart';

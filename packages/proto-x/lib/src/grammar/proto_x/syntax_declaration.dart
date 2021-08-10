@@ -10,14 +10,14 @@ class SyntaxDeclaration extends ChainableGrammar<syntaxes.SyntaxDeclaration> {
     Space(),
     EqualSign(),
     Space(),
-    SyntaxDeclarationLiteral(),
+    _SyntaxDeclarationLiteral(),
     Space(),
     Semicolon(),
   ];
 }
 
-class SyntaxDeclarationLiteral extends Grammar<syntaxes.SyntaxDeclaration> {
-  const SyntaxDeclarationLiteral();
+class _SyntaxDeclarationLiteral extends Grammar<syntaxes.SyntaxDeclaration> {
+  const _SyntaxDeclarationLiteral();
 
   @override
   bool scan(GrammarContext<syntaxes.SyntaxDeclaration> context) {

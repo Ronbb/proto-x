@@ -8,14 +8,14 @@ class Package extends ChainableGrammar<syntaxes.Package> {
     Space(),
     Keyword(syntaxes.KeywordType.package),
     Space(),
-    PackageName(),
+    _PackageName(),
     Space(),
     Semicolon(),
   ];
 }
 
-class PackageName extends Grammar<syntaxes.Package> {
-  const PackageName();
+class _PackageName extends Grammar<syntaxes.Package> {
+  const _PackageName();
 
   @override
   bool scan(GrammarContext<syntaxes.Package> context) {
