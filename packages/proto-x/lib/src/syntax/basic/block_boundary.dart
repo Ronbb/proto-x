@@ -1,6 +1,8 @@
 part of '../syntax.dart';
 
-abstract class Block implements Built<Block, BlockBuilder>, Syntax {
+abstract class Block
+    with ParentedSyntax
+    implements Built<Block, BlockBuilder>, Syntax {
   @override
   SyntaxType get syntaxType => SyntaxType.block;
 
@@ -10,6 +12,9 @@ abstract class Block implements Built<Block, BlockBuilder>, Syntax {
 
   Block._();
 
+  @override
+  Iterable<Syntax?> get syntaxes => [open, close];
+
   factory Block([void Function(BlockBuilder) updates]) = _$Block;
 
   factory Block.withDefault() {
@@ -17,8 +22,7 @@ abstract class Block implements Built<Block, BlockBuilder>, Syntax {
       builder
         ..open = BlockBoundary.withDefault().toBuilder()
         ..close = BlockBoundary.withDefault().toBuilder()
-        ..symbol = BlockBoundarySymbols.unknown
-        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder();
+        ..symbol = BlockBoundarySymbols.unknown;
     });
   }
 }

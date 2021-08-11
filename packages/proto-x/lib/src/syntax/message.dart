@@ -1,13 +1,21 @@
 part of 'syntax.dart';
 
 abstract class Message
-    with BlockMixin, KeywordMixin
+    with BlockMixin, KeywordMixin, ParentedSyntax
     implements Built<Message, MessageBuilder>, Syntax {
   @override
   SyntaxType get syntaxType => SyntaxType.message;
 
   BuiltList<MessageField> get fields;
   MessageName get name;
+
+  @override
+  Iterable<Syntax?> get syntaxes => [
+        block,
+        keyword,
+        name,
+        ...fields,
+      ];
 
   Message._();
 
@@ -18,8 +26,7 @@ abstract class Message
       builder
         ..block = Block.withDefault().toBuilder()
         ..keyword = Keyword.withDefault().toBuilder()
-        ..name = MessageName.withDefault().toBuilder()
-        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder();
+        ..name = MessageName.withDefault().toBuilder();
     });
   }
 }
@@ -46,10 +53,20 @@ abstract class MessageName
 }
 
 abstract class MessageField
-    with EqualSignMixin, SemicolonMixin
+    with EqualSignMixin, SemicolonMixin, ParentedSyntax
     implements Built<MessageField, MessageFieldBuilder>, Syntax {
   @override
   SyntaxType get syntaxType => SyntaxType.messageField;
+
+  @override
+  Iterable<Syntax?> get syntaxes => [
+        equalSign,
+        semicolon,
+        fieldModifier,
+        fieldType,
+        fieldName,
+        fieldIndex,
+      ];
 
   MessageFieldModifier? get fieldModifier;
   MessageFieldType get fieldType;
@@ -68,8 +85,7 @@ abstract class MessageField
         ..fieldIndex = MessageFieldIndex.withDefault().toBuilder()
         ..fieldName = MessageFieldName.withDefault().toBuilder()
         ..fieldType = MessageFieldType.withDefault().toBuilder()
-        ..semicolon = Semicolon.withDefault().toBuilder()
-        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder();
+        ..semicolon = Semicolon.withDefault().toBuilder();
     });
   }
 }

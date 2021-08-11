@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:built_collection/built_collection.dart';
 import 'package:proto_x/src/grammar/grammar.dart';
 import 'package:proto_x/src/syntax/syntax.dart' as syntaxes;
@@ -17,15 +15,49 @@ part 'syntax_declaration.dart';
 part 'utils/scan.dart';
 
 class ProtoX extends BlockGrammar<syntaxes.ProtoX> {
-  final GrammarContext<syntaxes.ProtoX> context;
+  const ProtoX();
 
   @override
-  Iterable<Grammar<syntaxes.ProtoX>> get includes => [
-        _SyntaxDeclaration(context),
-        _Package(context),
-      ];
-
-  const ProtoX(this.context);
+  Iterable<Grammar<syntaxes.ProtoX>> get includes {
+    return [
+      CastedGrammar<syntaxes.ProtoX, syntaxes.SyntaxDeclaration>(
+        builder: (context) => GrammarContext(
+          scanner: context.scanner,
+          syntax: syntaxes.SyntaxDeclaration.withDefault(),
+        ),
+        caster: (previous, next) {
+          next.syntax = next.syntax.rebuild((builder) {
+            builder.syntaxDeclarations.add(previous.syntax);
+          });
+        },
+        grammar: SyntaxDeclaration(),
+      ),
+      CastedGrammar<syntaxes.ProtoX, syntaxes.Package>(
+        builder: (context) => GrammarContext(
+          scanner: context.scanner,
+          syntax: syntaxes.Package.withDefault(),
+        ),
+        caster: (previous, next) {
+          next.syntax = next.syntax.rebuild((builder) {
+            builder.packages.add(previous.syntax);
+          });
+        },
+        grammar: Package(),
+      ),
+      CastedGrammar<syntaxes.ProtoX, syntaxes.Message>(
+        builder: (context) => GrammarContext(
+          scanner: context.scanner,
+          syntax: syntaxes.Message.withDefault(),
+        ),
+        caster: (previous, next) {
+          next.syntax = next.syntax.rebuild((builder) {
+            builder.messages.add(previous.syntax);
+          });
+        },
+        grammar: Message(),
+      ),
+    ];
+  }
 }
 
 abstract class _ProtoX<S extends syntaxes.Syntax, G extends Grammar<S>>

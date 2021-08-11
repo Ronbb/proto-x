@@ -1,8 +1,12 @@
 part of 'syntax.dart';
 
-abstract class Comment implements Built<Comment, CommentBuilder>, Syntax {
+abstract class Comment with ParentedSyntax
+    implements Built<Comment, CommentBuilder>, Syntax {
   @override
   SyntaxType get syntaxType => SyntaxType.comment;
+
+  @override
+  Iterable<Syntax?> get syntaxes => [text];
 
   StringLiteral get text;
 
@@ -16,7 +20,6 @@ abstract class Comment implements Built<Comment, CommentBuilder>, Syntax {
     return Comment((builder) {
       builder
         ..commentType = CommentType.unknown
-        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder()
         ..text = StringLiteral.withDefault().toBuilder();
     });
   }

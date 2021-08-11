@@ -1,12 +1,19 @@
 part of 'syntax.dart';
 
 abstract class Package
-    with KeywordMixin, SemicolonMixin
+    with KeywordMixin, SemicolonMixin, ParentedSyntax
     implements Built<Package, PackageBuilder>, Syntax {
   @override
   SyntaxType get syntaxType => SyntaxType.package;
 
   PackageName get name;
+
+  @override
+  Iterable<Syntax?> get syntaxes => [
+        keyword,
+        semicolon,
+        name,
+      ];
 
   Package._();
 
@@ -17,8 +24,7 @@ abstract class Package
       builder
         ..keyword = Keyword.withDefault().toBuilder()
         ..name = PackageName.withDefault().toBuilder()
-        ..semicolon = Semicolon.withDefault().toBuilder()
-        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder();
+        ..semicolon = Semicolon.withDefault().toBuilder();
     });
   }
 }

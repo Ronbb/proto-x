@@ -44,7 +44,26 @@ void main() {
       print(scanner.lastSpan);
     });
 
-    test('grammar syntax', () {
+    test('proto x', () {
+      final file = SourceFile.fromString(
+        text,
+        url: r'C:\Project\tmp\test.protox',
+      );
+      final scanner = SpanScanner.within(file.span(0));
+      final grammar = protox.ProtoX();
+      final context = GrammarContext(
+        scanner: scanner,
+        syntax: syntaxes.ProtoX.withDefault(),
+      );
+
+      expect(grammar.scan(context), isTrue);
+      expect(context.syntax.messages.length, equals(1));
+      expect(context.syntax.packages.length, equals(1));
+      expect(context.syntax.syntaxDeclarations.length, equals(1));
+      expect(context.syntax.syntaxSpan.to.line, greaterThan(0));
+    });
+
+    test('grammar', () {
       SourceFile file = SourceFile.fromString(
         text,
         url: r'C:\Project\tmp\test.protox',

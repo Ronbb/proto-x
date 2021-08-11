@@ -1,11 +1,21 @@
 part of '../syntax.dart';
 
 abstract class SyntaxPosition
-    implements Built<SyntaxPosition, SyntaxPositionBuilder> {
+    implements
+        Built<SyntaxPosition, SyntaxPositionBuilder>,
+        Comparable<SyntaxPosition> {
   int get line;
   int get column;
 
   SyntaxPosition._();
+
+  @override
+  int compareTo(SyntaxPosition other) {
+    if (this == other) {
+      return 0;
+    }
+    return this > other ? 1 : -1;
+  }
 
   bool operator >(SyntaxPosition position) {
     if (line == position.line) {

@@ -130,6 +130,97 @@ final BuiltSet<MessageFieldTypes> _$messageFieldTypesValues =
   _$messageFieldTypesUnknown,
 ]);
 
+const SyntaxType _$syntaxTypeBlock = const SyntaxType._('block');
+const SyntaxType _$syntaxTypeBlockBoundary =
+    const SyntaxType._('blockBoundary');
+const SyntaxType _$syntaxTypeComment = const SyntaxType._('comment');
+const SyntaxType _$syntaxTypeEqualSign = const SyntaxType._('equalSign');
+const SyntaxType _$syntaxTypeKeyword = const SyntaxType._('keyword');
+const SyntaxType _$syntaxTypeMessage = const SyntaxType._('message');
+const SyntaxType _$syntaxTypeMessageField = const SyntaxType._('messageField');
+const SyntaxType _$syntaxTypeMessageFieldIndex =
+    const SyntaxType._('messageFieldIndex');
+const SyntaxType _$syntaxTypeMessageFieldModifier =
+    const SyntaxType._('messageFieldModifier');
+const SyntaxType _$syntaxTypeMessageFieldName =
+    const SyntaxType._('messageFieldName');
+const SyntaxType _$syntaxTypeMessageFieldType =
+    const SyntaxType._('messageFieldType');
+const SyntaxType _$syntaxTypeMessageName = const SyntaxType._('messageName');
+const SyntaxType _$syntaxTypeProtoX = const SyntaxType._('protoX');
+const SyntaxType _$syntaxTypePackage = const SyntaxType._('package');
+const SyntaxType _$syntaxTypePackageName = const SyntaxType._('packageName');
+const SyntaxType _$syntaxTypeSemicolon = const SyntaxType._('semicolon');
+const SyntaxType _$syntaxTypeStringLiteral =
+    const SyntaxType._('stringLiteral');
+const SyntaxType _$syntaxTypeSyntaxDeclaration =
+    const SyntaxType._('syntaxDeclaration');
+
+SyntaxType _$valueOf(String name) {
+  switch (name) {
+    case 'block':
+      return _$syntaxTypeBlock;
+    case 'blockBoundary':
+      return _$syntaxTypeBlockBoundary;
+    case 'comment':
+      return _$syntaxTypeComment;
+    case 'equalSign':
+      return _$syntaxTypeEqualSign;
+    case 'keyword':
+      return _$syntaxTypeKeyword;
+    case 'message':
+      return _$syntaxTypeMessage;
+    case 'messageField':
+      return _$syntaxTypeMessageField;
+    case 'messageFieldIndex':
+      return _$syntaxTypeMessageFieldIndex;
+    case 'messageFieldModifier':
+      return _$syntaxTypeMessageFieldModifier;
+    case 'messageFieldName':
+      return _$syntaxTypeMessageFieldName;
+    case 'messageFieldType':
+      return _$syntaxTypeMessageFieldType;
+    case 'messageName':
+      return _$syntaxTypeMessageName;
+    case 'protoX':
+      return _$syntaxTypeProtoX;
+    case 'package':
+      return _$syntaxTypePackage;
+    case 'packageName':
+      return _$syntaxTypePackageName;
+    case 'semicolon':
+      return _$syntaxTypeSemicolon;
+    case 'stringLiteral':
+      return _$syntaxTypeStringLiteral;
+    case 'syntaxDeclaration':
+      return _$syntaxTypeSyntaxDeclaration;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<SyntaxType> _$values =
+    new BuiltSet<SyntaxType>(const <SyntaxType>[
+  _$syntaxTypeBlock,
+  _$syntaxTypeBlockBoundary,
+  _$syntaxTypeComment,
+  _$syntaxTypeEqualSign,
+  _$syntaxTypeKeyword,
+  _$syntaxTypeMessage,
+  _$syntaxTypeMessageField,
+  _$syntaxTypeMessageFieldIndex,
+  _$syntaxTypeMessageFieldModifier,
+  _$syntaxTypeMessageFieldName,
+  _$syntaxTypeMessageFieldType,
+  _$syntaxTypeMessageName,
+  _$syntaxTypeProtoX,
+  _$syntaxTypePackage,
+  _$syntaxTypePackageName,
+  _$syntaxTypeSemicolon,
+  _$syntaxTypeStringLiteral,
+  _$syntaxTypeSyntaxDeclaration,
+]);
+
 class _$Block extends Block {
   @override
   final BlockBoundary open;
@@ -137,8 +228,6 @@ class _$Block extends Block {
   final BlockBoundary close;
   @override
   final BlockBoundarySymbols symbol;
-  @override
-  final SyntaxSpan syntaxSpan;
   @override
   final SyntaxError? error;
 
@@ -149,13 +238,11 @@ class _$Block extends Block {
       {required this.open,
       required this.close,
       required this.symbol,
-      required this.syntaxSpan,
       this.error})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(open, 'Block', 'open');
     BuiltValueNullFieldError.checkNotNull(close, 'Block', 'close');
     BuiltValueNullFieldError.checkNotNull(symbol, 'Block', 'symbol');
-    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Block', 'syntaxSpan');
   }
 
   @override
@@ -172,15 +259,13 @@ class _$Block extends Block {
         open == other.open &&
         close == other.close &&
         symbol == other.symbol &&
-        syntaxSpan == other.syntaxSpan &&
         error == other.error;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, open.hashCode), close.hashCode), symbol.hashCode),
-            syntaxSpan.hashCode),
+        $jc($jc($jc(0, open.hashCode), close.hashCode), symbol.hashCode),
         error.hashCode));
   }
 
@@ -190,7 +275,6 @@ class _$Block extends Block {
           ..add('open', open)
           ..add('close', close)
           ..add('symbol', symbol)
-          ..add('syntaxSpan', syntaxSpan)
           ..add('error', error))
         .toString();
   }
@@ -212,12 +296,6 @@ class BlockBuilder implements Builder<Block, BlockBuilder> {
   BlockBoundarySymbols? get symbol => _$this._symbol;
   set symbol(BlockBoundarySymbols? symbol) => _$this._symbol = symbol;
 
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
-
   SyntaxErrorBuilder? _error;
   SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
   set error(SyntaxErrorBuilder? error) => _$this._error = error;
@@ -230,7 +308,6 @@ class BlockBuilder implements Builder<Block, BlockBuilder> {
       _open = $v.open.toBuilder();
       _close = $v.close.toBuilder();
       _symbol = $v.symbol;
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
       _error = $v.error?.toBuilder();
       _$v = null;
     }
@@ -258,7 +335,6 @@ class BlockBuilder implements Builder<Block, BlockBuilder> {
               close: close.build(),
               symbol: BuiltValueNullFieldError.checkNotNull(
                   symbol, 'Block', 'symbol'),
-              syntaxSpan: syntaxSpan.build(),
               error: _error?.build());
     } catch (_) {
       late String _$failedField;
@@ -268,8 +344,6 @@ class BlockBuilder implements Builder<Block, BlockBuilder> {
         _$failedField = 'close';
         close.build();
 
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
         _$failedField = 'error';
         _error?.build();
       } catch (e) {
@@ -843,23 +917,16 @@ class _$Comment extends Comment {
   @override
   final CommentType commentType;
   @override
-  final SyntaxSpan syntaxSpan;
-  @override
   final SyntaxError? error;
 
   factory _$Comment([void Function(CommentBuilder)? updates]) =>
       (new CommentBuilder()..update(updates)).build();
 
-  _$Comment._(
-      {required this.text,
-      required this.commentType,
-      required this.syntaxSpan,
-      this.error})
+  _$Comment._({required this.text, required this.commentType, this.error})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(text, 'Comment', 'text');
     BuiltValueNullFieldError.checkNotNull(
         commentType, 'Comment', 'commentType');
-    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Comment', 'syntaxSpan');
   }
 
   @override
@@ -875,16 +942,13 @@ class _$Comment extends Comment {
     return other is Comment &&
         text == other.text &&
         commentType == other.commentType &&
-        syntaxSpan == other.syntaxSpan &&
         error == other.error;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, text.hashCode), commentType.hashCode),
-            syntaxSpan.hashCode),
-        error.hashCode));
+    return $jf(
+        $jc($jc($jc(0, text.hashCode), commentType.hashCode), error.hashCode));
   }
 
   @override
@@ -892,7 +956,6 @@ class _$Comment extends Comment {
     return (newBuiltValueToStringHelper('Comment')
           ..add('text', text)
           ..add('commentType', commentType)
-          ..add('syntaxSpan', syntaxSpan)
           ..add('error', error))
         .toString();
   }
@@ -910,12 +973,6 @@ class CommentBuilder implements Builder<Comment, CommentBuilder> {
   set commentType(CommentType? commentType) =>
       _$this._commentType = commentType;
 
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
-
   SyntaxErrorBuilder? _error;
   SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
   set error(SyntaxErrorBuilder? error) => _$this._error = error;
@@ -927,7 +984,6 @@ class CommentBuilder implements Builder<Comment, CommentBuilder> {
     if ($v != null) {
       _text = $v.text.toBuilder();
       _commentType = $v.commentType;
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
       _error = $v.error?.toBuilder();
       _$v = null;
     }
@@ -954,7 +1010,6 @@ class CommentBuilder implements Builder<Comment, CommentBuilder> {
               text: text.build(),
               commentType: BuiltValueNullFieldError.checkNotNull(
                   commentType, 'Comment', 'commentType'),
-              syntaxSpan: syntaxSpan.build(),
               error: _error?.build());
     } catch (_) {
       late String _$failedField;
@@ -962,8 +1017,6 @@ class CommentBuilder implements Builder<Comment, CommentBuilder> {
         _$failedField = 'text';
         text.build();
 
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
         _$failedField = 'error';
         _error?.build();
       } catch (e) {
@@ -983,8 +1036,6 @@ class _$Message extends Message {
   @override
   final MessageName name;
   @override
-  final SyntaxSpan syntaxSpan;
-  @override
   final SyntaxError? error;
   @override
   final Block block;
@@ -997,14 +1048,12 @@ class _$Message extends Message {
   _$Message._(
       {required this.fields,
       required this.name,
-      required this.syntaxSpan,
       this.error,
       required this.block,
       required this.keyword})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(fields, 'Message', 'fields');
     BuiltValueNullFieldError.checkNotNull(name, 'Message', 'name');
-    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Message', 'syntaxSpan');
     BuiltValueNullFieldError.checkNotNull(block, 'Message', 'block');
     BuiltValueNullFieldError.checkNotNull(keyword, 'Message', 'keyword');
   }
@@ -1022,7 +1071,6 @@ class _$Message extends Message {
     return other is Message &&
         fields == other.fields &&
         name == other.name &&
-        syntaxSpan == other.syntaxSpan &&
         error == other.error &&
         block == other.block &&
         keyword == other.keyword;
@@ -1031,11 +1079,7 @@ class _$Message extends Message {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, fields.hashCode), name.hashCode),
-                    syntaxSpan.hashCode),
-                error.hashCode),
+        $jc($jc($jc($jc(0, fields.hashCode), name.hashCode), error.hashCode),
             block.hashCode),
         keyword.hashCode));
   }
@@ -1045,7 +1089,6 @@ class _$Message extends Message {
     return (newBuiltValueToStringHelper('Message')
           ..add('fields', fields)
           ..add('name', name)
-          ..add('syntaxSpan', syntaxSpan)
           ..add('error', error)
           ..add('block', block)
           ..add('keyword', keyword))
@@ -1064,12 +1107,6 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
   MessageNameBuilder? _name;
   MessageNameBuilder get name => _$this._name ??= new MessageNameBuilder();
   set name(MessageNameBuilder? name) => _$this._name = name;
-
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
 
   SyntaxErrorBuilder? _error;
   SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
@@ -1090,7 +1127,6 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
     if ($v != null) {
       _fields = $v.fields.toBuilder();
       _name = $v.name.toBuilder();
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
       _error = $v.error?.toBuilder();
       _block = $v.block.toBuilder();
       _keyword = $v.keyword.toBuilder();
@@ -1118,7 +1154,6 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
           new _$Message._(
               fields: fields.build(),
               name: name.build(),
-              syntaxSpan: syntaxSpan.build(),
               error: _error?.build(),
               block: block.build(),
               keyword: keyword.build());
@@ -1129,8 +1164,6 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
         fields.build();
         _$failedField = 'name';
         name.build();
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
         _$failedField = 'error';
         _error?.build();
         _$failedField = 'block';
@@ -1277,8 +1310,6 @@ class _$MessageField extends MessageField {
   @override
   final MessageFieldIndex fieldIndex;
   @override
-  final SyntaxSpan syntaxSpan;
-  @override
   final SyntaxError? error;
   @override
   final EqualSign equalSign;
@@ -1293,7 +1324,6 @@ class _$MessageField extends MessageField {
       required this.fieldType,
       required this.fieldName,
       required this.fieldIndex,
-      required this.syntaxSpan,
       this.error,
       required this.equalSign,
       required this.semicolon})
@@ -1304,8 +1334,6 @@ class _$MessageField extends MessageField {
         fieldName, 'MessageField', 'fieldName');
     BuiltValueNullFieldError.checkNotNull(
         fieldIndex, 'MessageField', 'fieldIndex');
-    BuiltValueNullFieldError.checkNotNull(
-        syntaxSpan, 'MessageField', 'syntaxSpan');
     BuiltValueNullFieldError.checkNotNull(
         equalSign, 'MessageField', 'equalSign');
     BuiltValueNullFieldError.checkNotNull(
@@ -1327,7 +1355,6 @@ class _$MessageField extends MessageField {
         fieldType == other.fieldType &&
         fieldName == other.fieldName &&
         fieldIndex == other.fieldIndex &&
-        syntaxSpan == other.syntaxSpan &&
         error == other.error &&
         equalSign == other.equalSign &&
         semicolon == other.semicolon;
@@ -1339,13 +1366,9 @@ class _$MessageField extends MessageField {
         $jc(
             $jc(
                 $jc(
-                    $jc(
-                        $jc(
-                            $jc($jc(0, fieldModifier.hashCode),
-                                fieldType.hashCode),
-                            fieldName.hashCode),
-                        fieldIndex.hashCode),
-                    syntaxSpan.hashCode),
+                    $jc($jc($jc(0, fieldModifier.hashCode), fieldType.hashCode),
+                        fieldName.hashCode),
+                    fieldIndex.hashCode),
                 error.hashCode),
             equalSign.hashCode),
         semicolon.hashCode));
@@ -1358,7 +1381,6 @@ class _$MessageField extends MessageField {
           ..add('fieldType', fieldType)
           ..add('fieldName', fieldName)
           ..add('fieldIndex', fieldIndex)
-          ..add('syntaxSpan', syntaxSpan)
           ..add('error', error)
           ..add('equalSign', equalSign)
           ..add('semicolon', semicolon))
@@ -1394,12 +1416,6 @@ class MessageFieldBuilder
   set fieldIndex(MessageFieldIndexBuilder? fieldIndex) =>
       _$this._fieldIndex = fieldIndex;
 
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
-
   SyntaxErrorBuilder? _error;
   SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
   set error(SyntaxErrorBuilder? error) => _$this._error = error;
@@ -1423,7 +1439,6 @@ class MessageFieldBuilder
       _fieldType = $v.fieldType.toBuilder();
       _fieldName = $v.fieldName.toBuilder();
       _fieldIndex = $v.fieldIndex.toBuilder();
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
       _error = $v.error?.toBuilder();
       _equalSign = $v.equalSign.toBuilder();
       _semicolon = $v.semicolon.toBuilder();
@@ -1453,7 +1468,6 @@ class MessageFieldBuilder
               fieldType: fieldType.build(),
               fieldName: fieldName.build(),
               fieldIndex: fieldIndex.build(),
-              syntaxSpan: syntaxSpan.build(),
               error: _error?.build(),
               equalSign: equalSign.build(),
               semicolon: semicolon.build());
@@ -1468,8 +1482,6 @@ class MessageFieldBuilder
         fieldName.build();
         _$failedField = 'fieldIndex';
         fieldIndex.build();
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
         _$failedField = 'error';
         _error?.build();
         _$failedField = 'equalSign';
@@ -1985,8 +1997,6 @@ class _$Package extends Package {
   @override
   final PackageName name;
   @override
-  final SyntaxSpan syntaxSpan;
-  @override
   final SyntaxError? error;
   @override
   final Keyword keyword;
@@ -1998,13 +2008,11 @@ class _$Package extends Package {
 
   _$Package._(
       {required this.name,
-      required this.syntaxSpan,
       this.error,
       required this.keyword,
       required this.semicolon})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'Package', 'name');
-    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'Package', 'syntaxSpan');
     BuiltValueNullFieldError.checkNotNull(keyword, 'Package', 'keyword');
     BuiltValueNullFieldError.checkNotNull(semicolon, 'Package', 'semicolon');
   }
@@ -2021,7 +2029,6 @@ class _$Package extends Package {
     if (identical(other, this)) return true;
     return other is Package &&
         name == other.name &&
-        syntaxSpan == other.syntaxSpan &&
         error == other.error &&
         keyword == other.keyword &&
         semicolon == other.semicolon;
@@ -2030,10 +2037,7 @@ class _$Package extends Package {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc($jc($jc(0, name.hashCode), syntaxSpan.hashCode),
-                error.hashCode),
-            keyword.hashCode),
+        $jc($jc($jc(0, name.hashCode), error.hashCode), keyword.hashCode),
         semicolon.hashCode));
   }
 
@@ -2041,7 +2045,6 @@ class _$Package extends Package {
   String toString() {
     return (newBuiltValueToStringHelper('Package')
           ..add('name', name)
-          ..add('syntaxSpan', syntaxSpan)
           ..add('error', error)
           ..add('keyword', keyword)
           ..add('semicolon', semicolon))
@@ -2055,12 +2058,6 @@ class PackageBuilder implements Builder<Package, PackageBuilder> {
   PackageNameBuilder? _name;
   PackageNameBuilder get name => _$this._name ??= new PackageNameBuilder();
   set name(PackageNameBuilder? name) => _$this._name = name;
-
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
 
   SyntaxErrorBuilder? _error;
   SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
@@ -2081,7 +2078,6 @@ class PackageBuilder implements Builder<Package, PackageBuilder> {
     final $v = _$v;
     if ($v != null) {
       _name = $v.name.toBuilder();
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
       _error = $v.error?.toBuilder();
       _keyword = $v.keyword.toBuilder();
       _semicolon = $v.semicolon.toBuilder();
@@ -2108,7 +2104,6 @@ class PackageBuilder implements Builder<Package, PackageBuilder> {
       _$result = _$v ??
           new _$Package._(
               name: name.build(),
-              syntaxSpan: syntaxSpan.build(),
               error: _error?.build(),
               keyword: keyword.build(),
               semicolon: semicolon.build());
@@ -2117,8 +2112,6 @@ class PackageBuilder implements Builder<Package, PackageBuilder> {
       try {
         _$failedField = 'name';
         name.build();
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
         _$failedField = 'error';
         _error?.build();
         _$failedField = 'keyword';
@@ -2260,8 +2253,6 @@ class _$SyntaxDeclaration extends SyntaxDeclaration {
   @override
   final StringLiteral value;
   @override
-  final SyntaxSpan syntaxSpan;
-  @override
   final SyntaxError? error;
   @override
   final Keyword keyword;
@@ -2276,15 +2267,12 @@ class _$SyntaxDeclaration extends SyntaxDeclaration {
 
   _$SyntaxDeclaration._(
       {required this.value,
-      required this.syntaxSpan,
       this.error,
       required this.keyword,
       required this.semicolon,
       required this.equalSign})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(value, 'SyntaxDeclaration', 'value');
-    BuiltValueNullFieldError.checkNotNull(
-        syntaxSpan, 'SyntaxDeclaration', 'syntaxSpan');
     BuiltValueNullFieldError.checkNotNull(
         keyword, 'SyntaxDeclaration', 'keyword');
     BuiltValueNullFieldError.checkNotNull(
@@ -2306,7 +2294,6 @@ class _$SyntaxDeclaration extends SyntaxDeclaration {
     if (identical(other, this)) return true;
     return other is SyntaxDeclaration &&
         value == other.value &&
-        syntaxSpan == other.syntaxSpan &&
         error == other.error &&
         keyword == other.keyword &&
         semicolon == other.semicolon &&
@@ -2316,11 +2303,7 @@ class _$SyntaxDeclaration extends SyntaxDeclaration {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, value.hashCode), syntaxSpan.hashCode),
-                    error.hashCode),
-                keyword.hashCode),
+        $jc($jc($jc($jc(0, value.hashCode), error.hashCode), keyword.hashCode),
             semicolon.hashCode),
         equalSign.hashCode));
   }
@@ -2329,7 +2312,6 @@ class _$SyntaxDeclaration extends SyntaxDeclaration {
   String toString() {
     return (newBuiltValueToStringHelper('SyntaxDeclaration')
           ..add('value', value)
-          ..add('syntaxSpan', syntaxSpan)
           ..add('error', error)
           ..add('keyword', keyword)
           ..add('semicolon', semicolon)
@@ -2346,12 +2328,6 @@ class SyntaxDeclarationBuilder
   StringLiteralBuilder get value =>
       _$this._value ??= new StringLiteralBuilder();
   set value(StringLiteralBuilder? value) => _$this._value = value;
-
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
 
   SyntaxErrorBuilder? _error;
   SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
@@ -2377,7 +2353,6 @@ class SyntaxDeclarationBuilder
     final $v = _$v;
     if ($v != null) {
       _value = $v.value.toBuilder();
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
       _error = $v.error?.toBuilder();
       _keyword = $v.keyword.toBuilder();
       _semicolon = $v.semicolon.toBuilder();
@@ -2405,7 +2380,6 @@ class SyntaxDeclarationBuilder
       _$result = _$v ??
           new _$SyntaxDeclaration._(
               value: value.build(),
-              syntaxSpan: syntaxSpan.build(),
               error: _error?.build(),
               keyword: keyword.build(),
               semicolon: semicolon.build(),
@@ -2415,8 +2389,6 @@ class SyntaxDeclarationBuilder
       try {
         _$failedField = 'value';
         value.build();
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
         _$failedField = 'error';
         _error?.build();
         _$failedField = 'keyword';
@@ -2442,7 +2414,7 @@ class _$ProtoX extends ProtoX {
   @override
   final BuiltList<Package> packages;
   @override
-  final SyntaxSpan syntaxSpan;
+  final BuiltList<Message> messages;
   @override
   final SyntaxError? error;
 
@@ -2452,13 +2424,13 @@ class _$ProtoX extends ProtoX {
   _$ProtoX._(
       {required this.syntaxDeclarations,
       required this.packages,
-      required this.syntaxSpan,
+      required this.messages,
       this.error})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         syntaxDeclarations, 'ProtoX', 'syntaxDeclarations');
     BuiltValueNullFieldError.checkNotNull(packages, 'ProtoX', 'packages');
-    BuiltValueNullFieldError.checkNotNull(syntaxSpan, 'ProtoX', 'syntaxSpan');
+    BuiltValueNullFieldError.checkNotNull(messages, 'ProtoX', 'messages');
   }
 
   @override
@@ -2474,7 +2446,7 @@ class _$ProtoX extends ProtoX {
     return other is ProtoX &&
         syntaxDeclarations == other.syntaxDeclarations &&
         packages == other.packages &&
-        syntaxSpan == other.syntaxSpan &&
+        messages == other.messages &&
         error == other.error;
   }
 
@@ -2482,7 +2454,7 @@ class _$ProtoX extends ProtoX {
   int get hashCode {
     return $jf($jc(
         $jc($jc($jc(0, syntaxDeclarations.hashCode), packages.hashCode),
-            syntaxSpan.hashCode),
+            messages.hashCode),
         error.hashCode));
   }
 
@@ -2491,7 +2463,7 @@ class _$ProtoX extends ProtoX {
     return (newBuiltValueToStringHelper('ProtoX')
           ..add('syntaxDeclarations', syntaxDeclarations)
           ..add('packages', packages)
-          ..add('syntaxSpan', syntaxSpan)
+          ..add('messages', messages)
           ..add('error', error))
         .toString();
   }
@@ -2511,11 +2483,10 @@ class ProtoXBuilder implements Builder<ProtoX, ProtoXBuilder> {
       _$this._packages ??= new ListBuilder<Package>();
   set packages(ListBuilder<Package>? packages) => _$this._packages = packages;
 
-  SyntaxSpanBuilder? _syntaxSpan;
-  SyntaxSpanBuilder get syntaxSpan =>
-      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
-  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
-      _$this._syntaxSpan = syntaxSpan;
+  ListBuilder<Message>? _messages;
+  ListBuilder<Message> get messages =>
+      _$this._messages ??= new ListBuilder<Message>();
+  set messages(ListBuilder<Message>? messages) => _$this._messages = messages;
 
   SyntaxErrorBuilder? _error;
   SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
@@ -2528,7 +2499,7 @@ class ProtoXBuilder implements Builder<ProtoX, ProtoXBuilder> {
     if ($v != null) {
       _syntaxDeclarations = $v.syntaxDeclarations.toBuilder();
       _packages = $v.packages.toBuilder();
-      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _messages = $v.messages.toBuilder();
       _error = $v.error?.toBuilder();
       _$v = null;
     }
@@ -2554,7 +2525,7 @@ class ProtoXBuilder implements Builder<ProtoX, ProtoXBuilder> {
           new _$ProtoX._(
               syntaxDeclarations: syntaxDeclarations.build(),
               packages: packages.build(),
-              syntaxSpan: syntaxSpan.build(),
+              messages: messages.build(),
               error: _error?.build());
     } catch (_) {
       late String _$failedField;
@@ -2563,8 +2534,8 @@ class ProtoXBuilder implements Builder<ProtoX, ProtoXBuilder> {
         syntaxDeclarations.build();
         _$failedField = 'packages';
         packages.build();
-        _$failedField = 'syntaxSpan';
-        syntaxSpan.build();
+        _$failedField = 'messages';
+        messages.build();
         _$failedField = 'error';
         _error?.build();
       } catch (e) {
