@@ -376,8 +376,32 @@ Serializers _$_serializers = (new Serializers().toBuilder()
       ..add(WorkspaceClientCapabilities.serializer)
       ..add(WorkspaceEdit.serializer)
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(CompletionItem)]),
+          () => new ListBuilder<CompletionItem>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Diagnostic)]),
           () => new ListBuilder<Diagnostic>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Diagnostic)]),
+          () => new ListBuilder<Diagnostic>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TextEdit)]),
           () => new ListBuilder<TextEdit>())
@@ -496,63 +520,134 @@ class _$ServerCapabilitiesSerializer
   Iterable<Object?> serialize(
       Serializers serializers, ServerCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'codeActionProvider',
-      serializers.serialize(object.codeActionProvider,
-          specifiedType: const FullType(bool)),
-      'codeLensProvider',
-      serializers.serialize(object.codeLensProvider,
-          specifiedType: const FullType(CodeLensOptions)),
-      'completionProvider',
-      serializers.serialize(object.completionProvider,
-          specifiedType: const FullType(CompletionOptions)),
-      'definitionProvider',
-      serializers.serialize(object.definitionProvider,
-          specifiedType: const FullType(bool)),
-      'documentFormattingProvider',
-      serializers.serialize(object.documentFormattingProvider,
-          specifiedType: const FullType(bool)),
-      'documentHighlightProvider',
-      serializers.serialize(object.documentHighlightProvider,
-          specifiedType: const FullType(bool)),
-      'documentLinkProvider',
-      serializers.serialize(object.documentLinkProvider,
-          specifiedType: const FullType(DocumentLinkOptions)),
-      'documentOnTypeFormattingProvider',
-      serializers.serialize(object.documentOnTypeFormattingProvider,
-          specifiedType: const FullType(DocumentOnTypeFormattingOptions)),
-      'documentRangeFormattingProvider',
-      serializers.serialize(object.documentRangeFormattingProvider,
-          specifiedType: const FullType(bool)),
-      'documentSymbolProvider',
-      serializers.serialize(object.documentSymbolProvider,
-          specifiedType: const FullType(bool)),
-      'executeCommandProvider',
-      serializers.serialize(object.executeCommandProvider,
-          specifiedType: const FullType(ExecuteCommandOptions)),
-      'hoverProvider',
-      serializers.serialize(object.hoverProvider,
-          specifiedType: const FullType(bool)),
-      'implementationProvider',
-      serializers.serialize(object.implementationProvider,
-          specifiedType: const FullType(bool)),
-      'referencesProvider',
-      serializers.serialize(object.referencesProvider,
-          specifiedType: const FullType(bool)),
-      'renameProvider',
-      serializers.serialize(object.renameProvider,
-          specifiedType: const FullType(bool)),
-      'signatureHelpProvider',
-      serializers.serialize(object.signatureHelpProvider,
-          specifiedType: const FullType(SignatureHelpOptions)),
-      'textDocumentSync',
-      serializers.serialize(object.textDocumentSync,
-          specifiedType: const FullType(TextDocumentSyncOptions)),
-      'workspaceSymbolProvider',
-      serializers.serialize(object.workspaceSymbolProvider,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.codeActionProvider;
+    if (value != null) {
+      result
+        ..add('codeActionProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.codeLensProvider;
+    if (value != null) {
+      result
+        ..add('codeLensProvider')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(CodeLensOptions)));
+    }
+    value = object.completionProvider;
+    if (value != null) {
+      result
+        ..add('completionProvider')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(CompletionOptions)));
+    }
+    value = object.definitionProvider;
+    if (value != null) {
+      result
+        ..add('definitionProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.documentFormattingProvider;
+    if (value != null) {
+      result
+        ..add('documentFormattingProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.documentHighlightProvider;
+    if (value != null) {
+      result
+        ..add('documentHighlightProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.documentLinkProvider;
+    if (value != null) {
+      result
+        ..add('documentLinkProvider')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DocumentLinkOptions)));
+    }
+    value = object.documentOnTypeFormattingProvider;
+    if (value != null) {
+      result
+        ..add('documentOnTypeFormattingProvider')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DocumentOnTypeFormattingOptions)));
+    }
+    value = object.documentRangeFormattingProvider;
+    if (value != null) {
+      result
+        ..add('documentRangeFormattingProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.documentSymbolProvider;
+    if (value != null) {
+      result
+        ..add('documentSymbolProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.executeCommandProvider;
+    if (value != null) {
+      result
+        ..add('executeCommandProvider')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ExecuteCommandOptions)));
+    }
+    value = object.hoverProvider;
+    if (value != null) {
+      result
+        ..add('hoverProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.implementationProvider;
+    if (value != null) {
+      result
+        ..add('implementationProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.referencesProvider;
+    if (value != null) {
+      result
+        ..add('referencesProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.renameProvider;
+    if (value != null) {
+      result
+        ..add('renameProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.signatureHelpProvider;
+    if (value != null) {
+      result
+        ..add('signatureHelpProvider')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(SignatureHelpOptions)));
+    }
+    value = object.textDocumentSync;
+    if (value != null) {
+      result
+        ..add('textDocumentSync')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(TextDocumentSyncOptions)));
+    }
+    value = object.workspaceSymbolProvider;
+    if (value != null) {
+      result
+        ..add('workspaceSymbolProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -570,7 +665,7 @@ class _$ServerCapabilitiesSerializer
       switch (key) {
         case 'codeActionProvider':
           result.codeActionProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'codeLensProvider':
           result.codeLensProvider.replace(serializers.deserialize(value,
@@ -584,15 +679,15 @@ class _$ServerCapabilitiesSerializer
           break;
         case 'definitionProvider':
           result.definitionProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'documentFormattingProvider':
           result.documentFormattingProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'documentHighlightProvider':
           result.documentHighlightProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'documentLinkProvider':
           result.documentLinkProvider.replace(serializers.deserialize(value,
@@ -608,11 +703,11 @@ class _$ServerCapabilitiesSerializer
           break;
         case 'documentRangeFormattingProvider':
           result.documentRangeFormattingProvider = serializers
-              .deserialize(value, specifiedType: const FullType(bool)) as bool;
+              .deserialize(value, specifiedType: const FullType(bool)) as bool?;
           break;
         case 'documentSymbolProvider':
           result.documentSymbolProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'executeCommandProvider':
           result.executeCommandProvider.replace(serializers.deserialize(value,
@@ -621,19 +716,19 @@ class _$ServerCapabilitiesSerializer
           break;
         case 'hoverProvider':
           result.hoverProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'implementationProvider':
           result.implementationProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'referencesProvider':
           result.referencesProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'renameProvider':
           result.renameProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'signatureHelpProvider':
           result.signatureHelpProvider.replace(serializers.deserialize(value,
@@ -647,7 +742,7 @@ class _$ServerCapabilitiesSerializer
           break;
         case 'workspaceSymbolProvider':
           result.workspaceSymbolProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -667,15 +762,22 @@ class _$ClientCapabilitiesSerializer
   Iterable<Object?> serialize(
       Serializers serializers, ClientCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'textDocument',
-      serializers.serialize(object.textDocument,
-          specifiedType: const FullType(TextDocumentClientCapabilities)),
-      'workspace',
-      serializers.serialize(object.workspace,
-          specifiedType: const FullType(WorkspaceClientCapabilities)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.textDocument;
+    if (value != null) {
+      result
+        ..add('textDocument')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(TextDocumentClientCapabilities)));
+    }
+    value = object.workspace;
+    if (value != null) {
+      result
+        ..add('workspace')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(WorkspaceClientCapabilities)));
+    }
     return result;
   }
 
@@ -723,48 +825,99 @@ class _$TextDocumentClientCapabilitiesSerializer
   Iterable<Object?> serialize(
       Serializers serializers, TextDocumentClientCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'codeAction',
-      serializers.serialize(object.codeAction,
-          specifiedType: const FullType(CodeActionCapabilities)),
-      'codeLens',
-      serializers.serialize(object.codeLens,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'completion',
-      serializers.serialize(object.completion,
-          specifiedType: const FullType(CompletionCapabilities)),
-      'definition',
-      serializers.serialize(object.definition,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'documentHighlight',
-      serializers.serialize(object.documentHighlight,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'documentLink',
-      serializers.serialize(object.documentLink,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'documentSymbol',
-      serializers.serialize(object.documentSymbol,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'formatting',
-      serializers.serialize(object.formatting,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'hover',
-      serializers.serialize(object.hover,
-          specifiedType: const FullType(HoverCapabilities)),
-      'onTypeFormatting',
-      serializers.serialize(object.onTypeFormatting,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'references',
-      serializers.serialize(object.references,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'rename',
-      serializers.serialize(object.rename,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'synchronization',
-      serializers.serialize(object.synchronization,
-          specifiedType: const FullType(SynchronizationCapabilities)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.codeAction;
+    if (value != null) {
+      result
+        ..add('codeAction')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(CodeActionCapabilities)));
+    }
+    value = object.codeLens;
+    if (value != null) {
+      result
+        ..add('codeLens')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.completion;
+    if (value != null) {
+      result
+        ..add('completion')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(CompletionCapabilities)));
+    }
+    value = object.definition;
+    if (value != null) {
+      result
+        ..add('definition')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.documentHighlight;
+    if (value != null) {
+      result
+        ..add('documentHighlight')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.documentLink;
+    if (value != null) {
+      result
+        ..add('documentLink')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.documentSymbol;
+    if (value != null) {
+      result
+        ..add('documentSymbol')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.formatting;
+    if (value != null) {
+      result
+        ..add('formatting')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.hover;
+    if (value != null) {
+      result
+        ..add('hover')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(HoverCapabilities)));
+    }
+    value = object.onTypeFormatting;
+    if (value != null) {
+      result
+        ..add('onTypeFormatting')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.references;
+    if (value != null) {
+      result
+        ..add('references')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.rename;
+    if (value != null) {
+      result
+        ..add('rename')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.synchronization;
+    if (value != null) {
+      result
+        ..add('synchronization')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(SynchronizationCapabilities)));
+    }
     return result;
   }
 
@@ -866,21 +1019,36 @@ class _$SynchronizationCapabilitiesSerializer
   Iterable<Object?> serialize(
       Serializers serializers, SynchronizationCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'didSave',
-      serializers.serialize(object.didSave,
-          specifiedType: const FullType(bool)),
-      'dynamicRegistration',
-      serializers.serialize(object.dynamicRegistration,
-          specifiedType: const FullType(bool)),
-      'willSave',
-      serializers.serialize(object.willSave,
-          specifiedType: const FullType(bool)),
-      'willSaveWaitUntil',
-      serializers.serialize(object.willSaveWaitUntil,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.didSave;
+    if (value != null) {
+      result
+        ..add('didSave')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.dynamicRegistration;
+    if (value != null) {
+      result
+        ..add('dynamicRegistration')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.willSave;
+    if (value != null) {
+      result
+        ..add('willSave')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.willSaveWaitUntil;
+    if (value != null) {
+      result
+        ..add('willSaveWaitUntil')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -898,19 +1066,19 @@ class _$SynchronizationCapabilitiesSerializer
       switch (key) {
         case 'didSave':
           result.didSave = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'dynamicRegistration':
           result.dynamicRegistration = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'willSave':
           result.willSave = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'willSaveWaitUntil':
           result.willSaveWaitUntil = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -929,15 +1097,23 @@ class _$HoverCapabilitiesSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, HoverCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'contentFormat',
-      serializers.serialize(object.contentFormat,
-          specifiedType: const FullType(List, const [const FullType(String)])),
-      'dynamicRegistration',
-      serializers.serialize(object.dynamicRegistration,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.contentFormat;
+    if (value != null) {
+      result
+        ..add('contentFormat')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.dynamicRegistration;
+    if (value != null) {
+      result
+        ..add('dynamicRegistration')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -954,14 +1130,14 @@ class _$HoverCapabilitiesSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'contentFormat':
-          result.contentFormat = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(String)]))
-              as List<String>;
+          result.contentFormat.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'dynamicRegistration':
           result.dynamicRegistration = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -984,24 +1160,43 @@ class _$WorkspaceClientCapabilitiesSerializer
   Iterable<Object?> serialize(
       Serializers serializers, WorkspaceClientCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'applyEdit',
-      serializers.serialize(object.applyEdit,
-          specifiedType: const FullType(bool)),
-      'didChangeConfiguration',
-      serializers.serialize(object.didChangeConfiguration,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'didChangeWatchedFiles',
-      serializers.serialize(object.didChangeWatchedFiles,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'executeCommand',
-      serializers.serialize(object.executeCommand,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-      'symbol',
-      serializers.serialize(object.symbol,
-          specifiedType: const FullType(DynamicRegistrationCapability)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.applyEdit;
+    if (value != null) {
+      result
+        ..add('applyEdit')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.didChangeConfiguration;
+    if (value != null) {
+      result
+        ..add('didChangeConfiguration')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.didChangeWatchedFiles;
+    if (value != null) {
+      result
+        ..add('didChangeWatchedFiles')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.executeCommand;
+    if (value != null) {
+      result
+        ..add('executeCommand')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
+    value = object.symbol;
+    if (value != null) {
+      result
+        ..add('symbol')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DynamicRegistrationCapability)));
+    }
     return result;
   }
 
@@ -1019,7 +1214,7 @@ class _$WorkspaceClientCapabilitiesSerializer
       switch (key) {
         case 'applyEdit':
           result.applyEdit = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'didChangeConfiguration':
           result.didChangeConfiguration.replace(serializers.deserialize(value,
@@ -1062,12 +1257,15 @@ class _$DynamicRegistrationCapabilitySerializer
   Iterable<Object?> serialize(
       Serializers serializers, DynamicRegistrationCapability object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'dynamicRegistration',
-      serializers.serialize(object.dynamicRegistration,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.dynamicRegistration;
+    if (value != null) {
+      result
+        ..add('dynamicRegistration')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -1085,7 +1283,7 @@ class _$DynamicRegistrationCapabilitySerializer
       switch (key) {
         case 'dynamicRegistration':
           result.dynamicRegistration = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1108,15 +1306,22 @@ class _$CodeActionCapabilitiesSerializer
   Iterable<Object?> serialize(
       Serializers serializers, CodeActionCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'codeActionLiteralSupport',
-      serializers.serialize(object.codeActionLiteralSupport,
-          specifiedType: const FullType(CodeActionLiteralSupport)),
-      'dynamicRegistration',
-      serializers.serialize(object.dynamicRegistration,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.codeActionLiteralSupport;
+    if (value != null) {
+      result
+        ..add('codeActionLiteralSupport')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(CodeActionLiteralSupport)));
+    }
+    value = object.dynamicRegistration;
+    if (value != null) {
+      result
+        ..add('dynamicRegistration')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -1139,7 +1344,7 @@ class _$CodeActionCapabilitiesSerializer
           break;
         case 'dynamicRegistration':
           result.dynamicRegistration = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1162,12 +1367,15 @@ class _$CodeActionLiteralSupportSerializer
   Iterable<Object?> serialize(
       Serializers serializers, CodeActionLiteralSupport object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'codeActionKind',
-      serializers.serialize(object.codeActionKind,
-          specifiedType: const FullType(CodeActionKinds)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.codeActionKind;
+    if (value != null) {
+      result
+        ..add('codeActionKind')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(CodeActionKinds)));
+    }
     return result;
   }
 
@@ -1205,12 +1413,16 @@ class _$CodeActionKindsSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, CodeActionKinds object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'valueSet',
-      serializers.serialize(object.valueSet,
-          specifiedType: const FullType(List, const [const FullType(String)])),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.valueSet;
+    if (value != null) {
+      result
+        ..add('valueSet')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     return result;
   }
 
@@ -1227,10 +1439,10 @@ class _$CodeActionKindsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'valueSet':
-          result.valueSet = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(String)]))
-              as List<String>;
+          result.valueSet.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -1253,15 +1465,22 @@ class _$CompletionCapabilitiesSerializer
   Iterable<Object?> serialize(
       Serializers serializers, CompletionCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'completionItem',
-      serializers.serialize(object.completionItem,
-          specifiedType: const FullType(CompletionItemCapabilities)),
-      'dynamicRegistration',
-      serializers.serialize(object.dynamicRegistration,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.completionItem;
+    if (value != null) {
+      result
+        ..add('completionItem')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(CompletionItemCapabilities)));
+    }
+    value = object.dynamicRegistration;
+    if (value != null) {
+      result
+        ..add('dynamicRegistration')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -1284,7 +1503,7 @@ class _$CompletionCapabilitiesSerializer
           break;
         case 'dynamicRegistration':
           result.dynamicRegistration = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1307,12 +1526,15 @@ class _$CompletionItemCapabilitiesSerializer
   Iterable<Object?> serialize(
       Serializers serializers, CompletionItemCapabilities object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'snippetSupport',
-      serializers.serialize(object.snippetSupport,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.snippetSupport;
+    if (value != null) {
+      result
+        ..add('snippetSupport')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -1330,7 +1552,7 @@ class _$CompletionItemCapabilitiesSerializer
       switch (key) {
         case 'snippetSupport':
           result.snippetSupport = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1349,12 +1571,15 @@ class _$CodeLensOptionsSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, CodeLensOptions object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'resolveProvider',
-      serializers.serialize(object.resolveProvider,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.resolveProvider;
+    if (value != null) {
+      result
+        ..add('resolveProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -1372,7 +1597,7 @@ class _$CodeLensOptionsSerializer
       switch (key) {
         case 'resolveProvider':
           result.resolveProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1391,15 +1616,23 @@ class _$CompletionOptionsSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, CompletionOptions object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'resolveProvider',
-      serializers.serialize(object.resolveProvider,
-          specifiedType: const FullType(bool)),
-      'triggerCharacters',
-      serializers.serialize(object.triggerCharacters,
-          specifiedType: const FullType(List, const [const FullType(String)])),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.resolveProvider;
+    if (value != null) {
+      result
+        ..add('resolveProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.triggerCharacters;
+    if (value != null) {
+      result
+        ..add('triggerCharacters')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     return result;
   }
 
@@ -1417,13 +1650,13 @@ class _$CompletionOptionsSerializer
       switch (key) {
         case 'resolveProvider':
           result.resolveProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'triggerCharacters':
-          result.triggerCharacters = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(String)]))
-              as List<String>;
+          result.triggerCharacters.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -1446,12 +1679,15 @@ class _$DocumentLinkOptionsSerializer
   Iterable<Object?> serialize(
       Serializers serializers, DocumentLinkOptions object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'resolveProvider',
-      serializers.serialize(object.resolveProvider,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.resolveProvider;
+    if (value != null) {
+      result
+        ..add('resolveProvider')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -1469,7 +1705,7 @@ class _$DocumentLinkOptionsSerializer
       switch (key) {
         case 'resolveProvider':
           result.resolveProvider = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1492,15 +1728,23 @@ class _$DocumentOnTypeFormattingOptionsSerializer
   Iterable<Object?> serialize(
       Serializers serializers, DocumentOnTypeFormattingOptions object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'firstTriggerCharacter',
-      serializers.serialize(object.firstTriggerCharacter,
-          specifiedType: const FullType(String)),
-      'moreTriggerCharacter',
-      serializers.serialize(object.moreTriggerCharacter,
-          specifiedType: const FullType(List, const [const FullType(String)])),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.firstTriggerCharacter;
+    if (value != null) {
+      result
+        ..add('firstTriggerCharacter')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.moreTriggerCharacter;
+    if (value != null) {
+      result
+        ..add('moreTriggerCharacter')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     return result;
   }
 
@@ -1518,13 +1762,13 @@ class _$DocumentOnTypeFormattingOptionsSerializer
       switch (key) {
         case 'firstTriggerCharacter':
           result.firstTriggerCharacter = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'moreTriggerCharacter':
-          result.moreTriggerCharacter = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(String)]))
-              as List<String>;
+          result.moreTriggerCharacter.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -1547,12 +1791,16 @@ class _$ExecuteCommandOptionsSerializer
   Iterable<Object?> serialize(
       Serializers serializers, ExecuteCommandOptions object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'commands',
-      serializers.serialize(object.commands,
-          specifiedType: const FullType(List, const [const FullType(String)])),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.commands;
+    if (value != null) {
+      result
+        ..add('commands')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     return result;
   }
 
@@ -1569,10 +1817,10 @@ class _$ExecuteCommandOptionsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'commands':
-          result.commands = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(String)]))
-              as List<String>;
+          result.commands.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -1595,12 +1843,16 @@ class _$SignatureHelpOptionsSerializer
   Iterable<Object?> serialize(
       Serializers serializers, SignatureHelpOptions object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'triggerCharacters',
-      serializers.serialize(object.triggerCharacters,
-          specifiedType: const FullType(List, const [const FullType(String)])),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.triggerCharacters;
+    if (value != null) {
+      result
+        ..add('triggerCharacters')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     return result;
   }
 
@@ -1617,10 +1869,10 @@ class _$SignatureHelpOptionsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'triggerCharacters':
-          result.triggerCharacters = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(String)]))
-              as List<String>;
+          result.triggerCharacters.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -1643,24 +1895,43 @@ class _$TextDocumentSyncOptionsSerializer
   Iterable<Object?> serialize(
       Serializers serializers, TextDocumentSyncOptions object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'change',
-      serializers.serialize(object.change,
-          specifiedType: const FullType(TextDocumentSyncKind)),
-      'openClose',
-      serializers.serialize(object.openClose,
-          specifiedType: const FullType(bool)),
-      'save',
-      serializers.serialize(object.save,
-          specifiedType: const FullType(SaveOptions)),
-      'willSave',
-      serializers.serialize(object.willSave,
-          specifiedType: const FullType(bool)),
-      'willSaveWaitUntil',
-      serializers.serialize(object.willSaveWaitUntil,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.change;
+    if (value != null) {
+      result
+        ..add('change')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(TextDocumentSyncKind)));
+    }
+    value = object.openClose;
+    if (value != null) {
+      result
+        ..add('openClose')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.save;
+    if (value != null) {
+      result
+        ..add('save')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(SaveOptions)));
+    }
+    value = object.willSave;
+    if (value != null) {
+      result
+        ..add('willSave')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.willSaveWaitUntil;
+    if (value != null) {
+      result
+        ..add('willSaveWaitUntil')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -1679,11 +1950,11 @@ class _$TextDocumentSyncOptionsSerializer
         case 'change':
           result.change = serializers.deserialize(value,
                   specifiedType: const FullType(TextDocumentSyncKind))
-              as TextDocumentSyncKind;
+              as TextDocumentSyncKind?;
           break;
         case 'openClose':
           result.openClose = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'save':
           result.save.replace(serializers.deserialize(value,
@@ -1691,11 +1962,11 @@ class _$TextDocumentSyncOptionsSerializer
           break;
         case 'willSave':
           result.willSave = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'willSaveWaitUntil':
           result.willSaveWaitUntil = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1743,12 +2014,15 @@ class _$SaveOptionsSerializer implements StructuredSerializer<SaveOptions> {
   @override
   Iterable<Object?> serialize(Serializers serializers, SaveOptions object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'includeText',
-      serializers.serialize(object.includeText,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.includeText;
+    if (value != null) {
+      result
+        ..add('includeText')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -1765,7 +2039,7 @@ class _$SaveOptionsSerializer implements StructuredSerializer<SaveOptions> {
       switch (key) {
         case 'includeText':
           result.includeText = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1784,18 +2058,35 @@ class _$TextDocumentItemSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, TextDocumentItem object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'languageId',
-      serializers.serialize(object.languageId,
-          specifiedType: const FullType(String)),
-      'text',
-      serializers.serialize(object.text, specifiedType: const FullType(String)),
-      'uri',
-      serializers.serialize(object.uri, specifiedType: const FullType(String)),
-      'version',
-      serializers.serialize(object.version, specifiedType: const FullType(int)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.languageId;
+    if (value != null) {
+      result
+        ..add('languageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.text;
+    if (value != null) {
+      result
+        ..add('text')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.uri;
+    if (value != null) {
+      result
+        ..add('uri')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.version;
+    if (value != null) {
+      result
+        ..add('version')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -1813,19 +2104,19 @@ class _$TextDocumentItemSerializer
       switch (key) {
         case 'languageId':
           result.languageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'text':
           result.text = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'uri':
           result.uri = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'version':
           result.version = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -1848,13 +2139,21 @@ class _$VersionedTextDocumentIdentifierSerializer
   Iterable<Object?> serialize(
       Serializers serializers, VersionedTextDocumentIdentifier object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'uri',
-      serializers.serialize(object.uri, specifiedType: const FullType(String)),
-      'version',
-      serializers.serialize(object.version, specifiedType: const FullType(int)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.uri;
+    if (value != null) {
+      result
+        ..add('uri')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.version;
+    if (value != null) {
+      result
+        ..add('version')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -1872,11 +2171,11 @@ class _$VersionedTextDocumentIdentifierSerializer
       switch (key) {
         case 'uri':
           result.uri = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'version':
           result.version = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -1899,16 +2198,28 @@ class _$TextDocumentContentChangeEventSerializer
   Iterable<Object?> serialize(
       Serializers serializers, TextDocumentContentChangeEvent object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'range',
-      serializers.serialize(object.range, specifiedType: const FullType(Range)),
-      'rangeLength',
-      serializers.serialize(object.rangeLength,
-          specifiedType: const FullType(int)),
-      'text',
-      serializers.serialize(object.text, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.range;
+    if (value != null) {
+      result
+        ..add('range')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Range)));
+    }
+    value = object.rangeLength;
+    if (value != null) {
+      result
+        ..add('rangeLength')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.text;
+    if (value != null) {
+      result
+        ..add('text')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -1930,11 +2241,11 @@ class _$TextDocumentContentChangeEventSerializer
           break;
         case 'rangeLength':
           result.rangeLength = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'text':
           result.text = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -1952,15 +2263,22 @@ class _$RangeSerializer implements StructuredSerializer<Range> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Range object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'end',
-      serializers.serialize(object.end,
-          specifiedType: const FullType(Position)),
-      'start',
-      serializers.serialize(object.start,
-          specifiedType: const FullType(Position)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.end;
+    if (value != null) {
+      result
+        ..add('end')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Position)));
+    }
+    value = object.start;
+    if (value != null) {
+      result
+        ..add('start')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Position)));
+    }
     return result;
   }
 
@@ -1999,14 +2317,20 @@ class _$PositionSerializer implements StructuredSerializer<Position> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Position object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'character',
-      serializers.serialize(object.character,
-          specifiedType: const FullType(int)),
-      'line',
-      serializers.serialize(object.line, specifiedType: const FullType(int)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.character;
+    if (value != null) {
+      result
+        ..add('character')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.line;
+    if (value != null) {
+      result
+        ..add('line')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -2023,11 +2347,11 @@ class _$PositionSerializer implements StructuredSerializer<Position> {
       switch (key) {
         case 'character':
           result.character = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'line':
           result.line = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -2050,11 +2374,15 @@ class _$TextDocumentIdentifierSerializer
   Iterable<Object?> serialize(
       Serializers serializers, TextDocumentIdentifier object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'uri',
-      serializers.serialize(object.uri, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.uri;
+    if (value != null) {
+      result
+        ..add('uri')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -2072,7 +2400,7 @@ class _$TextDocumentIdentifierSerializer
       switch (key) {
         case 'uri':
           result.uri = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -2091,16 +2419,23 @@ class _$CompletionListSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, CompletionList object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'isIncomplete',
-      serializers.serialize(object.isIncomplete,
-          specifiedType: const FullType(bool)),
-      'items',
-      serializers.serialize(object.items,
-          specifiedType:
-              const FullType(List, const [const FullType(CompletionItem)])),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.isIncomplete;
+    if (value != null) {
+      result
+        ..add('isIncomplete')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.items;
+    if (value != null) {
+      result
+        ..add('items')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(CompletionItem)])));
+    }
     return result;
   }
 
@@ -2118,13 +2453,13 @@ class _$CompletionListSerializer
       switch (key) {
         case 'isIncomplete':
           result.isIncomplete = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'items':
-          result.items = serializers.deserialize(value,
+          result.items.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      List, const [const FullType(CompletionItem)]))
-              as List<CompletionItem>;
+                      BuiltList, const [const FullType(CompletionItem)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -2143,47 +2478,94 @@ class _$CompletionItemSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, CompletionItem object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'additionalTextEdits',
-      serializers.serialize(object.additionalTextEdits,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(TextEdit)])),
-      'command',
-      serializers.serialize(object.command,
-          specifiedType: const FullType(Command)),
-      'data',
-      serializers.serialize(object.data,
-          specifiedType: const FullType(BuiltMap,
-              const [const FullType(dynamic), const FullType(dynamic)])),
-      'detail',
-      serializers.serialize(object.detail,
-          specifiedType: const FullType(String)),
-      'documentation',
-      serializers.serialize(object.documentation,
-          specifiedType: const FullType(String)),
-      'filterText',
-      serializers.serialize(object.filterText,
-          specifiedType: const FullType(String)),
-      'insertText',
-      serializers.serialize(object.insertText,
-          specifiedType: const FullType(String)),
-      'insertTextFormat',
-      serializers.serialize(object.insertTextFormat,
-          specifiedType: const FullType(InsertTextFormat)),
-      'kind',
-      serializers.serialize(object.kind,
-          specifiedType: const FullType(CompletionItemKind)),
-      'label',
-      serializers.serialize(object.label,
-          specifiedType: const FullType(String)),
-      'sortText',
-      serializers.serialize(object.sortText,
-          specifiedType: const FullType(String)),
-      'textEdit',
-      serializers.serialize(object.textEdit,
-          specifiedType: const FullType(TextEdit)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.additionalTextEdits;
+    if (value != null) {
+      result
+        ..add('additionalTextEdits')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(TextEdit)])));
+    }
+    value = object.command;
+    if (value != null) {
+      result
+        ..add('command')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Command)));
+    }
+    value = object.data;
+    if (value != null) {
+      result
+        ..add('data')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(BuiltMap,
+                const [const FullType(dynamic), const FullType(dynamic)])));
+    }
+    value = object.detail;
+    if (value != null) {
+      result
+        ..add('detail')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.documentation;
+    if (value != null) {
+      result
+        ..add('documentation')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.filterText;
+    if (value != null) {
+      result
+        ..add('filterText')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.insertText;
+    if (value != null) {
+      result
+        ..add('insertText')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.insertTextFormat;
+    if (value != null) {
+      result
+        ..add('insertTextFormat')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(InsertTextFormat)));
+    }
+    value = object.kind;
+    if (value != null) {
+      result
+        ..add('kind')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(CompletionItemKind)));
+    }
+    value = object.label;
+    if (value != null) {
+      result
+        ..add('label')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.sortText;
+    if (value != null) {
+      result
+        ..add('sortText')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.textEdit;
+    if (value != null) {
+      result
+        ..add('textEdit')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(TextEdit)));
+    }
     return result;
   }
 
@@ -2216,37 +2598,37 @@ class _$CompletionItemSerializer
           break;
         case 'detail':
           result.detail = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'documentation':
           result.documentation = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'filterText':
           result.filterText = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'insertText':
           result.insertText = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'insertTextFormat':
           result.insertTextFormat = serializers.deserialize(value,
                   specifiedType: const FullType(InsertTextFormat))
-              as InsertTextFormat;
+              as InsertTextFormat?;
           break;
         case 'kind':
           result.kind = serializers.deserialize(value,
                   specifiedType: const FullType(CompletionItemKind))
-              as CompletionItemKind;
+              as CompletionItemKind?;
           break;
         case 'label':
           result.label = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'sortText':
           result.sortText = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'textEdit':
           result.textEdit.replace(serializers.deserialize(value,
@@ -2268,14 +2650,22 @@ class _$TextEditSerializer implements StructuredSerializer<TextEdit> {
   @override
   Iterable<Object?> serialize(Serializers serializers, TextEdit object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'newText',
-      serializers.serialize(object.newText,
-          specifiedType: const FullType(String)),
-      'range',
-      serializers.serialize(object.range, specifiedType: const FullType(Range)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.newText;
+    if (value != null) {
+      result
+        ..add('newText')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.range;
+    if (value != null) {
+      result
+        ..add('range')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Range)));
+    }
     return result;
   }
 
@@ -2292,7 +2682,7 @@ class _$TextEditSerializer implements StructuredSerializer<TextEdit> {
       switch (key) {
         case 'newText':
           result.newText = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'range':
           result.range.replace(serializers.deserialize(value,
@@ -2314,19 +2704,30 @@ class _$CommandSerializer implements StructuredSerializer<Command> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Command object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'arguments',
-      serializers.serialize(object.arguments,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(dynamic)])),
-      'command',
-      serializers.serialize(object.command,
-          specifiedType: const FullType(String)),
-      'title',
-      serializers.serialize(object.title,
-          specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.arguments;
+    if (value != null) {
+      result
+        ..add('arguments')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(dynamic)])));
+    }
+    value = object.command;
+    if (value != null) {
+      result
+        ..add('command')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -2349,11 +2750,11 @@ class _$CommandSerializer implements StructuredSerializer<Command> {
           break;
         case 'command':
           result.command = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'title':
           result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -2459,13 +2860,22 @@ class _$LocationSerializer implements StructuredSerializer<Location> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Location object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'range',
-      serializers.serialize(object.range, specifiedType: const FullType(Range)),
-      'uri',
-      serializers.serialize(object.uri, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.range;
+    if (value != null) {
+      result
+        ..add('range')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Range)));
+    }
+    value = object.uri;
+    if (value != null) {
+      result
+        ..add('uri')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -2486,7 +2896,7 @@ class _$LocationSerializer implements StructuredSerializer<Location> {
           break;
         case 'uri':
           result.uri = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -2505,12 +2915,15 @@ class _$ReferenceContextSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, ReferenceContext object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'includeDeclaration',
-      serializers.serialize(object.includeDeclaration,
-          specifiedType: const FullType(bool)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.includeDeclaration;
+    if (value != null) {
+      result
+        ..add('includeDeclaration')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -2528,7 +2941,7 @@ class _$ReferenceContextSerializer
       switch (key) {
         case 'includeDeclaration':
           result.includeDeclaration = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -2547,14 +2960,22 @@ class _$DocumentHighlightSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, DocumentHighlight object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'kind',
-      serializers.serialize(object.kind,
-          specifiedType: const FullType(DocumentHighlightKind)),
-      'range',
-      serializers.serialize(object.range, specifiedType: const FullType(Range)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.kind;
+    if (value != null) {
+      result
+        ..add('kind')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DocumentHighlightKind)));
+    }
+    value = object.range;
+    if (value != null) {
+      result
+        ..add('range')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Range)));
+    }
     return result;
   }
 
@@ -2573,7 +2994,7 @@ class _$DocumentHighlightSerializer
         case 'kind':
           result.kind = serializers.deserialize(value,
                   specifiedType: const FullType(DocumentHighlightKind))
-              as DocumentHighlightKind;
+              as DocumentHighlightKind?;
           break;
         case 'range':
           result.range.replace(serializers.deserialize(value,
@@ -2626,20 +3047,36 @@ class _$SymbolInformationSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, SymbolInformation object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'containerName',
-      serializers.serialize(object.containerName,
-          specifiedType: const FullType(String)),
-      'kind',
-      serializers.serialize(object.kind,
-          specifiedType: const FullType(SymbolKind)),
-      'location',
-      serializers.serialize(object.location,
-          specifiedType: const FullType(Location)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.containerName;
+    if (value != null) {
+      result
+        ..add('containerName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.kind;
+    if (value != null) {
+      result
+        ..add('kind')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(SymbolKind)));
+    }
+    value = object.location;
+    if (value != null) {
+      result
+        ..add('location')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Location)));
+    }
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -2657,11 +3094,11 @@ class _$SymbolInformationSerializer
       switch (key) {
         case 'containerName':
           result.containerName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'kind':
           result.kind = serializers.deserialize(value,
-              specifiedType: const FullType(SymbolKind)) as SymbolKind;
+              specifiedType: const FullType(SymbolKind)) as SymbolKind?;
           break;
         case 'location':
           result.location.replace(serializers.deserialize(value,
@@ -2669,7 +3106,7 @@ class _$SymbolInformationSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -2763,13 +3200,16 @@ class _$CodeActionContextSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, CodeActionContext object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'diagnostics',
-      serializers.serialize(object.diagnostics,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(Diagnostic)])),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.diagnostics;
+    if (value != null) {
+      result
+        ..add('diagnostics')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(Diagnostic)])));
+    }
     return result;
   }
 
@@ -2807,22 +3247,42 @@ class _$DiagnosticSerializer implements StructuredSerializer<Diagnostic> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Diagnostic object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'code',
-      serializers.serialize(object.code, specifiedType: const FullType(Object)),
-      'message',
-      serializers.serialize(object.message,
-          specifiedType: const FullType(String)),
-      'range',
-      serializers.serialize(object.range, specifiedType: const FullType(Range)),
-      'severity',
-      serializers.serialize(object.severity,
-          specifiedType: const FullType(int)),
-      'source',
-      serializers.serialize(object.source,
-          specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.code;
+    if (value != null) {
+      result
+        ..add('code')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Object)));
+    }
+    value = object.message;
+    if (value != null) {
+      result
+        ..add('message')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.range;
+    if (value != null) {
+      result
+        ..add('range')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Range)));
+    }
+    value = object.severity;
+    if (value != null) {
+      result
+        ..add('severity')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.source;
+    if (value != null) {
+      result
+        ..add('source')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -2843,7 +3303,7 @@ class _$DiagnosticSerializer implements StructuredSerializer<Diagnostic> {
           break;
         case 'message':
           result.message = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'range':
           result.range.replace(serializers.deserialize(value,
@@ -2851,11 +3311,11 @@ class _$DiagnosticSerializer implements StructuredSerializer<Diagnostic> {
           break;
         case 'severity':
           result.severity = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'source':
           result.source = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -2873,15 +3333,18 @@ class _$WorkspaceEditSerializer implements StructuredSerializer<WorkspaceEdit> {
   @override
   Iterable<Object?> serialize(Serializers serializers, WorkspaceEdit object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'changes',
-      serializers.serialize(object.changes,
-          specifiedType: const FullType(BuiltMap, const [
-            const FullType(String),
-            const FullType(BuiltList, const [const FullType(TextEdit)])
-          ])),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.changes;
+    if (value != null) {
+      result
+        ..add('changes')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(BuiltMap, const [
+              const FullType(String),
+              const FullType(BuiltList, const [const FullType(TextEdit)])
+            ])));
+    }
     return result;
   }
 
@@ -2920,15 +3383,23 @@ class _$DiagnosticsSerializer implements StructuredSerializer<Diagnostics> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Diagnostics object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'diagnostics',
-      serializers.serialize(object.diagnostics,
-          specifiedType:
-              const FullType(List, const [const FullType(Diagnostic)])),
-      'uri',
-      serializers.serialize(object.uri, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.diagnostics;
+    if (value != null) {
+      result
+        ..add('diagnostics')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(Diagnostic)])));
+    }
+    value = object.uri;
+    if (value != null) {
+      result
+        ..add('uri')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -2944,14 +3415,14 @@ class _$DiagnosticsSerializer implements StructuredSerializer<Diagnostics> {
       final Object? value = iterator.current;
       switch (key) {
         case 'diagnostics':
-          result.diagnostics = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(Diagnostic)]))
-              as List<Diagnostic>;
+          result.diagnostics.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Diagnostic)]))!
+              as BuiltList<Object?>);
           break;
         case 'uri':
           result.uri = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -2974,15 +3445,22 @@ class _$ApplyWorkspaceEditParamsSerializer
   Iterable<Object?> serialize(
       Serializers serializers, ApplyWorkspaceEditParams object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'edit',
-      serializers.serialize(object.edit,
-          specifiedType: const FullType(WorkspaceEdit)),
-      'label',
-      serializers.serialize(object.label,
-          specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.edit;
+    if (value != null) {
+      result
+        ..add('edit')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(WorkspaceEdit)));
+    }
+    value = object.label;
+    if (value != null) {
+      result
+        ..add('label')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -3004,7 +3482,7 @@ class _$ApplyWorkspaceEditParamsSerializer
           break;
         case 'label':
           result.label = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -3023,15 +3501,22 @@ class _$ShowMessageParamsSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, ShowMessageParams object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'message',
-      serializers.serialize(object.message,
-          specifiedType: const FullType(String)),
-      'type',
-      serializers.serialize(object.type,
-          specifiedType: const FullType(MessageType)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.message;
+    if (value != null) {
+      result
+        ..add('message')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.type;
+    if (value != null) {
+      result
+        ..add('type')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(MessageType)));
+    }
     return result;
   }
 
@@ -3049,11 +3534,11 @@ class _$ShowMessageParamsSerializer
       switch (key) {
         case 'message':
           result.message = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'type':
           result.type = serializers.deserialize(value,
-              specifiedType: const FullType(MessageType)) as MessageType;
+              specifiedType: const FullType(MessageType)) as MessageType?;
           break;
       }
     }
@@ -3095,103 +3580,66 @@ class _$MessageTypeSerializer implements PrimitiveSerializer<MessageType> {
 
 class _$ServerCapabilities extends ServerCapabilities {
   @override
-  final bool codeActionProvider;
+  final bool? codeActionProvider;
   @override
-  final CodeLensOptions codeLensProvider;
+  final CodeLensOptions? codeLensProvider;
   @override
-  final CompletionOptions completionProvider;
+  final CompletionOptions? completionProvider;
   @override
-  final bool definitionProvider;
+  final bool? definitionProvider;
   @override
-  final bool documentFormattingProvider;
+  final bool? documentFormattingProvider;
   @override
-  final bool documentHighlightProvider;
+  final bool? documentHighlightProvider;
   @override
-  final DocumentLinkOptions documentLinkProvider;
+  final DocumentLinkOptions? documentLinkProvider;
   @override
-  final DocumentOnTypeFormattingOptions documentOnTypeFormattingProvider;
+  final DocumentOnTypeFormattingOptions? documentOnTypeFormattingProvider;
   @override
-  final bool documentRangeFormattingProvider;
+  final bool? documentRangeFormattingProvider;
   @override
-  final bool documentSymbolProvider;
+  final bool? documentSymbolProvider;
   @override
-  final ExecuteCommandOptions executeCommandProvider;
+  final ExecuteCommandOptions? executeCommandProvider;
   @override
-  final bool hoverProvider;
+  final bool? hoverProvider;
   @override
-  final bool implementationProvider;
+  final bool? implementationProvider;
   @override
-  final bool referencesProvider;
+  final bool? referencesProvider;
   @override
-  final bool renameProvider;
+  final bool? renameProvider;
   @override
-  final SignatureHelpOptions signatureHelpProvider;
+  final SignatureHelpOptions? signatureHelpProvider;
   @override
-  final TextDocumentSyncOptions textDocumentSync;
+  final TextDocumentSyncOptions? textDocumentSync;
   @override
-  final bool workspaceSymbolProvider;
+  final bool? workspaceSymbolProvider;
 
   factory _$ServerCapabilities(
           [void Function(ServerCapabilitiesBuilder)? updates]) =>
       (new ServerCapabilitiesBuilder()..update(updates)).build();
 
   _$ServerCapabilities._(
-      {required this.codeActionProvider,
-      required this.codeLensProvider,
-      required this.completionProvider,
-      required this.definitionProvider,
-      required this.documentFormattingProvider,
-      required this.documentHighlightProvider,
-      required this.documentLinkProvider,
-      required this.documentOnTypeFormattingProvider,
-      required this.documentRangeFormattingProvider,
-      required this.documentSymbolProvider,
-      required this.executeCommandProvider,
-      required this.hoverProvider,
-      required this.implementationProvider,
-      required this.referencesProvider,
-      required this.renameProvider,
-      required this.signatureHelpProvider,
-      required this.textDocumentSync,
-      required this.workspaceSymbolProvider})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        codeActionProvider, 'ServerCapabilities', 'codeActionProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        codeLensProvider, 'ServerCapabilities', 'codeLensProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        completionProvider, 'ServerCapabilities', 'completionProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        definitionProvider, 'ServerCapabilities', 'definitionProvider');
-    BuiltValueNullFieldError.checkNotNull(documentFormattingProvider,
-        'ServerCapabilities', 'documentFormattingProvider');
-    BuiltValueNullFieldError.checkNotNull(documentHighlightProvider,
-        'ServerCapabilities', 'documentHighlightProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        documentLinkProvider, 'ServerCapabilities', 'documentLinkProvider');
-    BuiltValueNullFieldError.checkNotNull(documentOnTypeFormattingProvider,
-        'ServerCapabilities', 'documentOnTypeFormattingProvider');
-    BuiltValueNullFieldError.checkNotNull(documentRangeFormattingProvider,
-        'ServerCapabilities', 'documentRangeFormattingProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        documentSymbolProvider, 'ServerCapabilities', 'documentSymbolProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        executeCommandProvider, 'ServerCapabilities', 'executeCommandProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        hoverProvider, 'ServerCapabilities', 'hoverProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        implementationProvider, 'ServerCapabilities', 'implementationProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        referencesProvider, 'ServerCapabilities', 'referencesProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        renameProvider, 'ServerCapabilities', 'renameProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        signatureHelpProvider, 'ServerCapabilities', 'signatureHelpProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        textDocumentSync, 'ServerCapabilities', 'textDocumentSync');
-    BuiltValueNullFieldError.checkNotNull(workspaceSymbolProvider,
-        'ServerCapabilities', 'workspaceSymbolProvider');
-  }
+      {this.codeActionProvider,
+      this.codeLensProvider,
+      this.completionProvider,
+      this.definitionProvider,
+      this.documentFormattingProvider,
+      this.documentHighlightProvider,
+      this.documentLinkProvider,
+      this.documentOnTypeFormattingProvider,
+      this.documentRangeFormattingProvider,
+      this.documentSymbolProvider,
+      this.executeCommandProvider,
+      this.hoverProvider,
+      this.implementationProvider,
+      this.referencesProvider,
+      this.renameProvider,
+      this.signatureHelpProvider,
+      this.textDocumentSync,
+      this.workspaceSymbolProvider})
+      : super._();
 
   @override
   ServerCapabilities rebuild(
@@ -3419,23 +3867,23 @@ class ServerCapabilitiesBuilder
     final $v = _$v;
     if ($v != null) {
       _codeActionProvider = $v.codeActionProvider;
-      _codeLensProvider = $v.codeLensProvider.toBuilder();
-      _completionProvider = $v.completionProvider.toBuilder();
+      _codeLensProvider = $v.codeLensProvider?.toBuilder();
+      _completionProvider = $v.completionProvider?.toBuilder();
       _definitionProvider = $v.definitionProvider;
       _documentFormattingProvider = $v.documentFormattingProvider;
       _documentHighlightProvider = $v.documentHighlightProvider;
-      _documentLinkProvider = $v.documentLinkProvider.toBuilder();
+      _documentLinkProvider = $v.documentLinkProvider?.toBuilder();
       _documentOnTypeFormattingProvider =
-          $v.documentOnTypeFormattingProvider.toBuilder();
+          $v.documentOnTypeFormattingProvider?.toBuilder();
       _documentRangeFormattingProvider = $v.documentRangeFormattingProvider;
       _documentSymbolProvider = $v.documentSymbolProvider;
-      _executeCommandProvider = $v.executeCommandProvider.toBuilder();
+      _executeCommandProvider = $v.executeCommandProvider?.toBuilder();
       _hoverProvider = $v.hoverProvider;
       _implementationProvider = $v.implementationProvider;
       _referencesProvider = $v.referencesProvider;
       _renameProvider = $v.renameProvider;
-      _signatureHelpProvider = $v.signatureHelpProvider.toBuilder();
-      _textDocumentSync = $v.textDocumentSync.toBuilder();
+      _signatureHelpProvider = $v.signatureHelpProvider?.toBuilder();
+      _textDocumentSync = $v.textDocumentSync?.toBuilder();
       _workspaceSymbolProvider = $v.workspaceSymbolProvider;
       _$v = null;
     }
@@ -3459,53 +3907,45 @@ class ServerCapabilitiesBuilder
     try {
       _$result = _$v ??
           new _$ServerCapabilities._(
-              codeActionProvider: BuiltValueNullFieldError.checkNotNull(
-                  codeActionProvider, 'ServerCapabilities', 'codeActionProvider'),
-              codeLensProvider: codeLensProvider.build(),
-              completionProvider: completionProvider.build(),
-              definitionProvider: BuiltValueNullFieldError.checkNotNull(
-                  definitionProvider, 'ServerCapabilities', 'definitionProvider'),
-              documentFormattingProvider: BuiltValueNullFieldError.checkNotNull(
-                  documentFormattingProvider, 'ServerCapabilities', 'documentFormattingProvider'),
-              documentHighlightProvider: BuiltValueNullFieldError.checkNotNull(
-                  documentHighlightProvider, 'ServerCapabilities', 'documentHighlightProvider'),
-              documentLinkProvider: documentLinkProvider.build(),
+              codeActionProvider: codeActionProvider,
+              codeLensProvider: _codeLensProvider?.build(),
+              completionProvider: _completionProvider?.build(),
+              definitionProvider: definitionProvider,
+              documentFormattingProvider: documentFormattingProvider,
+              documentHighlightProvider: documentHighlightProvider,
+              documentLinkProvider: _documentLinkProvider?.build(),
               documentOnTypeFormattingProvider:
-                  documentOnTypeFormattingProvider.build(),
-              documentRangeFormattingProvider: BuiltValueNullFieldError.checkNotNull(
-                  documentRangeFormattingProvider,
-                  'ServerCapabilities',
-                  'documentRangeFormattingProvider'),
-              documentSymbolProvider: BuiltValueNullFieldError.checkNotNull(
-                  documentSymbolProvider, 'ServerCapabilities', 'documentSymbolProvider'),
-              executeCommandProvider: executeCommandProvider.build(),
-              hoverProvider: BuiltValueNullFieldError.checkNotNull(hoverProvider, 'ServerCapabilities', 'hoverProvider'),
-              implementationProvider: BuiltValueNullFieldError.checkNotNull(implementationProvider, 'ServerCapabilities', 'implementationProvider'),
-              referencesProvider: BuiltValueNullFieldError.checkNotNull(referencesProvider, 'ServerCapabilities', 'referencesProvider'),
-              renameProvider: BuiltValueNullFieldError.checkNotNull(renameProvider, 'ServerCapabilities', 'renameProvider'),
-              signatureHelpProvider: signatureHelpProvider.build(),
-              textDocumentSync: textDocumentSync.build(),
-              workspaceSymbolProvider: BuiltValueNullFieldError.checkNotNull(workspaceSymbolProvider, 'ServerCapabilities', 'workspaceSymbolProvider'));
+                  _documentOnTypeFormattingProvider?.build(),
+              documentRangeFormattingProvider: documentRangeFormattingProvider,
+              documentSymbolProvider: documentSymbolProvider,
+              executeCommandProvider: _executeCommandProvider?.build(),
+              hoverProvider: hoverProvider,
+              implementationProvider: implementationProvider,
+              referencesProvider: referencesProvider,
+              renameProvider: renameProvider,
+              signatureHelpProvider: _signatureHelpProvider?.build(),
+              textDocumentSync: _textDocumentSync?.build(),
+              workspaceSymbolProvider: workspaceSymbolProvider);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'codeLensProvider';
-        codeLensProvider.build();
+        _codeLensProvider?.build();
         _$failedField = 'completionProvider';
-        completionProvider.build();
+        _completionProvider?.build();
 
         _$failedField = 'documentLinkProvider';
-        documentLinkProvider.build();
+        _documentLinkProvider?.build();
         _$failedField = 'documentOnTypeFormattingProvider';
-        documentOnTypeFormattingProvider.build();
+        _documentOnTypeFormattingProvider?.build();
 
         _$failedField = 'executeCommandProvider';
-        executeCommandProvider.build();
+        _executeCommandProvider?.build();
 
         _$failedField = 'signatureHelpProvider';
-        signatureHelpProvider.build();
+        _signatureHelpProvider?.build();
         _$failedField = 'textDocumentSync';
-        textDocumentSync.build();
+        _textDocumentSync?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'ServerCapabilities', _$failedField, e.toString());
@@ -3519,21 +3959,15 @@ class ServerCapabilitiesBuilder
 
 class _$ClientCapabilities extends ClientCapabilities {
   @override
-  final TextDocumentClientCapabilities textDocument;
+  final TextDocumentClientCapabilities? textDocument;
   @override
-  final WorkspaceClientCapabilities workspace;
+  final WorkspaceClientCapabilities? workspace;
 
   factory _$ClientCapabilities(
           [void Function(ClientCapabilitiesBuilder)? updates]) =>
       (new ClientCapabilitiesBuilder()..update(updates)).build();
 
-  _$ClientCapabilities._({required this.textDocument, required this.workspace})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        textDocument, 'ClientCapabilities', 'textDocument');
-    BuiltValueNullFieldError.checkNotNull(
-        workspace, 'ClientCapabilities', 'workspace');
-  }
+  _$ClientCapabilities._({this.textDocument, this.workspace}) : super._();
 
   @override
   ClientCapabilities rebuild(
@@ -3587,8 +4021,8 @@ class ClientCapabilitiesBuilder
   ClientCapabilitiesBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _textDocument = $v.textDocument.toBuilder();
-      _workspace = $v.workspace.toBuilder();
+      _textDocument = $v.textDocument?.toBuilder();
+      _workspace = $v.workspace?.toBuilder();
       _$v = null;
     }
     return this;
@@ -3611,14 +4045,15 @@ class ClientCapabilitiesBuilder
     try {
       _$result = _$v ??
           new _$ClientCapabilities._(
-              textDocument: textDocument.build(), workspace: workspace.build());
+              textDocument: _textDocument?.build(),
+              workspace: _workspace?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'textDocument';
-        textDocument.build();
+        _textDocument?.build();
         _$failedField = 'workspace';
-        workspace.build();
+        _workspace?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'ClientCapabilities', _$failedField, e.toString());
@@ -3632,78 +4067,51 @@ class ClientCapabilitiesBuilder
 
 class _$TextDocumentClientCapabilities extends TextDocumentClientCapabilities {
   @override
-  final CodeActionCapabilities codeAction;
+  final CodeActionCapabilities? codeAction;
   @override
-  final DynamicRegistrationCapability codeLens;
+  final DynamicRegistrationCapability? codeLens;
   @override
-  final CompletionCapabilities completion;
+  final CompletionCapabilities? completion;
   @override
-  final DynamicRegistrationCapability definition;
+  final DynamicRegistrationCapability? definition;
   @override
-  final DynamicRegistrationCapability documentHighlight;
+  final DynamicRegistrationCapability? documentHighlight;
   @override
-  final DynamicRegistrationCapability documentLink;
+  final DynamicRegistrationCapability? documentLink;
   @override
-  final DynamicRegistrationCapability documentSymbol;
+  final DynamicRegistrationCapability? documentSymbol;
   @override
-  final DynamicRegistrationCapability formatting;
+  final DynamicRegistrationCapability? formatting;
   @override
-  final HoverCapabilities hover;
+  final HoverCapabilities? hover;
   @override
-  final DynamicRegistrationCapability onTypeFormatting;
+  final DynamicRegistrationCapability? onTypeFormatting;
   @override
-  final DynamicRegistrationCapability references;
+  final DynamicRegistrationCapability? references;
   @override
-  final DynamicRegistrationCapability rename;
+  final DynamicRegistrationCapability? rename;
   @override
-  final SynchronizationCapabilities synchronization;
+  final SynchronizationCapabilities? synchronization;
 
   factory _$TextDocumentClientCapabilities(
           [void Function(TextDocumentClientCapabilitiesBuilder)? updates]) =>
       (new TextDocumentClientCapabilitiesBuilder()..update(updates)).build();
 
   _$TextDocumentClientCapabilities._(
-      {required this.codeAction,
-      required this.codeLens,
-      required this.completion,
-      required this.definition,
-      required this.documentHighlight,
-      required this.documentLink,
-      required this.documentSymbol,
-      required this.formatting,
-      required this.hover,
-      required this.onTypeFormatting,
-      required this.references,
-      required this.rename,
-      required this.synchronization})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        codeAction, 'TextDocumentClientCapabilities', 'codeAction');
-    BuiltValueNullFieldError.checkNotNull(
-        codeLens, 'TextDocumentClientCapabilities', 'codeLens');
-    BuiltValueNullFieldError.checkNotNull(
-        completion, 'TextDocumentClientCapabilities', 'completion');
-    BuiltValueNullFieldError.checkNotNull(
-        definition, 'TextDocumentClientCapabilities', 'definition');
-    BuiltValueNullFieldError.checkNotNull(documentHighlight,
-        'TextDocumentClientCapabilities', 'documentHighlight');
-    BuiltValueNullFieldError.checkNotNull(
-        documentLink, 'TextDocumentClientCapabilities', 'documentLink');
-    BuiltValueNullFieldError.checkNotNull(
-        documentSymbol, 'TextDocumentClientCapabilities', 'documentSymbol');
-    BuiltValueNullFieldError.checkNotNull(
-        formatting, 'TextDocumentClientCapabilities', 'formatting');
-    BuiltValueNullFieldError.checkNotNull(
-        hover, 'TextDocumentClientCapabilities', 'hover');
-    BuiltValueNullFieldError.checkNotNull(
-        onTypeFormatting, 'TextDocumentClientCapabilities', 'onTypeFormatting');
-    BuiltValueNullFieldError.checkNotNull(
-        references, 'TextDocumentClientCapabilities', 'references');
-    BuiltValueNullFieldError.checkNotNull(
-        rename, 'TextDocumentClientCapabilities', 'rename');
-    BuiltValueNullFieldError.checkNotNull(
-        synchronization, 'TextDocumentClientCapabilities', 'synchronization');
-  }
+      {this.codeAction,
+      this.codeLens,
+      this.completion,
+      this.definition,
+      this.documentHighlight,
+      this.documentLink,
+      this.documentSymbol,
+      this.formatting,
+      this.hover,
+      this.onTypeFormatting,
+      this.references,
+      this.rename,
+      this.synchronization})
+      : super._();
 
   @override
   TextDocumentClientCapabilities rebuild(
@@ -3871,19 +4279,19 @@ class TextDocumentClientCapabilitiesBuilder
   TextDocumentClientCapabilitiesBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _codeAction = $v.codeAction.toBuilder();
-      _codeLens = $v.codeLens.toBuilder();
-      _completion = $v.completion.toBuilder();
-      _definition = $v.definition.toBuilder();
-      _documentHighlight = $v.documentHighlight.toBuilder();
-      _documentLink = $v.documentLink.toBuilder();
-      _documentSymbol = $v.documentSymbol.toBuilder();
-      _formatting = $v.formatting.toBuilder();
-      _hover = $v.hover.toBuilder();
-      _onTypeFormatting = $v.onTypeFormatting.toBuilder();
-      _references = $v.references.toBuilder();
-      _rename = $v.rename.toBuilder();
-      _synchronization = $v.synchronization.toBuilder();
+      _codeAction = $v.codeAction?.toBuilder();
+      _codeLens = $v.codeLens?.toBuilder();
+      _completion = $v.completion?.toBuilder();
+      _definition = $v.definition?.toBuilder();
+      _documentHighlight = $v.documentHighlight?.toBuilder();
+      _documentLink = $v.documentLink?.toBuilder();
+      _documentSymbol = $v.documentSymbol?.toBuilder();
+      _formatting = $v.formatting?.toBuilder();
+      _hover = $v.hover?.toBuilder();
+      _onTypeFormatting = $v.onTypeFormatting?.toBuilder();
+      _references = $v.references?.toBuilder();
+      _rename = $v.rename?.toBuilder();
+      _synchronization = $v.synchronization?.toBuilder();
       _$v = null;
     }
     return this;
@@ -3906,48 +4314,48 @@ class TextDocumentClientCapabilitiesBuilder
     try {
       _$result = _$v ??
           new _$TextDocumentClientCapabilities._(
-              codeAction: codeAction.build(),
-              codeLens: codeLens.build(),
-              completion: completion.build(),
-              definition: definition.build(),
-              documentHighlight: documentHighlight.build(),
-              documentLink: documentLink.build(),
-              documentSymbol: documentSymbol.build(),
-              formatting: formatting.build(),
-              hover: hover.build(),
-              onTypeFormatting: onTypeFormatting.build(),
-              references: references.build(),
-              rename: rename.build(),
-              synchronization: synchronization.build());
+              codeAction: _codeAction?.build(),
+              codeLens: _codeLens?.build(),
+              completion: _completion?.build(),
+              definition: _definition?.build(),
+              documentHighlight: _documentHighlight?.build(),
+              documentLink: _documentLink?.build(),
+              documentSymbol: _documentSymbol?.build(),
+              formatting: _formatting?.build(),
+              hover: _hover?.build(),
+              onTypeFormatting: _onTypeFormatting?.build(),
+              references: _references?.build(),
+              rename: _rename?.build(),
+              synchronization: _synchronization?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'codeAction';
-        codeAction.build();
+        _codeAction?.build();
         _$failedField = 'codeLens';
-        codeLens.build();
+        _codeLens?.build();
         _$failedField = 'completion';
-        completion.build();
+        _completion?.build();
         _$failedField = 'definition';
-        definition.build();
+        _definition?.build();
         _$failedField = 'documentHighlight';
-        documentHighlight.build();
+        _documentHighlight?.build();
         _$failedField = 'documentLink';
-        documentLink.build();
+        _documentLink?.build();
         _$failedField = 'documentSymbol';
-        documentSymbol.build();
+        _documentSymbol?.build();
         _$failedField = 'formatting';
-        formatting.build();
+        _formatting?.build();
         _$failedField = 'hover';
-        hover.build();
+        _hover?.build();
         _$failedField = 'onTypeFormatting';
-        onTypeFormatting.build();
+        _onTypeFormatting?.build();
         _$failedField = 'references';
-        references.build();
+        _references?.build();
         _$failedField = 'rename';
-        rename.build();
+        _rename?.build();
         _$failedField = 'synchronization';
-        synchronization.build();
+        _synchronization?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'TextDocumentClientCapabilities', _$failedField, e.toString());
@@ -3961,33 +4369,24 @@ class TextDocumentClientCapabilitiesBuilder
 
 class _$SynchronizationCapabilities extends SynchronizationCapabilities {
   @override
-  final bool didSave;
+  final bool? didSave;
   @override
-  final bool dynamicRegistration;
+  final bool? dynamicRegistration;
   @override
-  final bool willSave;
+  final bool? willSave;
   @override
-  final bool willSaveWaitUntil;
+  final bool? willSaveWaitUntil;
 
   factory _$SynchronizationCapabilities(
           [void Function(SynchronizationCapabilitiesBuilder)? updates]) =>
       (new SynchronizationCapabilitiesBuilder()..update(updates)).build();
 
   _$SynchronizationCapabilities._(
-      {required this.didSave,
-      required this.dynamicRegistration,
-      required this.willSave,
-      required this.willSaveWaitUntil})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        didSave, 'SynchronizationCapabilities', 'didSave');
-    BuiltValueNullFieldError.checkNotNull(dynamicRegistration,
-        'SynchronizationCapabilities', 'dynamicRegistration');
-    BuiltValueNullFieldError.checkNotNull(
-        willSave, 'SynchronizationCapabilities', 'willSave');
-    BuiltValueNullFieldError.checkNotNull(
-        willSaveWaitUntil, 'SynchronizationCapabilities', 'willSaveWaitUntil');
-  }
+      {this.didSave,
+      this.dynamicRegistration,
+      this.willSave,
+      this.willSaveWaitUntil})
+      : super._();
 
   @override
   SynchronizationCapabilities rebuild(
@@ -4080,18 +4479,10 @@ class SynchronizationCapabilitiesBuilder
   _$SynchronizationCapabilities build() {
     final _$result = _$v ??
         new _$SynchronizationCapabilities._(
-            didSave: BuiltValueNullFieldError.checkNotNull(
-                didSave, 'SynchronizationCapabilities', 'didSave'),
-            dynamicRegistration: BuiltValueNullFieldError.checkNotNull(
-                dynamicRegistration,
-                'SynchronizationCapabilities',
-                'dynamicRegistration'),
-            willSave: BuiltValueNullFieldError.checkNotNull(
-                willSave, 'SynchronizationCapabilities', 'willSave'),
-            willSaveWaitUntil: BuiltValueNullFieldError.checkNotNull(
-                willSaveWaitUntil,
-                'SynchronizationCapabilities',
-                'willSaveWaitUntil'));
+            didSave: didSave,
+            dynamicRegistration: dynamicRegistration,
+            willSave: willSave,
+            willSaveWaitUntil: willSaveWaitUntil);
     replace(_$result);
     return _$result;
   }
@@ -4099,22 +4490,16 @@ class SynchronizationCapabilitiesBuilder
 
 class _$HoverCapabilities extends HoverCapabilities {
   @override
-  final List<String> contentFormat;
+  final BuiltList<String>? contentFormat;
   @override
-  final bool dynamicRegistration;
+  final bool? dynamicRegistration;
 
   factory _$HoverCapabilities(
           [void Function(HoverCapabilitiesBuilder)? updates]) =>
       (new HoverCapabilitiesBuilder()..update(updates)).build();
 
-  _$HoverCapabilities._(
-      {required this.contentFormat, required this.dynamicRegistration})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        contentFormat, 'HoverCapabilities', 'contentFormat');
-    BuiltValueNullFieldError.checkNotNull(
-        dynamicRegistration, 'HoverCapabilities', 'dynamicRegistration');
-  }
+  _$HoverCapabilities._({this.contentFormat, this.dynamicRegistration})
+      : super._();
 
   @override
   HoverCapabilities rebuild(void Function(HoverCapabilitiesBuilder) updates) =>
@@ -4151,9 +4536,10 @@ class HoverCapabilitiesBuilder
     implements Builder<HoverCapabilities, HoverCapabilitiesBuilder> {
   _$HoverCapabilities? _$v;
 
-  List<String>? _contentFormat;
-  List<String>? get contentFormat => _$this._contentFormat;
-  set contentFormat(List<String>? contentFormat) =>
+  ListBuilder<String>? _contentFormat;
+  ListBuilder<String> get contentFormat =>
+      _$this._contentFormat ??= new ListBuilder<String>();
+  set contentFormat(ListBuilder<String>? contentFormat) =>
       _$this._contentFormat = contentFormat;
 
   bool? _dynamicRegistration;
@@ -4166,7 +4552,7 @@ class HoverCapabilitiesBuilder
   HoverCapabilitiesBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _contentFormat = $v.contentFormat;
+      _contentFormat = $v.contentFormat?.toBuilder();
       _dynamicRegistration = $v.dynamicRegistration;
       _$v = null;
     }
@@ -4186,14 +4572,23 @@ class HoverCapabilitiesBuilder
 
   @override
   _$HoverCapabilities build() {
-    final _$result = _$v ??
-        new _$HoverCapabilities._(
-            contentFormat: BuiltValueNullFieldError.checkNotNull(
-                contentFormat, 'HoverCapabilities', 'contentFormat'),
-            dynamicRegistration: BuiltValueNullFieldError.checkNotNull(
-                dynamicRegistration,
-                'HoverCapabilities',
-                'dynamicRegistration'));
+    _$HoverCapabilities _$result;
+    try {
+      _$result = _$v ??
+          new _$HoverCapabilities._(
+              contentFormat: _contentFormat?.build(),
+              dynamicRegistration: dynamicRegistration);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'contentFormat';
+        _contentFormat?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'HoverCapabilities', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -4201,38 +4596,27 @@ class HoverCapabilitiesBuilder
 
 class _$WorkspaceClientCapabilities extends WorkspaceClientCapabilities {
   @override
-  final bool applyEdit;
+  final bool? applyEdit;
   @override
-  final DynamicRegistrationCapability didChangeConfiguration;
+  final DynamicRegistrationCapability? didChangeConfiguration;
   @override
-  final DynamicRegistrationCapability didChangeWatchedFiles;
+  final DynamicRegistrationCapability? didChangeWatchedFiles;
   @override
-  final DynamicRegistrationCapability executeCommand;
+  final DynamicRegistrationCapability? executeCommand;
   @override
-  final DynamicRegistrationCapability symbol;
+  final DynamicRegistrationCapability? symbol;
 
   factory _$WorkspaceClientCapabilities(
           [void Function(WorkspaceClientCapabilitiesBuilder)? updates]) =>
       (new WorkspaceClientCapabilitiesBuilder()..update(updates)).build();
 
   _$WorkspaceClientCapabilities._(
-      {required this.applyEdit,
-      required this.didChangeConfiguration,
-      required this.didChangeWatchedFiles,
-      required this.executeCommand,
-      required this.symbol})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        applyEdit, 'WorkspaceClientCapabilities', 'applyEdit');
-    BuiltValueNullFieldError.checkNotNull(didChangeConfiguration,
-        'WorkspaceClientCapabilities', 'didChangeConfiguration');
-    BuiltValueNullFieldError.checkNotNull(didChangeWatchedFiles,
-        'WorkspaceClientCapabilities', 'didChangeWatchedFiles');
-    BuiltValueNullFieldError.checkNotNull(
-        executeCommand, 'WorkspaceClientCapabilities', 'executeCommand');
-    BuiltValueNullFieldError.checkNotNull(
-        symbol, 'WorkspaceClientCapabilities', 'symbol');
-  }
+      {this.applyEdit,
+      this.didChangeConfiguration,
+      this.didChangeWatchedFiles,
+      this.executeCommand,
+      this.symbol})
+      : super._();
 
   @override
   WorkspaceClientCapabilities rebuild(
@@ -4322,10 +4706,10 @@ class WorkspaceClientCapabilitiesBuilder
     final $v = _$v;
     if ($v != null) {
       _applyEdit = $v.applyEdit;
-      _didChangeConfiguration = $v.didChangeConfiguration.toBuilder();
-      _didChangeWatchedFiles = $v.didChangeWatchedFiles.toBuilder();
-      _executeCommand = $v.executeCommand.toBuilder();
-      _symbol = $v.symbol.toBuilder();
+      _didChangeConfiguration = $v.didChangeConfiguration?.toBuilder();
+      _didChangeWatchedFiles = $v.didChangeWatchedFiles?.toBuilder();
+      _executeCommand = $v.executeCommand?.toBuilder();
+      _symbol = $v.symbol?.toBuilder();
       _$v = null;
     }
     return this;
@@ -4348,23 +4732,22 @@ class WorkspaceClientCapabilitiesBuilder
     try {
       _$result = _$v ??
           new _$WorkspaceClientCapabilities._(
-              applyEdit: BuiltValueNullFieldError.checkNotNull(
-                  applyEdit, 'WorkspaceClientCapabilities', 'applyEdit'),
-              didChangeConfiguration: didChangeConfiguration.build(),
-              didChangeWatchedFiles: didChangeWatchedFiles.build(),
-              executeCommand: executeCommand.build(),
-              symbol: symbol.build());
+              applyEdit: applyEdit,
+              didChangeConfiguration: _didChangeConfiguration?.build(),
+              didChangeWatchedFiles: _didChangeWatchedFiles?.build(),
+              executeCommand: _executeCommand?.build(),
+              symbol: _symbol?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'didChangeConfiguration';
-        didChangeConfiguration.build();
+        _didChangeConfiguration?.build();
         _$failedField = 'didChangeWatchedFiles';
-        didChangeWatchedFiles.build();
+        _didChangeWatchedFiles?.build();
         _$failedField = 'executeCommand';
-        executeCommand.build();
+        _executeCommand?.build();
         _$failedField = 'symbol';
-        symbol.build();
+        _symbol?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'WorkspaceClientCapabilities', _$failedField, e.toString());
@@ -4378,17 +4761,13 @@ class WorkspaceClientCapabilitiesBuilder
 
 class _$DynamicRegistrationCapability extends DynamicRegistrationCapability {
   @override
-  final bool dynamicRegistration;
+  final bool? dynamicRegistration;
 
   factory _$DynamicRegistrationCapability(
           [void Function(DynamicRegistrationCapabilityBuilder)? updates]) =>
       (new DynamicRegistrationCapabilityBuilder()..update(updates)).build();
 
-  _$DynamicRegistrationCapability._({required this.dynamicRegistration})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(dynamicRegistration,
-        'DynamicRegistrationCapability', 'dynamicRegistration');
-  }
+  _$DynamicRegistrationCapability._({this.dynamicRegistration}) : super._();
 
   @override
   DynamicRegistrationCapability rebuild(
@@ -4456,10 +4835,7 @@ class DynamicRegistrationCapabilityBuilder
   _$DynamicRegistrationCapability build() {
     final _$result = _$v ??
         new _$DynamicRegistrationCapability._(
-            dynamicRegistration: BuiltValueNullFieldError.checkNotNull(
-                dynamicRegistration,
-                'DynamicRegistrationCapability',
-                'dynamicRegistration'));
+            dynamicRegistration: dynamicRegistration);
     replace(_$result);
     return _$result;
   }
@@ -4467,23 +4843,17 @@ class DynamicRegistrationCapabilityBuilder
 
 class _$CodeActionCapabilities extends CodeActionCapabilities {
   @override
-  final CodeActionLiteralSupport codeActionLiteralSupport;
+  final CodeActionLiteralSupport? codeActionLiteralSupport;
   @override
-  final bool dynamicRegistration;
+  final bool? dynamicRegistration;
 
   factory _$CodeActionCapabilities(
           [void Function(CodeActionCapabilitiesBuilder)? updates]) =>
       (new CodeActionCapabilitiesBuilder()..update(updates)).build();
 
   _$CodeActionCapabilities._(
-      {required this.codeActionLiteralSupport,
-      required this.dynamicRegistration})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(codeActionLiteralSupport,
-        'CodeActionCapabilities', 'codeActionLiteralSupport');
-    BuiltValueNullFieldError.checkNotNull(
-        dynamicRegistration, 'CodeActionCapabilities', 'dynamicRegistration');
-  }
+      {this.codeActionLiteralSupport, this.dynamicRegistration})
+      : super._();
 
   @override
   CodeActionCapabilities rebuild(
@@ -4539,7 +4909,7 @@ class CodeActionCapabilitiesBuilder
   CodeActionCapabilitiesBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _codeActionLiteralSupport = $v.codeActionLiteralSupport.toBuilder();
+      _codeActionLiteralSupport = $v.codeActionLiteralSupport?.toBuilder();
       _dynamicRegistration = $v.dynamicRegistration;
       _$v = null;
     }
@@ -4563,16 +4933,13 @@ class CodeActionCapabilitiesBuilder
     try {
       _$result = _$v ??
           new _$CodeActionCapabilities._(
-              codeActionLiteralSupport: codeActionLiteralSupport.build(),
-              dynamicRegistration: BuiltValueNullFieldError.checkNotNull(
-                  dynamicRegistration,
-                  'CodeActionCapabilities',
-                  'dynamicRegistration'));
+              codeActionLiteralSupport: _codeActionLiteralSupport?.build(),
+              dynamicRegistration: dynamicRegistration);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'codeActionLiteralSupport';
-        codeActionLiteralSupport.build();
+        _codeActionLiteralSupport?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'CodeActionCapabilities', _$failedField, e.toString());
@@ -4586,16 +4953,13 @@ class CodeActionCapabilitiesBuilder
 
 class _$CodeActionLiteralSupport extends CodeActionLiteralSupport {
   @override
-  final CodeActionKinds codeActionKind;
+  final CodeActionKinds? codeActionKind;
 
   factory _$CodeActionLiteralSupport(
           [void Function(CodeActionLiteralSupportBuilder)? updates]) =>
       (new CodeActionLiteralSupportBuilder()..update(updates)).build();
 
-  _$CodeActionLiteralSupport._({required this.codeActionKind}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        codeActionKind, 'CodeActionLiteralSupport', 'codeActionKind');
-  }
+  _$CodeActionLiteralSupport._({this.codeActionKind}) : super._();
 
   @override
   CodeActionLiteralSupport rebuild(
@@ -4642,7 +5006,7 @@ class CodeActionLiteralSupportBuilder
   CodeActionLiteralSupportBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _codeActionKind = $v.codeActionKind.toBuilder();
+      _codeActionKind = $v.codeActionKind?.toBuilder();
       _$v = null;
     }
     return this;
@@ -4665,12 +5029,12 @@ class CodeActionLiteralSupportBuilder
     try {
       _$result = _$v ??
           new _$CodeActionLiteralSupport._(
-              codeActionKind: codeActionKind.build());
+              codeActionKind: _codeActionKind?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'codeActionKind';
-        codeActionKind.build();
+        _codeActionKind?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'CodeActionLiteralSupport', _$failedField, e.toString());
@@ -4684,15 +5048,12 @@ class CodeActionLiteralSupportBuilder
 
 class _$CodeActionKinds extends CodeActionKinds {
   @override
-  final List<String> valueSet;
+  final BuiltList<String>? valueSet;
 
   factory _$CodeActionKinds([void Function(CodeActionKindsBuilder)? updates]) =>
       (new CodeActionKindsBuilder()..update(updates)).build();
 
-  _$CodeActionKinds._({required this.valueSet}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        valueSet, 'CodeActionKinds', 'valueSet');
-  }
+  _$CodeActionKinds._({this.valueSet}) : super._();
 
   @override
   CodeActionKinds rebuild(void Function(CodeActionKindsBuilder) updates) =>
@@ -4725,16 +5086,17 @@ class CodeActionKindsBuilder
     implements Builder<CodeActionKinds, CodeActionKindsBuilder> {
   _$CodeActionKinds? _$v;
 
-  List<String>? _valueSet;
-  List<String>? get valueSet => _$this._valueSet;
-  set valueSet(List<String>? valueSet) => _$this._valueSet = valueSet;
+  ListBuilder<String>? _valueSet;
+  ListBuilder<String> get valueSet =>
+      _$this._valueSet ??= new ListBuilder<String>();
+  set valueSet(ListBuilder<String>? valueSet) => _$this._valueSet = valueSet;
 
   CodeActionKindsBuilder();
 
   CodeActionKindsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _valueSet = $v.valueSet;
+      _valueSet = $v.valueSet?.toBuilder();
       _$v = null;
     }
     return this;
@@ -4753,10 +5115,20 @@ class CodeActionKindsBuilder
 
   @override
   _$CodeActionKinds build() {
-    final _$result = _$v ??
-        new _$CodeActionKinds._(
-            valueSet: BuiltValueNullFieldError.checkNotNull(
-                valueSet, 'CodeActionKinds', 'valueSet'));
+    _$CodeActionKinds _$result;
+    try {
+      _$result = _$v ?? new _$CodeActionKinds._(valueSet: _valueSet?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'valueSet';
+        _valueSet?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'CodeActionKinds', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -4764,22 +5136,16 @@ class CodeActionKindsBuilder
 
 class _$CompletionCapabilities extends CompletionCapabilities {
   @override
-  final CompletionItemCapabilities completionItem;
+  final CompletionItemCapabilities? completionItem;
   @override
-  final bool dynamicRegistration;
+  final bool? dynamicRegistration;
 
   factory _$CompletionCapabilities(
           [void Function(CompletionCapabilitiesBuilder)? updates]) =>
       (new CompletionCapabilitiesBuilder()..update(updates)).build();
 
-  _$CompletionCapabilities._(
-      {required this.completionItem, required this.dynamicRegistration})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        completionItem, 'CompletionCapabilities', 'completionItem');
-    BuiltValueNullFieldError.checkNotNull(
-        dynamicRegistration, 'CompletionCapabilities', 'dynamicRegistration');
-  }
+  _$CompletionCapabilities._({this.completionItem, this.dynamicRegistration})
+      : super._();
 
   @override
   CompletionCapabilities rebuild(
@@ -4833,7 +5199,7 @@ class CompletionCapabilitiesBuilder
   CompletionCapabilitiesBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _completionItem = $v.completionItem.toBuilder();
+      _completionItem = $v.completionItem?.toBuilder();
       _dynamicRegistration = $v.dynamicRegistration;
       _$v = null;
     }
@@ -4857,16 +5223,13 @@ class CompletionCapabilitiesBuilder
     try {
       _$result = _$v ??
           new _$CompletionCapabilities._(
-              completionItem: completionItem.build(),
-              dynamicRegistration: BuiltValueNullFieldError.checkNotNull(
-                  dynamicRegistration,
-                  'CompletionCapabilities',
-                  'dynamicRegistration'));
+              completionItem: _completionItem?.build(),
+              dynamicRegistration: dynamicRegistration);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'completionItem';
-        completionItem.build();
+        _completionItem?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'CompletionCapabilities', _$failedField, e.toString());
@@ -4880,16 +5243,13 @@ class CompletionCapabilitiesBuilder
 
 class _$CompletionItemCapabilities extends CompletionItemCapabilities {
   @override
-  final bool snippetSupport;
+  final bool? snippetSupport;
 
   factory _$CompletionItemCapabilities(
           [void Function(CompletionItemCapabilitiesBuilder)? updates]) =>
       (new CompletionItemCapabilitiesBuilder()..update(updates)).build();
 
-  _$CompletionItemCapabilities._({required this.snippetSupport}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        snippetSupport, 'CompletionItemCapabilities', 'snippetSupport');
-  }
+  _$CompletionItemCapabilities._({this.snippetSupport}) : super._();
 
   @override
   CompletionItemCapabilities rebuild(
@@ -4955,11 +5315,7 @@ class CompletionItemCapabilitiesBuilder
   @override
   _$CompletionItemCapabilities build() {
     final _$result = _$v ??
-        new _$CompletionItemCapabilities._(
-            snippetSupport: BuiltValueNullFieldError.checkNotNull(
-                snippetSupport,
-                'CompletionItemCapabilities',
-                'snippetSupport'));
+        new _$CompletionItemCapabilities._(snippetSupport: snippetSupport);
     replace(_$result);
     return _$result;
   }
@@ -4967,15 +5323,12 @@ class CompletionItemCapabilitiesBuilder
 
 class _$CodeLensOptions extends CodeLensOptions {
   @override
-  final bool resolveProvider;
+  final bool? resolveProvider;
 
   factory _$CodeLensOptions([void Function(CodeLensOptionsBuilder)? updates]) =>
       (new CodeLensOptionsBuilder()..update(updates)).build();
 
-  _$CodeLensOptions._({required this.resolveProvider}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        resolveProvider, 'CodeLensOptions', 'resolveProvider');
-  }
+  _$CodeLensOptions._({this.resolveProvider}) : super._();
 
   @override
   CodeLensOptions rebuild(void Function(CodeLensOptionsBuilder) updates) =>
@@ -5037,10 +5390,8 @@ class CodeLensOptionsBuilder
 
   @override
   _$CodeLensOptions build() {
-    final _$result = _$v ??
-        new _$CodeLensOptions._(
-            resolveProvider: BuiltValueNullFieldError.checkNotNull(
-                resolveProvider, 'CodeLensOptions', 'resolveProvider'));
+    final _$result =
+        _$v ?? new _$CodeLensOptions._(resolveProvider: resolveProvider);
     replace(_$result);
     return _$result;
   }
@@ -5048,22 +5399,16 @@ class CodeLensOptionsBuilder
 
 class _$CompletionOptions extends CompletionOptions {
   @override
-  final bool resolveProvider;
+  final bool? resolveProvider;
   @override
-  final List<String> triggerCharacters;
+  final BuiltList<String>? triggerCharacters;
 
   factory _$CompletionOptions(
           [void Function(CompletionOptionsBuilder)? updates]) =>
       (new CompletionOptionsBuilder()..update(updates)).build();
 
-  _$CompletionOptions._(
-      {required this.resolveProvider, required this.triggerCharacters})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        resolveProvider, 'CompletionOptions', 'resolveProvider');
-    BuiltValueNullFieldError.checkNotNull(
-        triggerCharacters, 'CompletionOptions', 'triggerCharacters');
-  }
+  _$CompletionOptions._({this.resolveProvider, this.triggerCharacters})
+      : super._();
 
   @override
   CompletionOptions rebuild(void Function(CompletionOptionsBuilder) updates) =>
@@ -5105,9 +5450,10 @@ class CompletionOptionsBuilder
   set resolveProvider(bool? resolveProvider) =>
       _$this._resolveProvider = resolveProvider;
 
-  List<String>? _triggerCharacters;
-  List<String>? get triggerCharacters => _$this._triggerCharacters;
-  set triggerCharacters(List<String>? triggerCharacters) =>
+  ListBuilder<String>? _triggerCharacters;
+  ListBuilder<String> get triggerCharacters =>
+      _$this._triggerCharacters ??= new ListBuilder<String>();
+  set triggerCharacters(ListBuilder<String>? triggerCharacters) =>
       _$this._triggerCharacters = triggerCharacters;
 
   CompletionOptionsBuilder();
@@ -5116,7 +5462,7 @@ class CompletionOptionsBuilder
     final $v = _$v;
     if ($v != null) {
       _resolveProvider = $v.resolveProvider;
-      _triggerCharacters = $v.triggerCharacters;
+      _triggerCharacters = $v.triggerCharacters?.toBuilder();
       _$v = null;
     }
     return this;
@@ -5135,12 +5481,23 @@ class CompletionOptionsBuilder
 
   @override
   _$CompletionOptions build() {
-    final _$result = _$v ??
-        new _$CompletionOptions._(
-            resolveProvider: BuiltValueNullFieldError.checkNotNull(
-                resolveProvider, 'CompletionOptions', 'resolveProvider'),
-            triggerCharacters: BuiltValueNullFieldError.checkNotNull(
-                triggerCharacters, 'CompletionOptions', 'triggerCharacters'));
+    _$CompletionOptions _$result;
+    try {
+      _$result = _$v ??
+          new _$CompletionOptions._(
+              resolveProvider: resolveProvider,
+              triggerCharacters: _triggerCharacters?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'triggerCharacters';
+        _triggerCharacters?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'CompletionOptions', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -5148,16 +5505,13 @@ class CompletionOptionsBuilder
 
 class _$DocumentLinkOptions extends DocumentLinkOptions {
   @override
-  final bool resolveProvider;
+  final bool? resolveProvider;
 
   factory _$DocumentLinkOptions(
           [void Function(DocumentLinkOptionsBuilder)? updates]) =>
       (new DocumentLinkOptionsBuilder()..update(updates)).build();
 
-  _$DocumentLinkOptions._({required this.resolveProvider}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        resolveProvider, 'DocumentLinkOptions', 'resolveProvider');
-  }
+  _$DocumentLinkOptions._({this.resolveProvider}) : super._();
 
   @override
   DocumentLinkOptions rebuild(
@@ -5221,10 +5575,8 @@ class DocumentLinkOptionsBuilder
 
   @override
   _$DocumentLinkOptions build() {
-    final _$result = _$v ??
-        new _$DocumentLinkOptions._(
-            resolveProvider: BuiltValueNullFieldError.checkNotNull(
-                resolveProvider, 'DocumentLinkOptions', 'resolveProvider'));
+    final _$result =
+        _$v ?? new _$DocumentLinkOptions._(resolveProvider: resolveProvider);
     replace(_$result);
     return _$result;
   }
@@ -5233,22 +5585,17 @@ class DocumentLinkOptionsBuilder
 class _$DocumentOnTypeFormattingOptions
     extends DocumentOnTypeFormattingOptions {
   @override
-  final String firstTriggerCharacter;
+  final String? firstTriggerCharacter;
   @override
-  final List<String> moreTriggerCharacter;
+  final BuiltList<String>? moreTriggerCharacter;
 
   factory _$DocumentOnTypeFormattingOptions(
           [void Function(DocumentOnTypeFormattingOptionsBuilder)? updates]) =>
       (new DocumentOnTypeFormattingOptionsBuilder()..update(updates)).build();
 
   _$DocumentOnTypeFormattingOptions._(
-      {required this.firstTriggerCharacter, required this.moreTriggerCharacter})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(firstTriggerCharacter,
-        'DocumentOnTypeFormattingOptions', 'firstTriggerCharacter');
-    BuiltValueNullFieldError.checkNotNull(moreTriggerCharacter,
-        'DocumentOnTypeFormattingOptions', 'moreTriggerCharacter');
-  }
+      {this.firstTriggerCharacter, this.moreTriggerCharacter})
+      : super._();
 
   @override
   DocumentOnTypeFormattingOptions rebuild(
@@ -5293,9 +5640,10 @@ class DocumentOnTypeFormattingOptionsBuilder
   set firstTriggerCharacter(String? firstTriggerCharacter) =>
       _$this._firstTriggerCharacter = firstTriggerCharacter;
 
-  List<String>? _moreTriggerCharacter;
-  List<String>? get moreTriggerCharacter => _$this._moreTriggerCharacter;
-  set moreTriggerCharacter(List<String>? moreTriggerCharacter) =>
+  ListBuilder<String>? _moreTriggerCharacter;
+  ListBuilder<String> get moreTriggerCharacter =>
+      _$this._moreTriggerCharacter ??= new ListBuilder<String>();
+  set moreTriggerCharacter(ListBuilder<String>? moreTriggerCharacter) =>
       _$this._moreTriggerCharacter = moreTriggerCharacter;
 
   DocumentOnTypeFormattingOptionsBuilder();
@@ -5304,7 +5652,7 @@ class DocumentOnTypeFormattingOptionsBuilder
     final $v = _$v;
     if ($v != null) {
       _firstTriggerCharacter = $v.firstTriggerCharacter;
-      _moreTriggerCharacter = $v.moreTriggerCharacter;
+      _moreTriggerCharacter = $v.moreTriggerCharacter?.toBuilder();
       _$v = null;
     }
     return this;
@@ -5323,16 +5671,23 @@ class DocumentOnTypeFormattingOptionsBuilder
 
   @override
   _$DocumentOnTypeFormattingOptions build() {
-    final _$result = _$v ??
-        new _$DocumentOnTypeFormattingOptions._(
-            firstTriggerCharacter: BuiltValueNullFieldError.checkNotNull(
-                firstTriggerCharacter,
-                'DocumentOnTypeFormattingOptions',
-                'firstTriggerCharacter'),
-            moreTriggerCharacter: BuiltValueNullFieldError.checkNotNull(
-                moreTriggerCharacter,
-                'DocumentOnTypeFormattingOptions',
-                'moreTriggerCharacter'));
+    _$DocumentOnTypeFormattingOptions _$result;
+    try {
+      _$result = _$v ??
+          new _$DocumentOnTypeFormattingOptions._(
+              firstTriggerCharacter: firstTriggerCharacter,
+              moreTriggerCharacter: _moreTriggerCharacter?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'moreTriggerCharacter';
+        _moreTriggerCharacter?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'DocumentOnTypeFormattingOptions', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -5340,16 +5695,13 @@ class DocumentOnTypeFormattingOptionsBuilder
 
 class _$ExecuteCommandOptions extends ExecuteCommandOptions {
   @override
-  final List<String> commands;
+  final BuiltList<String>? commands;
 
   factory _$ExecuteCommandOptions(
           [void Function(ExecuteCommandOptionsBuilder)? updates]) =>
       (new ExecuteCommandOptionsBuilder()..update(updates)).build();
 
-  _$ExecuteCommandOptions._({required this.commands}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        commands, 'ExecuteCommandOptions', 'commands');
-  }
+  _$ExecuteCommandOptions._({this.commands}) : super._();
 
   @override
   ExecuteCommandOptions rebuild(
@@ -5383,16 +5735,17 @@ class ExecuteCommandOptionsBuilder
     implements Builder<ExecuteCommandOptions, ExecuteCommandOptionsBuilder> {
   _$ExecuteCommandOptions? _$v;
 
-  List<String>? _commands;
-  List<String>? get commands => _$this._commands;
-  set commands(List<String>? commands) => _$this._commands = commands;
+  ListBuilder<String>? _commands;
+  ListBuilder<String> get commands =>
+      _$this._commands ??= new ListBuilder<String>();
+  set commands(ListBuilder<String>? commands) => _$this._commands = commands;
 
   ExecuteCommandOptionsBuilder();
 
   ExecuteCommandOptionsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _commands = $v.commands;
+      _commands = $v.commands?.toBuilder();
       _$v = null;
     }
     return this;
@@ -5411,10 +5764,21 @@ class ExecuteCommandOptionsBuilder
 
   @override
   _$ExecuteCommandOptions build() {
-    final _$result = _$v ??
-        new _$ExecuteCommandOptions._(
-            commands: BuiltValueNullFieldError.checkNotNull(
-                commands, 'ExecuteCommandOptions', 'commands'));
+    _$ExecuteCommandOptions _$result;
+    try {
+      _$result =
+          _$v ?? new _$ExecuteCommandOptions._(commands: _commands?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'commands';
+        _commands?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'ExecuteCommandOptions', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -5422,16 +5786,13 @@ class ExecuteCommandOptionsBuilder
 
 class _$SignatureHelpOptions extends SignatureHelpOptions {
   @override
-  final List<String> triggerCharacters;
+  final BuiltList<String>? triggerCharacters;
 
   factory _$SignatureHelpOptions(
           [void Function(SignatureHelpOptionsBuilder)? updates]) =>
       (new SignatureHelpOptionsBuilder()..update(updates)).build();
 
-  _$SignatureHelpOptions._({required this.triggerCharacters}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        triggerCharacters, 'SignatureHelpOptions', 'triggerCharacters');
-  }
+  _$SignatureHelpOptions._({this.triggerCharacters}) : super._();
 
   @override
   SignatureHelpOptions rebuild(
@@ -5466,9 +5827,10 @@ class SignatureHelpOptionsBuilder
     implements Builder<SignatureHelpOptions, SignatureHelpOptionsBuilder> {
   _$SignatureHelpOptions? _$v;
 
-  List<String>? _triggerCharacters;
-  List<String>? get triggerCharacters => _$this._triggerCharacters;
-  set triggerCharacters(List<String>? triggerCharacters) =>
+  ListBuilder<String>? _triggerCharacters;
+  ListBuilder<String> get triggerCharacters =>
+      _$this._triggerCharacters ??= new ListBuilder<String>();
+  set triggerCharacters(ListBuilder<String>? triggerCharacters) =>
       _$this._triggerCharacters = triggerCharacters;
 
   SignatureHelpOptionsBuilder();
@@ -5476,7 +5838,7 @@ class SignatureHelpOptionsBuilder
   SignatureHelpOptionsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _triggerCharacters = $v.triggerCharacters;
+      _triggerCharacters = $v.triggerCharacters?.toBuilder();
       _$v = null;
     }
     return this;
@@ -5495,12 +5857,22 @@ class SignatureHelpOptionsBuilder
 
   @override
   _$SignatureHelpOptions build() {
-    final _$result = _$v ??
-        new _$SignatureHelpOptions._(
-            triggerCharacters: BuiltValueNullFieldError.checkNotNull(
-                triggerCharacters,
-                'SignatureHelpOptions',
-                'triggerCharacters'));
+    _$SignatureHelpOptions _$result;
+    try {
+      _$result = _$v ??
+          new _$SignatureHelpOptions._(
+              triggerCharacters: _triggerCharacters?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'triggerCharacters';
+        _triggerCharacters?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'SignatureHelpOptions', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -5508,38 +5880,27 @@ class SignatureHelpOptionsBuilder
 
 class _$TextDocumentSyncOptions extends TextDocumentSyncOptions {
   @override
-  final TextDocumentSyncKind change;
+  final TextDocumentSyncKind? change;
   @override
-  final bool openClose;
+  final bool? openClose;
   @override
-  final SaveOptions save;
+  final SaveOptions? save;
   @override
-  final bool willSave;
+  final bool? willSave;
   @override
-  final bool willSaveWaitUntil;
+  final bool? willSaveWaitUntil;
 
   factory _$TextDocumentSyncOptions(
           [void Function(TextDocumentSyncOptionsBuilder)? updates]) =>
       (new TextDocumentSyncOptionsBuilder()..update(updates)).build();
 
   _$TextDocumentSyncOptions._(
-      {required this.change,
-      required this.openClose,
-      required this.save,
-      required this.willSave,
-      required this.willSaveWaitUntil})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        change, 'TextDocumentSyncOptions', 'change');
-    BuiltValueNullFieldError.checkNotNull(
-        openClose, 'TextDocumentSyncOptions', 'openClose');
-    BuiltValueNullFieldError.checkNotNull(
-        save, 'TextDocumentSyncOptions', 'save');
-    BuiltValueNullFieldError.checkNotNull(
-        willSave, 'TextDocumentSyncOptions', 'willSave');
-    BuiltValueNullFieldError.checkNotNull(
-        willSaveWaitUntil, 'TextDocumentSyncOptions', 'willSaveWaitUntil');
-  }
+      {this.change,
+      this.openClose,
+      this.save,
+      this.willSave,
+      this.willSaveWaitUntil})
+      : super._();
 
   @override
   TextDocumentSyncOptions rebuild(
@@ -5616,7 +5977,7 @@ class TextDocumentSyncOptionsBuilder
     if ($v != null) {
       _change = $v.change;
       _openClose = $v.openClose;
-      _save = $v.save.toBuilder();
+      _save = $v.save?.toBuilder();
       _willSave = $v.willSave;
       _willSaveWaitUntil = $v.willSaveWaitUntil;
       _$v = null;
@@ -5641,22 +6002,16 @@ class TextDocumentSyncOptionsBuilder
     try {
       _$result = _$v ??
           new _$TextDocumentSyncOptions._(
-              change: BuiltValueNullFieldError.checkNotNull(
-                  change, 'TextDocumentSyncOptions', 'change'),
-              openClose: BuiltValueNullFieldError.checkNotNull(
-                  openClose, 'TextDocumentSyncOptions', 'openClose'),
-              save: save.build(),
-              willSave: BuiltValueNullFieldError.checkNotNull(
-                  willSave, 'TextDocumentSyncOptions', 'willSave'),
-              willSaveWaitUntil: BuiltValueNullFieldError.checkNotNull(
-                  willSaveWaitUntil,
-                  'TextDocumentSyncOptions',
-                  'willSaveWaitUntil'));
+              change: change,
+              openClose: openClose,
+              save: _save?.build(),
+              willSave: willSave,
+              willSaveWaitUntil: willSaveWaitUntil);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'save';
-        save.build();
+        _save?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'TextDocumentSyncOptions', _$failedField, e.toString());
@@ -5670,15 +6025,12 @@ class TextDocumentSyncOptionsBuilder
 
 class _$SaveOptions extends SaveOptions {
   @override
-  final bool includeText;
+  final bool? includeText;
 
   factory _$SaveOptions([void Function(SaveOptionsBuilder)? updates]) =>
       (new SaveOptionsBuilder()..update(updates)).build();
 
-  _$SaveOptions._({required this.includeText}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        includeText, 'SaveOptions', 'includeText');
-  }
+  _$SaveOptions._({this.includeText}) : super._();
 
   @override
   SaveOptions rebuild(void Function(SaveOptionsBuilder) updates) =>
@@ -5737,10 +6089,7 @@ class SaveOptionsBuilder implements Builder<SaveOptions, SaveOptionsBuilder> {
 
   @override
   _$SaveOptions build() {
-    final _$result = _$v ??
-        new _$SaveOptions._(
-            includeText: BuiltValueNullFieldError.checkNotNull(
-                includeText, 'SaveOptions', 'includeText'));
+    final _$result = _$v ?? new _$SaveOptions._(includeText: includeText);
     replace(_$result);
     return _$result;
   }
@@ -5748,31 +6097,20 @@ class SaveOptionsBuilder implements Builder<SaveOptions, SaveOptionsBuilder> {
 
 class _$TextDocumentItem extends TextDocumentItem {
   @override
-  final String languageId;
+  final String? languageId;
   @override
-  final String text;
+  final String? text;
   @override
-  final String uri;
+  final String? uri;
   @override
-  final int version;
+  final int? version;
 
   factory _$TextDocumentItem(
           [void Function(TextDocumentItemBuilder)? updates]) =>
       (new TextDocumentItemBuilder()..update(updates)).build();
 
-  _$TextDocumentItem._(
-      {required this.languageId,
-      required this.text,
-      required this.uri,
-      required this.version})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        languageId, 'TextDocumentItem', 'languageId');
-    BuiltValueNullFieldError.checkNotNull(text, 'TextDocumentItem', 'text');
-    BuiltValueNullFieldError.checkNotNull(uri, 'TextDocumentItem', 'uri');
-    BuiltValueNullFieldError.checkNotNull(
-        version, 'TextDocumentItem', 'version');
-  }
+  _$TextDocumentItem._({this.languageId, this.text, this.uri, this.version})
+      : super._();
 
   @override
   TextDocumentItem rebuild(void Function(TextDocumentItemBuilder) updates) =>
@@ -5859,14 +6197,7 @@ class TextDocumentItemBuilder
   _$TextDocumentItem build() {
     final _$result = _$v ??
         new _$TextDocumentItem._(
-            languageId: BuiltValueNullFieldError.checkNotNull(
-                languageId, 'TextDocumentItem', 'languageId'),
-            text: BuiltValueNullFieldError.checkNotNull(
-                text, 'TextDocumentItem', 'text'),
-            uri: BuiltValueNullFieldError.checkNotNull(
-                uri, 'TextDocumentItem', 'uri'),
-            version: BuiltValueNullFieldError.checkNotNull(
-                version, 'TextDocumentItem', 'version'));
+            languageId: languageId, text: text, uri: uri, version: version);
     replace(_$result);
     return _$result;
   }
@@ -5875,22 +6206,15 @@ class TextDocumentItemBuilder
 class _$VersionedTextDocumentIdentifier
     extends VersionedTextDocumentIdentifier {
   @override
-  final String uri;
+  final String? uri;
   @override
-  final int version;
+  final int? version;
 
   factory _$VersionedTextDocumentIdentifier(
           [void Function(VersionedTextDocumentIdentifierBuilder)? updates]) =>
       (new VersionedTextDocumentIdentifierBuilder()..update(updates)).build();
 
-  _$VersionedTextDocumentIdentifier._(
-      {required this.uri, required this.version})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        uri, 'VersionedTextDocumentIdentifier', 'uri');
-    BuiltValueNullFieldError.checkNotNull(
-        version, 'VersionedTextDocumentIdentifier', 'version');
-  }
+  _$VersionedTextDocumentIdentifier._({this.uri, this.version}) : super._();
 
   @override
   VersionedTextDocumentIdentifier rebuild(
@@ -5963,11 +6287,7 @@ class VersionedTextDocumentIdentifierBuilder
   @override
   _$VersionedTextDocumentIdentifier build() {
     final _$result = _$v ??
-        new _$VersionedTextDocumentIdentifier._(
-            uri: BuiltValueNullFieldError.checkNotNull(
-                uri, 'VersionedTextDocumentIdentifier', 'uri'),
-            version: BuiltValueNullFieldError.checkNotNull(
-                version, 'VersionedTextDocumentIdentifier', 'version'));
+        new _$VersionedTextDocumentIdentifier._(uri: uri, version: version);
     replace(_$result);
     return _$result;
   }
@@ -5975,26 +6295,18 @@ class VersionedTextDocumentIdentifierBuilder
 
 class _$TextDocumentContentChangeEvent extends TextDocumentContentChangeEvent {
   @override
-  final Range range;
+  final Range? range;
   @override
-  final int rangeLength;
+  final int? rangeLength;
   @override
-  final String text;
+  final String? text;
 
   factory _$TextDocumentContentChangeEvent(
           [void Function(TextDocumentContentChangeEventBuilder)? updates]) =>
       (new TextDocumentContentChangeEventBuilder()..update(updates)).build();
 
-  _$TextDocumentContentChangeEvent._(
-      {required this.range, required this.rangeLength, required this.text})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        range, 'TextDocumentContentChangeEvent', 'range');
-    BuiltValueNullFieldError.checkNotNull(
-        rangeLength, 'TextDocumentContentChangeEvent', 'rangeLength');
-    BuiltValueNullFieldError.checkNotNull(
-        text, 'TextDocumentContentChangeEvent', 'text');
-  }
+  _$TextDocumentContentChangeEvent._({this.range, this.rangeLength, this.text})
+      : super._();
 
   @override
   TextDocumentContentChangeEvent rebuild(
@@ -6053,7 +6365,7 @@ class TextDocumentContentChangeEventBuilder
   TextDocumentContentChangeEventBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _range = $v.range.toBuilder();
+      _range = $v.range?.toBuilder();
       _rangeLength = $v.rangeLength;
       _text = $v.text;
       _$v = null;
@@ -6078,16 +6390,12 @@ class TextDocumentContentChangeEventBuilder
     try {
       _$result = _$v ??
           new _$TextDocumentContentChangeEvent._(
-              range: range.build(),
-              rangeLength: BuiltValueNullFieldError.checkNotNull(
-                  rangeLength, 'TextDocumentContentChangeEvent', 'rangeLength'),
-              text: BuiltValueNullFieldError.checkNotNull(
-                  text, 'TextDocumentContentChangeEvent', 'text'));
+              range: _range?.build(), rangeLength: rangeLength, text: text);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'range';
-        range.build();
+        _range?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'TextDocumentContentChangeEvent', _$failedField, e.toString());
@@ -6101,17 +6409,14 @@ class TextDocumentContentChangeEventBuilder
 
 class _$Range extends Range {
   @override
-  final Position end;
+  final Position? end;
   @override
-  final Position start;
+  final Position? start;
 
   factory _$Range([void Function(RangeBuilder)? updates]) =>
       (new RangeBuilder()..update(updates)).build();
 
-  _$Range._({required this.end, required this.start}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(end, 'Range', 'end');
-    BuiltValueNullFieldError.checkNotNull(start, 'Range', 'start');
-  }
+  _$Range._({this.end, this.start}) : super._();
 
   @override
   Range rebuild(void Function(RangeBuilder) updates) =>
@@ -6156,8 +6461,8 @@ class RangeBuilder implements Builder<Range, RangeBuilder> {
   RangeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _end = $v.end.toBuilder();
-      _start = $v.start.toBuilder();
+      _end = $v.end?.toBuilder();
+      _start = $v.start?.toBuilder();
       _$v = null;
     }
     return this;
@@ -6178,14 +6483,15 @@ class RangeBuilder implements Builder<Range, RangeBuilder> {
   _$Range build() {
     _$Range _$result;
     try {
-      _$result = _$v ?? new _$Range._(end: end.build(), start: start.build());
+      _$result =
+          _$v ?? new _$Range._(end: _end?.build(), start: _start?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'end';
-        end.build();
+        _end?.build();
         _$failedField = 'start';
-        start.build();
+        _start?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Range', _$failedField, e.toString());
@@ -6199,17 +6505,14 @@ class RangeBuilder implements Builder<Range, RangeBuilder> {
 
 class _$Position extends Position {
   @override
-  final int character;
+  final int? character;
   @override
-  final int line;
+  final int? line;
 
   factory _$Position([void Function(PositionBuilder)? updates]) =>
       (new PositionBuilder()..update(updates)).build();
 
-  _$Position._({required this.character, required this.line}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(character, 'Position', 'character');
-    BuiltValueNullFieldError.checkNotNull(line, 'Position', 'line');
-  }
+  _$Position._({this.character, this.line}) : super._();
 
   @override
   Position rebuild(void Function(PositionBuilder) updates) =>
@@ -6276,12 +6579,7 @@ class PositionBuilder implements Builder<Position, PositionBuilder> {
 
   @override
   _$Position build() {
-    final _$result = _$v ??
-        new _$Position._(
-            character: BuiltValueNullFieldError.checkNotNull(
-                character, 'Position', 'character'),
-            line: BuiltValueNullFieldError.checkNotNull(
-                line, 'Position', 'line'));
+    final _$result = _$v ?? new _$Position._(character: character, line: line);
     replace(_$result);
     return _$result;
   }
@@ -6289,15 +6587,13 @@ class PositionBuilder implements Builder<Position, PositionBuilder> {
 
 class _$TextDocumentIdentifier extends TextDocumentIdentifier {
   @override
-  final String uri;
+  final String? uri;
 
   factory _$TextDocumentIdentifier(
           [void Function(TextDocumentIdentifierBuilder)? updates]) =>
       (new TextDocumentIdentifierBuilder()..update(updates)).build();
 
-  _$TextDocumentIdentifier._({required this.uri}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(uri, 'TextDocumentIdentifier', 'uri');
-  }
+  _$TextDocumentIdentifier._({this.uri}) : super._();
 
   @override
   TextDocumentIdentifier rebuild(
@@ -6359,10 +6655,7 @@ class TextDocumentIdentifierBuilder
 
   @override
   _$TextDocumentIdentifier build() {
-    final _$result = _$v ??
-        new _$TextDocumentIdentifier._(
-            uri: BuiltValueNullFieldError.checkNotNull(
-                uri, 'TextDocumentIdentifier', 'uri'));
+    final _$result = _$v ?? new _$TextDocumentIdentifier._(uri: uri);
     replace(_$result);
     return _$result;
   }
@@ -6370,19 +6663,14 @@ class TextDocumentIdentifierBuilder
 
 class _$CompletionList extends CompletionList {
   @override
-  final bool isIncomplete;
+  final bool? isIncomplete;
   @override
-  final List<CompletionItem> items;
+  final BuiltList<CompletionItem>? items;
 
   factory _$CompletionList([void Function(CompletionListBuilder)? updates]) =>
       (new CompletionListBuilder()..update(updates)).build();
 
-  _$CompletionList._({required this.isIncomplete, required this.items})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        isIncomplete, 'CompletionList', 'isIncomplete');
-    BuiltValueNullFieldError.checkNotNull(items, 'CompletionList', 'items');
-  }
+  _$CompletionList._({this.isIncomplete, this.items}) : super._();
 
   @override
   CompletionList rebuild(void Function(CompletionListBuilder) updates) =>
@@ -6422,9 +6710,10 @@ class CompletionListBuilder
   bool? get isIncomplete => _$this._isIncomplete;
   set isIncomplete(bool? isIncomplete) => _$this._isIncomplete = isIncomplete;
 
-  List<CompletionItem>? _items;
-  List<CompletionItem>? get items => _$this._items;
-  set items(List<CompletionItem>? items) => _$this._items = items;
+  ListBuilder<CompletionItem>? _items;
+  ListBuilder<CompletionItem> get items =>
+      _$this._items ??= new ListBuilder<CompletionItem>();
+  set items(ListBuilder<CompletionItem>? items) => _$this._items = items;
 
   CompletionListBuilder();
 
@@ -6432,7 +6721,7 @@ class CompletionListBuilder
     final $v = _$v;
     if ($v != null) {
       _isIncomplete = $v.isIncomplete;
-      _items = $v.items;
+      _items = $v.items?.toBuilder();
       _$v = null;
     }
     return this;
@@ -6451,12 +6740,22 @@ class CompletionListBuilder
 
   @override
   _$CompletionList build() {
-    final _$result = _$v ??
-        new _$CompletionList._(
-            isIncomplete: BuiltValueNullFieldError.checkNotNull(
-                isIncomplete, 'CompletionList', 'isIncomplete'),
-            items: BuiltValueNullFieldError.checkNotNull(
-                items, 'CompletionList', 'items'));
+    _$CompletionList _$result;
+    try {
+      _$result = _$v ??
+          new _$CompletionList._(
+              isIncomplete: isIncomplete, items: _items?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'items';
+        _items?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'CompletionList', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -6464,67 +6763,47 @@ class CompletionListBuilder
 
 class _$CompletionItem extends CompletionItem {
   @override
-  final BuiltList<TextEdit> additionalTextEdits;
+  final BuiltList<TextEdit>? additionalTextEdits;
   @override
-  final Command command;
+  final Command? command;
   @override
-  final BuiltMap<dynamic, dynamic> data;
+  final BuiltMap<dynamic, dynamic>? data;
   @override
-  final String detail;
+  final String? detail;
   @override
-  final String documentation;
+  final String? documentation;
   @override
-  final String filterText;
+  final String? filterText;
   @override
-  final String insertText;
+  final String? insertText;
   @override
-  final InsertTextFormat insertTextFormat;
+  final InsertTextFormat? insertTextFormat;
   @override
-  final CompletionItemKind kind;
+  final CompletionItemKind? kind;
   @override
-  final String label;
+  final String? label;
   @override
-  final String sortText;
+  final String? sortText;
   @override
-  final TextEdit textEdit;
+  final TextEdit? textEdit;
 
   factory _$CompletionItem([void Function(CompletionItemBuilder)? updates]) =>
       (new CompletionItemBuilder()..update(updates)).build();
 
   _$CompletionItem._(
-      {required this.additionalTextEdits,
-      required this.command,
-      required this.data,
-      required this.detail,
-      required this.documentation,
-      required this.filterText,
-      required this.insertText,
-      required this.insertTextFormat,
-      required this.kind,
-      required this.label,
-      required this.sortText,
-      required this.textEdit})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        additionalTextEdits, 'CompletionItem', 'additionalTextEdits');
-    BuiltValueNullFieldError.checkNotNull(command, 'CompletionItem', 'command');
-    BuiltValueNullFieldError.checkNotNull(data, 'CompletionItem', 'data');
-    BuiltValueNullFieldError.checkNotNull(detail, 'CompletionItem', 'detail');
-    BuiltValueNullFieldError.checkNotNull(
-        documentation, 'CompletionItem', 'documentation');
-    BuiltValueNullFieldError.checkNotNull(
-        filterText, 'CompletionItem', 'filterText');
-    BuiltValueNullFieldError.checkNotNull(
-        insertText, 'CompletionItem', 'insertText');
-    BuiltValueNullFieldError.checkNotNull(
-        insertTextFormat, 'CompletionItem', 'insertTextFormat');
-    BuiltValueNullFieldError.checkNotNull(kind, 'CompletionItem', 'kind');
-    BuiltValueNullFieldError.checkNotNull(label, 'CompletionItem', 'label');
-    BuiltValueNullFieldError.checkNotNull(
-        sortText, 'CompletionItem', 'sortText');
-    BuiltValueNullFieldError.checkNotNull(
-        textEdit, 'CompletionItem', 'textEdit');
-  }
+      {this.additionalTextEdits,
+      this.command,
+      this.data,
+      this.detail,
+      this.documentation,
+      this.filterText,
+      this.insertText,
+      this.insertTextFormat,
+      this.kind,
+      this.label,
+      this.sortText,
+      this.textEdit})
+      : super._();
 
   @override
   CompletionItem rebuild(void Function(CompletionItemBuilder) updates) =>
@@ -6663,9 +6942,9 @@ class CompletionItemBuilder
   CompletionItemBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _additionalTextEdits = $v.additionalTextEdits.toBuilder();
-      _command = $v.command.toBuilder();
-      _data = $v.data.toBuilder();
+      _additionalTextEdits = $v.additionalTextEdits?.toBuilder();
+      _command = $v.command?.toBuilder();
+      _data = $v.data?.toBuilder();
       _detail = $v.detail;
       _documentation = $v.documentation;
       _filterText = $v.filterText;
@@ -6674,7 +6953,7 @@ class CompletionItemBuilder
       _kind = $v.kind;
       _label = $v.label;
       _sortText = $v.sortText;
-      _textEdit = $v.textEdit.toBuilder();
+      _textEdit = $v.textEdit?.toBuilder();
       _$v = null;
     }
     return this;
@@ -6697,38 +6976,30 @@ class CompletionItemBuilder
     try {
       _$result = _$v ??
           new _$CompletionItem._(
-              additionalTextEdits: additionalTextEdits.build(),
-              command: command.build(),
-              data: data.build(),
-              detail: BuiltValueNullFieldError.checkNotNull(
-                  detail, 'CompletionItem', 'detail'),
-              documentation: BuiltValueNullFieldError.checkNotNull(
-                  documentation, 'CompletionItem', 'documentation'),
-              filterText: BuiltValueNullFieldError.checkNotNull(
-                  filterText, 'CompletionItem', 'filterText'),
-              insertText: BuiltValueNullFieldError.checkNotNull(
-                  insertText, 'CompletionItem', 'insertText'),
-              insertTextFormat: BuiltValueNullFieldError.checkNotNull(
-                  insertTextFormat, 'CompletionItem', 'insertTextFormat'),
-              kind: BuiltValueNullFieldError.checkNotNull(
-                  kind, 'CompletionItem', 'kind'),
-              label: BuiltValueNullFieldError.checkNotNull(
-                  label, 'CompletionItem', 'label'),
-              sortText: BuiltValueNullFieldError.checkNotNull(
-                  sortText, 'CompletionItem', 'sortText'),
-              textEdit: textEdit.build());
+              additionalTextEdits: _additionalTextEdits?.build(),
+              command: _command?.build(),
+              data: _data?.build(),
+              detail: detail,
+              documentation: documentation,
+              filterText: filterText,
+              insertText: insertText,
+              insertTextFormat: insertTextFormat,
+              kind: kind,
+              label: label,
+              sortText: sortText,
+              textEdit: _textEdit?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'additionalTextEdits';
-        additionalTextEdits.build();
+        _additionalTextEdits?.build();
         _$failedField = 'command';
-        command.build();
+        _command?.build();
         _$failedField = 'data';
-        data.build();
+        _data?.build();
 
         _$failedField = 'textEdit';
-        textEdit.build();
+        _textEdit?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'CompletionItem', _$failedField, e.toString());
@@ -6742,17 +7013,14 @@ class CompletionItemBuilder
 
 class _$TextEdit extends TextEdit {
   @override
-  final String newText;
+  final String? newText;
   @override
-  final Range range;
+  final Range? range;
 
   factory _$TextEdit([void Function(TextEditBuilder)? updates]) =>
       (new TextEditBuilder()..update(updates)).build();
 
-  _$TextEdit._({required this.newText, required this.range}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(newText, 'TextEdit', 'newText');
-    BuiltValueNullFieldError.checkNotNull(range, 'TextEdit', 'range');
-  }
+  _$TextEdit._({this.newText, this.range}) : super._();
 
   @override
   TextEdit rebuild(void Function(TextEditBuilder) updates) =>
@@ -6800,7 +7068,7 @@ class TextEditBuilder implements Builder<TextEdit, TextEditBuilder> {
     final $v = _$v;
     if ($v != null) {
       _newText = $v.newText;
-      _range = $v.range.toBuilder();
+      _range = $v.range?.toBuilder();
       _$v = null;
     }
     return this;
@@ -6821,16 +7089,13 @@ class TextEditBuilder implements Builder<TextEdit, TextEditBuilder> {
   _$TextEdit build() {
     _$TextEdit _$result;
     try {
-      _$result = _$v ??
-          new _$TextEdit._(
-              newText: BuiltValueNullFieldError.checkNotNull(
-                  newText, 'TextEdit', 'newText'),
-              range: range.build());
+      _$result =
+          _$v ?? new _$TextEdit._(newText: newText, range: _range?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'range';
-        range.build();
+        _range?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'TextEdit', _$failedField, e.toString());
@@ -6844,22 +7109,16 @@ class TextEditBuilder implements Builder<TextEdit, TextEditBuilder> {
 
 class _$Command extends Command {
   @override
-  final BuiltList<dynamic> arguments;
+  final BuiltList<dynamic>? arguments;
   @override
-  final String command;
+  final String? command;
   @override
-  final String title;
+  final String? title;
 
   factory _$Command([void Function(CommandBuilder)? updates]) =>
       (new CommandBuilder()..update(updates)).build();
 
-  _$Command._(
-      {required this.arguments, required this.command, required this.title})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(arguments, 'Command', 'arguments');
-    BuiltValueNullFieldError.checkNotNull(command, 'Command', 'command');
-    BuiltValueNullFieldError.checkNotNull(title, 'Command', 'title');
-  }
+  _$Command._({this.arguments, this.command, this.title}) : super._();
 
   @override
   Command rebuild(void Function(CommandBuilder) updates) =>
@@ -6915,7 +7174,7 @@ class CommandBuilder implements Builder<Command, CommandBuilder> {
   CommandBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _arguments = $v.arguments.toBuilder();
+      _arguments = $v.arguments?.toBuilder();
       _command = $v.command;
       _title = $v.title;
       _$v = null;
@@ -6940,16 +7199,12 @@ class CommandBuilder implements Builder<Command, CommandBuilder> {
     try {
       _$result = _$v ??
           new _$Command._(
-              arguments: arguments.build(),
-              command: BuiltValueNullFieldError.checkNotNull(
-                  command, 'Command', 'command'),
-              title: BuiltValueNullFieldError.checkNotNull(
-                  title, 'Command', 'title'));
+              arguments: _arguments?.build(), command: command, title: title);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'arguments';
-        arguments.build();
+        _arguments?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Command', _$failedField, e.toString());
@@ -6963,17 +7218,14 @@ class CommandBuilder implements Builder<Command, CommandBuilder> {
 
 class _$Location extends Location {
   @override
-  final Range range;
+  final Range? range;
   @override
-  final String uri;
+  final String? uri;
 
   factory _$Location([void Function(LocationBuilder)? updates]) =>
       (new LocationBuilder()..update(updates)).build();
 
-  _$Location._({required this.range, required this.uri}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(range, 'Location', 'range');
-    BuiltValueNullFieldError.checkNotNull(uri, 'Location', 'uri');
-  }
+  _$Location._({this.range, this.uri}) : super._();
 
   @override
   Location rebuild(void Function(LocationBuilder) updates) =>
@@ -7018,7 +7270,7 @@ class LocationBuilder implements Builder<Location, LocationBuilder> {
   LocationBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _range = $v.range.toBuilder();
+      _range = $v.range?.toBuilder();
       _uri = $v.uri;
       _$v = null;
     }
@@ -7040,16 +7292,12 @@ class LocationBuilder implements Builder<Location, LocationBuilder> {
   _$Location build() {
     _$Location _$result;
     try {
-      _$result = _$v ??
-          new _$Location._(
-              range: range.build(),
-              uri: BuiltValueNullFieldError.checkNotNull(
-                  uri, 'Location', 'uri'));
+      _$result = _$v ?? new _$Location._(range: _range?.build(), uri: uri);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'range';
-        range.build();
+        _range?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Location', _$failedField, e.toString());
@@ -7063,16 +7311,13 @@ class LocationBuilder implements Builder<Location, LocationBuilder> {
 
 class _$ReferenceContext extends ReferenceContext {
   @override
-  final bool includeDeclaration;
+  final bool? includeDeclaration;
 
   factory _$ReferenceContext(
           [void Function(ReferenceContextBuilder)? updates]) =>
       (new ReferenceContextBuilder()..update(updates)).build();
 
-  _$ReferenceContext._({required this.includeDeclaration}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        includeDeclaration, 'ReferenceContext', 'includeDeclaration');
-  }
+  _$ReferenceContext._({this.includeDeclaration}) : super._();
 
   @override
   ReferenceContext rebuild(void Function(ReferenceContextBuilder) updates) =>
@@ -7135,10 +7380,8 @@ class ReferenceContextBuilder
 
   @override
   _$ReferenceContext build() {
-    final _$result = _$v ??
-        new _$ReferenceContext._(
-            includeDeclaration: BuiltValueNullFieldError.checkNotNull(
-                includeDeclaration, 'ReferenceContext', 'includeDeclaration'));
+    final _$result =
+        _$v ?? new _$ReferenceContext._(includeDeclaration: includeDeclaration);
     replace(_$result);
     return _$result;
   }
@@ -7146,18 +7389,15 @@ class ReferenceContextBuilder
 
 class _$DocumentHighlight extends DocumentHighlight {
   @override
-  final DocumentHighlightKind kind;
+  final DocumentHighlightKind? kind;
   @override
-  final Range range;
+  final Range? range;
 
   factory _$DocumentHighlight(
           [void Function(DocumentHighlightBuilder)? updates]) =>
       (new DocumentHighlightBuilder()..update(updates)).build();
 
-  _$DocumentHighlight._({required this.kind, required this.range}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(kind, 'DocumentHighlight', 'kind');
-    BuiltValueNullFieldError.checkNotNull(range, 'DocumentHighlight', 'range');
-  }
+  _$DocumentHighlight._({this.kind, this.range}) : super._();
 
   @override
   DocumentHighlight rebuild(void Function(DocumentHighlightBuilder) updates) =>
@@ -7207,7 +7447,7 @@ class DocumentHighlightBuilder
     final $v = _$v;
     if ($v != null) {
       _kind = $v.kind;
-      _range = $v.range.toBuilder();
+      _range = $v.range?.toBuilder();
       _$v = null;
     }
     return this;
@@ -7228,16 +7468,13 @@ class DocumentHighlightBuilder
   _$DocumentHighlight build() {
     _$DocumentHighlight _$result;
     try {
-      _$result = _$v ??
-          new _$DocumentHighlight._(
-              kind: BuiltValueNullFieldError.checkNotNull(
-                  kind, 'DocumentHighlight', 'kind'),
-              range: range.build());
+      _$result =
+          _$v ?? new _$DocumentHighlight._(kind: kind, range: _range?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'range';
-        range.build();
+        _range?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'DocumentHighlight', _$failedField, e.toString());
@@ -7251,31 +7488,21 @@ class DocumentHighlightBuilder
 
 class _$SymbolInformation extends SymbolInformation {
   @override
-  final String containerName;
+  final String? containerName;
   @override
-  final SymbolKind kind;
+  final SymbolKind? kind;
   @override
-  final Location location;
+  final Location? location;
   @override
-  final String name;
+  final String? name;
 
   factory _$SymbolInformation(
           [void Function(SymbolInformationBuilder)? updates]) =>
       (new SymbolInformationBuilder()..update(updates)).build();
 
   _$SymbolInformation._(
-      {required this.containerName,
-      required this.kind,
-      required this.location,
-      required this.name})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        containerName, 'SymbolInformation', 'containerName');
-    BuiltValueNullFieldError.checkNotNull(kind, 'SymbolInformation', 'kind');
-    BuiltValueNullFieldError.checkNotNull(
-        location, 'SymbolInformation', 'location');
-    BuiltValueNullFieldError.checkNotNull(name, 'SymbolInformation', 'name');
-  }
+      {this.containerName, this.kind, this.location, this.name})
+      : super._();
 
   @override
   SymbolInformation rebuild(void Function(SymbolInformationBuilder) updates) =>
@@ -7342,7 +7569,7 @@ class SymbolInformationBuilder
     if ($v != null) {
       _containerName = $v.containerName;
       _kind = $v.kind;
-      _location = $v.location.toBuilder();
+      _location = $v.location?.toBuilder();
       _name = $v.name;
       _$v = null;
     }
@@ -7366,18 +7593,15 @@ class SymbolInformationBuilder
     try {
       _$result = _$v ??
           new _$SymbolInformation._(
-              containerName: BuiltValueNullFieldError.checkNotNull(
-                  containerName, 'SymbolInformation', 'containerName'),
-              kind: BuiltValueNullFieldError.checkNotNull(
-                  kind, 'SymbolInformation', 'kind'),
-              location: location.build(),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, 'SymbolInformation', 'name'));
+              containerName: containerName,
+              kind: kind,
+              location: _location?.build(),
+              name: name);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'location';
-        location.build();
+        _location?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'SymbolInformation', _$failedField, e.toString());
@@ -7391,16 +7615,13 @@ class SymbolInformationBuilder
 
 class _$CodeActionContext extends CodeActionContext {
   @override
-  final BuiltList<Diagnostic> diagnostics;
+  final BuiltList<Diagnostic>? diagnostics;
 
   factory _$CodeActionContext(
           [void Function(CodeActionContextBuilder)? updates]) =>
       (new CodeActionContextBuilder()..update(updates)).build();
 
-  _$CodeActionContext._({required this.diagnostics}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        diagnostics, 'CodeActionContext', 'diagnostics');
-  }
+  _$CodeActionContext._({this.diagnostics}) : super._();
 
   @override
   CodeActionContext rebuild(void Function(CodeActionContextBuilder) updates) =>
@@ -7444,7 +7665,7 @@ class CodeActionContextBuilder
   CodeActionContextBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _diagnostics = $v.diagnostics.toBuilder();
+      _diagnostics = $v.diagnostics?.toBuilder();
       _$v = null;
     }
     return this;
@@ -7466,12 +7687,12 @@ class CodeActionContextBuilder
     _$CodeActionContext _$result;
     try {
       _$result =
-          _$v ?? new _$CodeActionContext._(diagnostics: diagnostics.build());
+          _$v ?? new _$CodeActionContext._(diagnostics: _diagnostics?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'diagnostics';
-        diagnostics.build();
+        _diagnostics?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'CodeActionContext', _$failedField, e.toString());
@@ -7485,32 +7706,22 @@ class CodeActionContextBuilder
 
 class _$Diagnostic extends Diagnostic {
   @override
-  final Object code;
+  final Object? code;
   @override
-  final String message;
+  final String? message;
   @override
-  final Range range;
+  final Range? range;
   @override
-  final int severity;
+  final int? severity;
   @override
-  final String source;
+  final String? source;
 
   factory _$Diagnostic([void Function(DiagnosticBuilder)? updates]) =>
       (new DiagnosticBuilder()..update(updates)).build();
 
   _$Diagnostic._(
-      {required this.code,
-      required this.message,
-      required this.range,
-      required this.severity,
-      required this.source})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(code, 'Diagnostic', 'code');
-    BuiltValueNullFieldError.checkNotNull(message, 'Diagnostic', 'message');
-    BuiltValueNullFieldError.checkNotNull(range, 'Diagnostic', 'range');
-    BuiltValueNullFieldError.checkNotNull(severity, 'Diagnostic', 'severity');
-    BuiltValueNullFieldError.checkNotNull(source, 'Diagnostic', 'source');
-  }
+      {this.code, this.message, this.range, this.severity, this.source})
+      : super._();
 
   @override
   Diagnostic rebuild(void Function(DiagnosticBuilder) updates) =>
@@ -7580,7 +7791,7 @@ class DiagnosticBuilder implements Builder<Diagnostic, DiagnosticBuilder> {
     if ($v != null) {
       _code = $v.code;
       _message = $v.message;
-      _range = $v.range.toBuilder();
+      _range = $v.range?.toBuilder();
       _severity = $v.severity;
       _source = $v.source;
       _$v = null;
@@ -7605,20 +7816,16 @@ class DiagnosticBuilder implements Builder<Diagnostic, DiagnosticBuilder> {
     try {
       _$result = _$v ??
           new _$Diagnostic._(
-              code: BuiltValueNullFieldError.checkNotNull(
-                  code, 'Diagnostic', 'code'),
-              message: BuiltValueNullFieldError.checkNotNull(
-                  message, 'Diagnostic', 'message'),
-              range: range.build(),
-              severity: BuiltValueNullFieldError.checkNotNull(
-                  severity, 'Diagnostic', 'severity'),
-              source: BuiltValueNullFieldError.checkNotNull(
-                  source, 'Diagnostic', 'source'));
+              code: code,
+              message: message,
+              range: _range?.build(),
+              severity: severity,
+              source: source);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'range';
-        range.build();
+        _range?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Diagnostic', _$failedField, e.toString());
@@ -7632,14 +7839,12 @@ class DiagnosticBuilder implements Builder<Diagnostic, DiagnosticBuilder> {
 
 class _$WorkspaceEdit extends WorkspaceEdit {
   @override
-  final BuiltMap<String, BuiltList<TextEdit>> changes;
+  final BuiltMap<String, BuiltList<TextEdit>>? changes;
 
   factory _$WorkspaceEdit([void Function(WorkspaceEditBuilder)? updates]) =>
       (new WorkspaceEditBuilder()..update(updates)).build();
 
-  _$WorkspaceEdit._({required this.changes}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(changes, 'WorkspaceEdit', 'changes');
-  }
+  _$WorkspaceEdit._({this.changes}) : super._();
 
   @override
   WorkspaceEdit rebuild(void Function(WorkspaceEditBuilder) updates) =>
@@ -7682,7 +7887,7 @@ class WorkspaceEditBuilder
   WorkspaceEditBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _changes = $v.changes.toBuilder();
+      _changes = $v.changes?.toBuilder();
       _$v = null;
     }
     return this;
@@ -7703,12 +7908,12 @@ class WorkspaceEditBuilder
   _$WorkspaceEdit build() {
     _$WorkspaceEdit _$result;
     try {
-      _$result = _$v ?? new _$WorkspaceEdit._(changes: changes.build());
+      _$result = _$v ?? new _$WorkspaceEdit._(changes: _changes?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'changes';
-        changes.build();
+        _changes?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'WorkspaceEdit', _$failedField, e.toString());
@@ -7722,18 +7927,14 @@ class WorkspaceEditBuilder
 
 class _$Diagnostics extends Diagnostics {
   @override
-  final List<Diagnostic> diagnostics;
+  final BuiltList<Diagnostic>? diagnostics;
   @override
-  final String uri;
+  final String? uri;
 
   factory _$Diagnostics([void Function(DiagnosticsBuilder)? updates]) =>
       (new DiagnosticsBuilder()..update(updates)).build();
 
-  _$Diagnostics._({required this.diagnostics, required this.uri}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        diagnostics, 'Diagnostics', 'diagnostics');
-    BuiltValueNullFieldError.checkNotNull(uri, 'Diagnostics', 'uri');
-  }
+  _$Diagnostics._({this.diagnostics, this.uri}) : super._();
 
   @override
   Diagnostics rebuild(void Function(DiagnosticsBuilder) updates) =>
@@ -7767,9 +7968,10 @@ class _$Diagnostics extends Diagnostics {
 class DiagnosticsBuilder implements Builder<Diagnostics, DiagnosticsBuilder> {
   _$Diagnostics? _$v;
 
-  List<Diagnostic>? _diagnostics;
-  List<Diagnostic>? get diagnostics => _$this._diagnostics;
-  set diagnostics(List<Diagnostic>? diagnostics) =>
+  ListBuilder<Diagnostic>? _diagnostics;
+  ListBuilder<Diagnostic> get diagnostics =>
+      _$this._diagnostics ??= new ListBuilder<Diagnostic>();
+  set diagnostics(ListBuilder<Diagnostic>? diagnostics) =>
       _$this._diagnostics = diagnostics;
 
   String? _uri;
@@ -7781,7 +7983,7 @@ class DiagnosticsBuilder implements Builder<Diagnostics, DiagnosticsBuilder> {
   DiagnosticsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _diagnostics = $v.diagnostics;
+      _diagnostics = $v.diagnostics?.toBuilder();
       _uri = $v.uri;
       _$v = null;
     }
@@ -7801,12 +8003,21 @@ class DiagnosticsBuilder implements Builder<Diagnostics, DiagnosticsBuilder> {
 
   @override
   _$Diagnostics build() {
-    final _$result = _$v ??
-        new _$Diagnostics._(
-            diagnostics: BuiltValueNullFieldError.checkNotNull(
-                diagnostics, 'Diagnostics', 'diagnostics'),
-            uri: BuiltValueNullFieldError.checkNotNull(
-                uri, 'Diagnostics', 'uri'));
+    _$Diagnostics _$result;
+    try {
+      _$result = _$v ??
+          new _$Diagnostics._(diagnostics: _diagnostics?.build(), uri: uri);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'diagnostics';
+        _diagnostics?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Diagnostics', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -7814,21 +8025,15 @@ class DiagnosticsBuilder implements Builder<Diagnostics, DiagnosticsBuilder> {
 
 class _$ApplyWorkspaceEditParams extends ApplyWorkspaceEditParams {
   @override
-  final WorkspaceEdit edit;
+  final WorkspaceEdit? edit;
   @override
-  final String label;
+  final String? label;
 
   factory _$ApplyWorkspaceEditParams(
           [void Function(ApplyWorkspaceEditParamsBuilder)? updates]) =>
       (new ApplyWorkspaceEditParamsBuilder()..update(updates)).build();
 
-  _$ApplyWorkspaceEditParams._({required this.edit, required this.label})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        edit, 'ApplyWorkspaceEditParams', 'edit');
-    BuiltValueNullFieldError.checkNotNull(
-        label, 'ApplyWorkspaceEditParams', 'label');
-  }
+  _$ApplyWorkspaceEditParams._({this.edit, this.label}) : super._();
 
   @override
   ApplyWorkspaceEditParams rebuild(
@@ -7879,7 +8084,7 @@ class ApplyWorkspaceEditParamsBuilder
   ApplyWorkspaceEditParamsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _edit = $v.edit.toBuilder();
+      _edit = $v.edit?.toBuilder();
       _label = $v.label;
       _$v = null;
     }
@@ -7902,15 +8107,12 @@ class ApplyWorkspaceEditParamsBuilder
     _$ApplyWorkspaceEditParams _$result;
     try {
       _$result = _$v ??
-          new _$ApplyWorkspaceEditParams._(
-              edit: edit.build(),
-              label: BuiltValueNullFieldError.checkNotNull(
-                  label, 'ApplyWorkspaceEditParams', 'label'));
+          new _$ApplyWorkspaceEditParams._(edit: _edit?.build(), label: label);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'edit';
-        edit.build();
+        _edit?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'ApplyWorkspaceEditParams', _$failedField, e.toString());
@@ -7924,20 +8126,15 @@ class ApplyWorkspaceEditParamsBuilder
 
 class _$ShowMessageParams extends ShowMessageParams {
   @override
-  final String message;
+  final String? message;
   @override
-  final MessageType type;
+  final MessageType? type;
 
   factory _$ShowMessageParams(
           [void Function(ShowMessageParamsBuilder)? updates]) =>
       (new ShowMessageParamsBuilder()..update(updates)).build();
 
-  _$ShowMessageParams._({required this.message, required this.type})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        message, 'ShowMessageParams', 'message');
-    BuiltValueNullFieldError.checkNotNull(type, 'ShowMessageParams', 'type');
-  }
+  _$ShowMessageParams._({this.message, this.type}) : super._();
 
   @override
   ShowMessageParams rebuild(void Function(ShowMessageParamsBuilder) updates) =>
@@ -8006,12 +8203,8 @@ class ShowMessageParamsBuilder
 
   @override
   _$ShowMessageParams build() {
-    final _$result = _$v ??
-        new _$ShowMessageParams._(
-            message: BuiltValueNullFieldError.checkNotNull(
-                message, 'ShowMessageParams', 'message'),
-            type: BuiltValueNullFieldError.checkNotNull(
-                type, 'ShowMessageParams', 'type'));
+    final _$result =
+        _$v ?? new _$ShowMessageParams._(message: message, type: type);
     replace(_$result);
     return _$result;
   }

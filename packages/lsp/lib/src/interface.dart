@@ -4,7 +4,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
-import 'package:json_rpc_2/json_rpc_2.dart';
+import 'package:json_rpc_2/json_rpc_2.dart' as rpc;
 
 part 'interface.g.dart';
 
@@ -60,41 +60,41 @@ final Serializers serializers =
 
 abstract class ServerCapabilities
     implements Built<ServerCapabilities, ServerCapabilitiesBuilder> {
-  bool get codeActionProvider;
+  bool? get codeActionProvider;
 
-  CodeLensOptions get codeLensProvider;
+  CodeLensOptions? get codeLensProvider;
 
-  CompletionOptions get completionProvider;
+  CompletionOptions? get completionProvider;
 
-  bool get definitionProvider;
+  bool? get definitionProvider;
 
-  bool get documentFormattingProvider;
+  bool? get documentFormattingProvider;
 
-  bool get documentHighlightProvider;
+  bool? get documentHighlightProvider;
 
-  DocumentLinkOptions get documentLinkProvider;
+  DocumentLinkOptions? get documentLinkProvider;
 
-  DocumentOnTypeFormattingOptions get documentOnTypeFormattingProvider;
+  DocumentOnTypeFormattingOptions? get documentOnTypeFormattingProvider;
 
-  bool get documentRangeFormattingProvider;
+  bool? get documentRangeFormattingProvider;
 
-  bool get documentSymbolProvider;
+  bool? get documentSymbolProvider;
 
-  ExecuteCommandOptions get executeCommandProvider;
+  ExecuteCommandOptions? get executeCommandProvider;
 
-  bool get hoverProvider;
+  bool? get hoverProvider;
 
-  bool get implementationProvider;
+  bool? get implementationProvider;
 
-  bool get referencesProvider;
+  bool? get referencesProvider;
 
-  bool get renameProvider;
+  bool? get renameProvider;
 
-  SignatureHelpOptions get signatureHelpProvider;
+  SignatureHelpOptions? get signatureHelpProvider;
 
-  TextDocumentSyncOptions get textDocumentSync;
+  TextDocumentSyncOptions? get textDocumentSync;
 
-  bool get workspaceSymbolProvider;
+  bool? get workspaceSymbolProvider;
 
   ServerCapabilities._();
 
@@ -104,13 +104,22 @@ abstract class ServerCapabilities
   factory ServerCapabilities(
           [void Function(ServerCapabilitiesBuilder) updates]) =
       _$ServerCapabilities;
+
+  String toJson() {
+    return json
+        .encode(serializers.serializeWith(ServerCapabilities.serializer, this));
+  }
+
+  static ServerCapabilities? fromJson(dynamic json) {
+    return serializers.deserializeWith(ServerCapabilities.serializer, json);
+  }
 }
 
 abstract class ClientCapabilities
     implements Built<ClientCapabilities, ClientCapabilitiesBuilder> {
-  TextDocumentClientCapabilities get textDocument;
+  TextDocumentClientCapabilities? get textDocument;
 
-  WorkspaceClientCapabilities get workspace;
+  WorkspaceClientCapabilities? get workspace;
 
   ClientCapabilities._();
 
@@ -123,9 +132,8 @@ abstract class ClientCapabilities
         .encode(serializers.serializeWith(ClientCapabilities.serializer, this));
   }
 
-  static ClientCapabilities? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        ClientCapabilities.serializer, json.decode(jsonString));
+  static ClientCapabilities? fromJson(dynamic json) {
+    return serializers.deserializeWith(ClientCapabilities.serializer, json);
   }
 
   static Serializer<ClientCapabilities> get serializer =>
@@ -138,31 +146,31 @@ abstract class TextDocumentClientCapabilities
             TextDocumentClientCapabilitiesBuilder> {
   // Fields
 
-  CodeActionCapabilities get codeAction;
+  CodeActionCapabilities? get codeAction;
 
-  DynamicRegistrationCapability get codeLens;
+  DynamicRegistrationCapability? get codeLens;
 
-  CompletionCapabilities get completion;
+  CompletionCapabilities? get completion;
 
-  DynamicRegistrationCapability get definition;
+  DynamicRegistrationCapability? get definition;
 
-  DynamicRegistrationCapability get documentHighlight;
+  DynamicRegistrationCapability? get documentHighlight;
 
-  DynamicRegistrationCapability get documentLink;
+  DynamicRegistrationCapability? get documentLink;
 
-  DynamicRegistrationCapability get documentSymbol;
+  DynamicRegistrationCapability? get documentSymbol;
 
-  DynamicRegistrationCapability get formatting;
+  DynamicRegistrationCapability? get formatting;
 
-  HoverCapabilities get hover;
+  HoverCapabilities? get hover;
 
-  DynamicRegistrationCapability get onTypeFormatting;
+  DynamicRegistrationCapability? get onTypeFormatting;
 
-  DynamicRegistrationCapability get references;
+  DynamicRegistrationCapability? get references;
 
-  DynamicRegistrationCapability get rename;
+  DynamicRegistrationCapability? get rename;
 
-  SynchronizationCapabilities get synchronization;
+  SynchronizationCapabilities? get synchronization;
 
   TextDocumentClientCapabilities._();
 
@@ -175,9 +183,9 @@ abstract class TextDocumentClientCapabilities
         TextDocumentClientCapabilities.serializer, this));
   }
 
-  static TextDocumentClientCapabilities? fromJson(String jsonString) {
+  static TextDocumentClientCapabilities? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        TextDocumentClientCapabilities.serializer, json.decode(jsonString));
+        TextDocumentClientCapabilities.serializer, json);
   }
 
   static Serializer<TextDocumentClientCapabilities> get serializer =>
@@ -187,13 +195,13 @@ abstract class TextDocumentClientCapabilities
 abstract class SynchronizationCapabilities
     implements
         Built<SynchronizationCapabilities, SynchronizationCapabilitiesBuilder> {
-  bool get didSave;
+  bool? get didSave;
 
-  bool get dynamicRegistration;
+  bool? get dynamicRegistration;
 
-  bool get willSave;
+  bool? get willSave;
 
-  bool get willSaveWaitUntil;
+  bool? get willSaveWaitUntil;
 
   SynchronizationCapabilities._();
 
@@ -206,9 +214,9 @@ abstract class SynchronizationCapabilities
         SynchronizationCapabilities.serializer, this));
   }
 
-  static SynchronizationCapabilities? fromJson(String jsonString) {
+  static SynchronizationCapabilities? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        SynchronizationCapabilities.serializer, json.decode(jsonString));
+        SynchronizationCapabilities.serializer, json);
   }
 
   static Serializer<SynchronizationCapabilities> get serializer =>
@@ -217,9 +225,9 @@ abstract class SynchronizationCapabilities
 
 abstract class HoverCapabilities
     implements Built<HoverCapabilities, HoverCapabilitiesBuilder> {
-  List<String> get contentFormat;
+  BuiltList<String>? get contentFormat;
 
-  bool get dynamicRegistration;
+  bool? get dynamicRegistration;
 
   HoverCapabilities._();
 
@@ -231,9 +239,8 @@ abstract class HoverCapabilities
         .encode(serializers.serializeWith(HoverCapabilities.serializer, this));
   }
 
-  static HoverCapabilities? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        HoverCapabilities.serializer, json.decode(jsonString));
+  static HoverCapabilities? fromJson(dynamic json) {
+    return serializers.deserializeWith(HoverCapabilities.serializer, json);
   }
 
   static Serializer<HoverCapabilities> get serializer =>
@@ -243,15 +250,15 @@ abstract class HoverCapabilities
 abstract class WorkspaceClientCapabilities
     implements
         Built<WorkspaceClientCapabilities, WorkspaceClientCapabilitiesBuilder> {
-  bool get applyEdit;
+  bool? get applyEdit;
 
-  DynamicRegistrationCapability get didChangeConfiguration;
+  DynamicRegistrationCapability? get didChangeConfiguration;
 
-  DynamicRegistrationCapability get didChangeWatchedFiles;
+  DynamicRegistrationCapability? get didChangeWatchedFiles;
 
-  DynamicRegistrationCapability get executeCommand;
+  DynamicRegistrationCapability? get executeCommand;
 
-  DynamicRegistrationCapability get symbol;
+  DynamicRegistrationCapability? get symbol;
 
   WorkspaceClientCapabilities._();
 
@@ -264,9 +271,9 @@ abstract class WorkspaceClientCapabilities
         WorkspaceClientCapabilities.serializer, this));
   }
 
-  static WorkspaceClientCapabilities? fromJson(String jsonString) {
+  static WorkspaceClientCapabilities? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        WorkspaceClientCapabilities.serializer, json.decode(jsonString));
+        WorkspaceClientCapabilities.serializer, json);
   }
 
   static Serializer<WorkspaceClientCapabilities> get serializer =>
@@ -277,7 +284,7 @@ abstract class DynamicRegistrationCapability
     implements
         Built<DynamicRegistrationCapability,
             DynamicRegistrationCapabilityBuilder> {
-  bool get dynamicRegistration;
+  bool? get dynamicRegistration;
 
   DynamicRegistrationCapability._();
 
@@ -290,9 +297,9 @@ abstract class DynamicRegistrationCapability
         DynamicRegistrationCapability.serializer, this));
   }
 
-  static DynamicRegistrationCapability? fromJson(String jsonString) {
+  static DynamicRegistrationCapability? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        DynamicRegistrationCapability.serializer, json.decode(jsonString));
+        DynamicRegistrationCapability.serializer, json);
   }
 
   static Serializer<DynamicRegistrationCapability> get serializer =>
@@ -301,9 +308,9 @@ abstract class DynamicRegistrationCapability
 
 abstract class CodeActionCapabilities
     implements Built<CodeActionCapabilities, CodeActionCapabilitiesBuilder> {
-  CodeActionLiteralSupport get codeActionLiteralSupport;
+  CodeActionLiteralSupport? get codeActionLiteralSupport;
 
-  bool get dynamicRegistration;
+  bool? get dynamicRegistration;
 
   CodeActionCapabilities._();
 
@@ -316,9 +323,8 @@ abstract class CodeActionCapabilities
         serializers.serializeWith(CodeActionCapabilities.serializer, this));
   }
 
-  static CodeActionCapabilities? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        CodeActionCapabilities.serializer, json.decode(jsonString));
+  static CodeActionCapabilities? fromJson(dynamic json) {
+    return serializers.deserializeWith(CodeActionCapabilities.serializer, json);
   }
 
   static Serializer<CodeActionCapabilities> get serializer =>
@@ -328,7 +334,7 @@ abstract class CodeActionCapabilities
 abstract class CodeActionLiteralSupport
     implements
         Built<CodeActionLiteralSupport, CodeActionLiteralSupportBuilder> {
-  CodeActionKinds get codeActionKind;
+  CodeActionKinds? get codeActionKind;
 
   CodeActionLiteralSupport._();
 
@@ -341,9 +347,9 @@ abstract class CodeActionLiteralSupport
         serializers.serializeWith(CodeActionLiteralSupport.serializer, this));
   }
 
-  static CodeActionLiteralSupport? fromJson(String jsonString) {
+  static CodeActionLiteralSupport? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        CodeActionLiteralSupport.serializer, json.decode(jsonString));
+        CodeActionLiteralSupport.serializer, json);
   }
 
   static Serializer<CodeActionLiteralSupport> get serializer =>
@@ -352,7 +358,7 @@ abstract class CodeActionLiteralSupport
 
 abstract class CodeActionKinds
     implements Built<CodeActionKinds, CodeActionKindsBuilder> {
-  List<String> get valueSet;
+  BuiltList<String>? get valueSet;
 
   CodeActionKinds._();
 
@@ -364,9 +370,8 @@ abstract class CodeActionKinds
         .encode(serializers.serializeWith(CodeActionKinds.serializer, this));
   }
 
-  static CodeActionKinds? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        CodeActionKinds.serializer, json.decode(jsonString));
+  static CodeActionKinds? fromJson(dynamic json) {
+    return serializers.deserializeWith(CodeActionKinds.serializer, json);
   }
 
   static Serializer<CodeActionKinds> get serializer =>
@@ -375,9 +380,9 @@ abstract class CodeActionKinds
 
 abstract class CompletionCapabilities
     implements Built<CompletionCapabilities, CompletionCapabilitiesBuilder> {
-  CompletionItemCapabilities get completionItem;
+  CompletionItemCapabilities? get completionItem;
 
-  bool get dynamicRegistration;
+  bool? get dynamicRegistration;
 
   CompletionCapabilities._();
 
@@ -390,9 +395,8 @@ abstract class CompletionCapabilities
         serializers.serializeWith(CompletionCapabilities.serializer, this));
   }
 
-  static CompletionCapabilities? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        CompletionCapabilities.serializer, json.decode(jsonString));
+  static CompletionCapabilities? fromJson(dynamic json) {
+    return serializers.deserializeWith(CompletionCapabilities.serializer, json);
   }
 
   static Serializer<CompletionCapabilities> get serializer =>
@@ -402,7 +406,7 @@ abstract class CompletionCapabilities
 abstract class CompletionItemCapabilities
     implements
         Built<CompletionItemCapabilities, CompletionItemCapabilitiesBuilder> {
-  bool get snippetSupport;
+  bool? get snippetSupport;
 
   CompletionItemCapabilities._();
 
@@ -415,9 +419,9 @@ abstract class CompletionItemCapabilities
         serializers.serializeWith(CompletionItemCapabilities.serializer, this));
   }
 
-  static CompletionItemCapabilities? fromJson(String jsonString) {
+  static CompletionItemCapabilities? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        CompletionItemCapabilities.serializer, json.decode(jsonString));
+        CompletionItemCapabilities.serializer, json);
   }
 
   static Serializer<CompletionItemCapabilities> get serializer =>
@@ -426,7 +430,7 @@ abstract class CompletionItemCapabilities
 
 abstract class CodeLensOptions
     implements Built<CodeLensOptions, CodeLensOptionsBuilder> {
-  bool get resolveProvider;
+  bool? get resolveProvider;
 
   CodeLensOptions._();
 
@@ -438,9 +442,8 @@ abstract class CodeLensOptions
         .encode(serializers.serializeWith(CodeLensOptions.serializer, this));
   }
 
-  static CodeLensOptions? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        CodeLensOptions.serializer, json.decode(jsonString));
+  static CodeLensOptions? fromJson(dynamic json) {
+    return serializers.deserializeWith(CodeLensOptions.serializer, json);
   }
 
   static Serializer<CodeLensOptions> get serializer =>
@@ -449,9 +452,9 @@ abstract class CodeLensOptions
 
 abstract class CompletionOptions
     implements Built<CompletionOptions, CompletionOptionsBuilder> {
-  bool get resolveProvider;
+  bool? get resolveProvider;
 
-  List<String> get triggerCharacters;
+  BuiltList<String>? get triggerCharacters;
 
   CompletionOptions._();
 
@@ -463,9 +466,8 @@ abstract class CompletionOptions
         .encode(serializers.serializeWith(CompletionOptions.serializer, this));
   }
 
-  static CompletionOptions? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        CompletionOptions.serializer, json.decode(jsonString));
+  static CompletionOptions? fromJson(dynamic json) {
+    return serializers.deserializeWith(CompletionOptions.serializer, json);
   }
 
   static Serializer<CompletionOptions> get serializer =>
@@ -474,7 +476,7 @@ abstract class CompletionOptions
 
 abstract class DocumentLinkOptions
     implements Built<DocumentLinkOptions, DocumentLinkOptionsBuilder> {
-  bool get resolveProvider;
+  bool? get resolveProvider;
 
   DocumentLinkOptions._();
 
@@ -487,9 +489,8 @@ abstract class DocumentLinkOptions
         serializers.serializeWith(DocumentLinkOptions.serializer, this));
   }
 
-  static DocumentLinkOptions? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        DocumentLinkOptions.serializer, json.decode(jsonString));
+  static DocumentLinkOptions? fromJson(dynamic json) {
+    return serializers.deserializeWith(DocumentLinkOptions.serializer, json);
   }
 
   static Serializer<DocumentLinkOptions> get serializer =>
@@ -500,9 +501,9 @@ abstract class DocumentOnTypeFormattingOptions
     implements
         Built<DocumentOnTypeFormattingOptions,
             DocumentOnTypeFormattingOptionsBuilder> {
-  String get firstTriggerCharacter;
+  String? get firstTriggerCharacter;
 
-  List<String> get moreTriggerCharacter;
+  BuiltList<String>? get moreTriggerCharacter;
 
   DocumentOnTypeFormattingOptions._();
 
@@ -515,9 +516,9 @@ abstract class DocumentOnTypeFormattingOptions
         DocumentOnTypeFormattingOptions.serializer, this));
   }
 
-  static DocumentOnTypeFormattingOptions? fromJson(String jsonString) {
+  static DocumentOnTypeFormattingOptions? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        DocumentOnTypeFormattingOptions.serializer, json.decode(jsonString));
+        DocumentOnTypeFormattingOptions.serializer, json);
   }
 
   static Serializer<DocumentOnTypeFormattingOptions> get serializer =>
@@ -526,7 +527,7 @@ abstract class DocumentOnTypeFormattingOptions
 
 abstract class ExecuteCommandOptions
     implements Built<ExecuteCommandOptions, ExecuteCommandOptionsBuilder> {
-  List<String> get commands;
+  BuiltList<String>? get commands;
 
   ExecuteCommandOptions._();
 
@@ -539,9 +540,8 @@ abstract class ExecuteCommandOptions
         serializers.serializeWith(ExecuteCommandOptions.serializer, this));
   }
 
-  static ExecuteCommandOptions? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        ExecuteCommandOptions.serializer, json.decode(jsonString));
+  static ExecuteCommandOptions? fromJson(dynamic json) {
+    return serializers.deserializeWith(ExecuteCommandOptions.serializer, json);
   }
 
   static Serializer<ExecuteCommandOptions> get serializer =>
@@ -550,7 +550,7 @@ abstract class ExecuteCommandOptions
 
 abstract class SignatureHelpOptions
     implements Built<SignatureHelpOptions, SignatureHelpOptionsBuilder> {
-  List<String> get triggerCharacters;
+  BuiltList<String>? get triggerCharacters;
 
   SignatureHelpOptions._();
 
@@ -563,9 +563,8 @@ abstract class SignatureHelpOptions
         serializers.serializeWith(SignatureHelpOptions.serializer, this));
   }
 
-  static SignatureHelpOptions? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        SignatureHelpOptions.serializer, json.decode(jsonString));
+  static SignatureHelpOptions? fromJson(dynamic json) {
+    return serializers.deserializeWith(SignatureHelpOptions.serializer, json);
   }
 
   static Serializer<SignatureHelpOptions> get serializer =>
@@ -574,15 +573,15 @@ abstract class SignatureHelpOptions
 
 abstract class TextDocumentSyncOptions
     implements Built<TextDocumentSyncOptions, TextDocumentSyncOptionsBuilder> {
-  TextDocumentSyncKind get change;
+  TextDocumentSyncKind? get change;
 
-  bool get openClose;
+  bool? get openClose;
 
-  SaveOptions get save;
+  SaveOptions? get save;
 
-  bool get willSave;
+  bool? get willSave;
 
-  bool get willSaveWaitUntil;
+  bool? get willSaveWaitUntil;
 
   TextDocumentSyncOptions._();
 
@@ -595,9 +594,9 @@ abstract class TextDocumentSyncOptions
         serializers.serializeWith(TextDocumentSyncOptions.serializer, this));
   }
 
-  static TextDocumentSyncOptions? fromJson(String jsonString) {
+  static TextDocumentSyncOptions? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        TextDocumentSyncOptions.serializer, json.decode(jsonString));
+        TextDocumentSyncOptions.serializer, json);
   }
 
   static Serializer<TextDocumentSyncOptions> get serializer =>
@@ -624,7 +623,7 @@ class TextDocumentSyncKind extends EnumClass {
 }
 
 abstract class SaveOptions implements Built<SaveOptions, SaveOptionsBuilder> {
-  bool get includeText;
+  bool? get includeText;
 
   SaveOptions._();
 
@@ -635,9 +634,8 @@ abstract class SaveOptions implements Built<SaveOptions, SaveOptionsBuilder> {
     return json.encode(serializers.serializeWith(SaveOptions.serializer, this));
   }
 
-  static SaveOptions? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        SaveOptions.serializer, json.decode(jsonString));
+  static SaveOptions? fromJson(dynamic json) {
+    return serializers.deserializeWith(SaveOptions.serializer, json);
   }
 
   static Serializer<SaveOptions> get serializer => _$saveOptionsSerializer;
@@ -645,13 +643,13 @@ abstract class SaveOptions implements Built<SaveOptions, SaveOptionsBuilder> {
 
 abstract class TextDocumentItem
     implements Built<TextDocumentItem, TextDocumentItemBuilder> {
-  String get languageId;
+  String? get languageId;
 
-  String get text;
+  String? get text;
 
-  String get uri;
+  String? get uri;
 
-  int get version;
+  int? get version;
 
   TextDocumentItem._();
 
@@ -663,9 +661,8 @@ abstract class TextDocumentItem
         .encode(serializers.serializeWith(TextDocumentItem.serializer, this));
   }
 
-  static TextDocumentItem? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        TextDocumentItem.serializer, json.decode(jsonString));
+  static TextDocumentItem? fromJson(dynamic json) {
+    return serializers.deserializeWith(TextDocumentItem.serializer, json);
   }
 
   static Serializer<TextDocumentItem> get serializer =>
@@ -676,9 +673,9 @@ abstract class VersionedTextDocumentIdentifier
     implements
         Built<VersionedTextDocumentIdentifier,
             VersionedTextDocumentIdentifierBuilder> {
-  String get uri;
+  String? get uri;
 
-  int get version;
+  int? get version;
 
   VersionedTextDocumentIdentifier._();
 
@@ -691,9 +688,9 @@ abstract class VersionedTextDocumentIdentifier
         VersionedTextDocumentIdentifier.serializer, this));
   }
 
-  static VersionedTextDocumentIdentifier? fromJson(String jsonString) {
+  static VersionedTextDocumentIdentifier? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        VersionedTextDocumentIdentifier.serializer, json.decode(jsonString));
+        VersionedTextDocumentIdentifier.serializer, json);
   }
 
   static Serializer<VersionedTextDocumentIdentifier> get serializer =>
@@ -704,11 +701,11 @@ abstract class TextDocumentContentChangeEvent
     implements
         Built<TextDocumentContentChangeEvent,
             TextDocumentContentChangeEventBuilder> {
-  Range get range;
+  Range? get range;
 
-  int get rangeLength;
+  int? get rangeLength;
 
-  String get text;
+  String? get text;
 
   TextDocumentContentChangeEvent._();
 
@@ -721,9 +718,9 @@ abstract class TextDocumentContentChangeEvent
         TextDocumentContentChangeEvent.serializer, this));
   }
 
-  static TextDocumentContentChangeEvent? fromJson(String jsonString) {
+  static TextDocumentContentChangeEvent? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        TextDocumentContentChangeEvent.serializer, json.decode(jsonString));
+        TextDocumentContentChangeEvent.serializer, json);
   }
 
   static Serializer<TextDocumentContentChangeEvent> get serializer =>
@@ -731,9 +728,9 @@ abstract class TextDocumentContentChangeEvent
 }
 
 abstract class Range implements Built<Range, RangeBuilder> {
-  Position get end;
+  Position? get end;
 
-  Position get start;
+  Position? get start;
 
   Range._();
 
@@ -743,18 +740,17 @@ abstract class Range implements Built<Range, RangeBuilder> {
     return json.encode(serializers.serializeWith(Range.serializer, this));
   }
 
-  static Range? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Range.serializer, json.decode(jsonString));
+  static Range? fromJson(dynamic json) {
+    return serializers.deserializeWith(Range.serializer, json);
   }
 
   static Serializer<Range> get serializer => _$rangeSerializer;
 }
 
 abstract class Position implements Built<Position, PositionBuilder> {
-  int get character;
+  int? get character;
 
-  int get line;
+  int? get line;
 
   Position._();
 
@@ -764,9 +760,8 @@ abstract class Position implements Built<Position, PositionBuilder> {
     return json.encode(serializers.serializeWith(Position.serializer, this));
   }
 
-  static Position? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Position.serializer, json.decode(jsonString));
+  static Position? fromJson(dynamic json) {
+    return serializers.deserializeWith(Position.serializer, json);
   }
 
   static Serializer<Position> get serializer => _$positionSerializer;
@@ -774,7 +769,7 @@ abstract class Position implements Built<Position, PositionBuilder> {
 
 abstract class TextDocumentIdentifier
     implements Built<TextDocumentIdentifier, TextDocumentIdentifierBuilder> {
-  String get uri;
+  String? get uri;
 
   TextDocumentIdentifier._();
 
@@ -787,9 +782,8 @@ abstract class TextDocumentIdentifier
         serializers.serializeWith(TextDocumentIdentifier.serializer, this));
   }
 
-  static TextDocumentIdentifier? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        TextDocumentIdentifier.serializer, json.decode(jsonString));
+  static TextDocumentIdentifier? fromJson(dynamic json) {
+    return serializers.deserializeWith(TextDocumentIdentifier.serializer, json);
   }
 
   static Serializer<TextDocumentIdentifier> get serializer =>
@@ -798,9 +792,9 @@ abstract class TextDocumentIdentifier
 
 abstract class CompletionList
     implements Built<CompletionList, CompletionListBuilder> {
-  bool get isIncomplete;
+  bool? get isIncomplete;
 
-  List<CompletionItem> get items;
+  BuiltList<CompletionItem>? get items;
 
   CompletionList._();
 
@@ -812,9 +806,8 @@ abstract class CompletionList
         .encode(serializers.serializeWith(CompletionList.serializer, this));
   }
 
-  static CompletionList? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        CompletionList.serializer, json.decode(jsonString));
+  static CompletionList? fromJson(dynamic json) {
+    return serializers.deserializeWith(CompletionList.serializer, json);
   }
 
   static Serializer<CompletionList> get serializer =>
@@ -823,29 +816,29 @@ abstract class CompletionList
 
 abstract class CompletionItem
     implements Built<CompletionItem, CompletionItemBuilder> {
-  BuiltList<TextEdit> get additionalTextEdits;
+  BuiltList<TextEdit>? get additionalTextEdits;
 
-  Command get command;
+  Command? get command;
 
-  BuiltMap get data;
+  BuiltMap? get data;
 
-  String get detail;
+  String? get detail;
 
-  String get documentation;
+  String? get documentation;
 
-  String get filterText;
+  String? get filterText;
 
-  String get insertText;
+  String? get insertText;
 
-  InsertTextFormat get insertTextFormat;
+  InsertTextFormat? get insertTextFormat;
 
-  CompletionItemKind get kind;
+  CompletionItemKind? get kind;
 
-  String get label;
+  String? get label;
 
-  String get sortText;
+  String? get sortText;
 
-  TextEdit get textEdit;
+  TextEdit? get textEdit;
 
   CompletionItem._();
 
@@ -857,9 +850,8 @@ abstract class CompletionItem
         .encode(serializers.serializeWith(CompletionItem.serializer, this));
   }
 
-  static CompletionItem? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        CompletionItem.serializer, json.decode(jsonString));
+  static CompletionItem? fromJson(dynamic json) {
+    return serializers.deserializeWith(CompletionItem.serializer, json);
   }
 
   static Serializer<CompletionItem> get serializer =>
@@ -867,9 +859,9 @@ abstract class CompletionItem
 }
 
 abstract class TextEdit implements Built<TextEdit, TextEditBuilder> {
-  String get newText;
+  String? get newText;
 
-  Range get range;
+  Range? get range;
 
   TextEdit._();
 
@@ -879,20 +871,19 @@ abstract class TextEdit implements Built<TextEdit, TextEditBuilder> {
     return json.encode(serializers.serializeWith(TextEdit.serializer, this));
   }
 
-  static TextEdit? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        TextEdit.serializer, json.decode(jsonString));
+  static TextEdit? fromJson(dynamic json) {
+    return serializers.deserializeWith(TextEdit.serializer, json);
   }
 
   static Serializer<TextEdit> get serializer => _$textEditSerializer;
 }
 
 abstract class Command implements Built<Command, CommandBuilder> {
-  BuiltList<dynamic> get arguments;
+  BuiltList<dynamic>? get arguments;
 
-  String get command;
+  String? get command;
 
-  String get title;
+  String? get title;
 
   Command._();
 
@@ -902,9 +893,8 @@ abstract class Command implements Built<Command, CommandBuilder> {
     return json.encode(serializers.serializeWith(Command.serializer, this));
   }
 
-  static Command? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Command.serializer, json.decode(jsonString));
+  static Command? fromJson(dynamic json) {
+    return serializers.deserializeWith(Command.serializer, json);
   }
 
   static Serializer<Command> get serializer => _$commandSerializer;
@@ -991,9 +981,9 @@ class CompletionItemKind extends EnumClass {
 }
 
 abstract class Location implements Built<Location, LocationBuilder> {
-  Range get range;
+  Range? get range;
 
-  String get uri;
+  String? get uri;
 
   Location._();
 
@@ -1003,9 +993,8 @@ abstract class Location implements Built<Location, LocationBuilder> {
     return json.encode(serializers.serializeWith(Location.serializer, this));
   }
 
-  static Location? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Location.serializer, json.decode(jsonString));
+  static Location? fromJson(dynamic json) {
+    return serializers.deserializeWith(Location.serializer, json);
   }
 
   static Serializer<Location> get serializer => _$locationSerializer;
@@ -1013,7 +1002,7 @@ abstract class Location implements Built<Location, LocationBuilder> {
 
 abstract class ReferenceContext
     implements Built<ReferenceContext, ReferenceContextBuilder> {
-  bool get includeDeclaration;
+  bool? get includeDeclaration;
 
   ReferenceContext._();
 
@@ -1025,9 +1014,8 @@ abstract class ReferenceContext
         .encode(serializers.serializeWith(ReferenceContext.serializer, this));
   }
 
-  static ReferenceContext? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        ReferenceContext.serializer, json.decode(jsonString));
+  static ReferenceContext? fromJson(dynamic json) {
+    return serializers.deserializeWith(ReferenceContext.serializer, json);
   }
 
   static Serializer<ReferenceContext> get serializer =>
@@ -1036,9 +1024,9 @@ abstract class ReferenceContext
 
 abstract class DocumentHighlight
     implements Built<DocumentHighlight, DocumentHighlightBuilder> {
-  DocumentHighlightKind get kind;
+  DocumentHighlightKind? get kind;
 
-  Range get range;
+  Range? get range;
 
   DocumentHighlight._();
 
@@ -1050,9 +1038,8 @@ abstract class DocumentHighlight
         .encode(serializers.serializeWith(DocumentHighlight.serializer, this));
   }
 
-  static DocumentHighlight? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        DocumentHighlight.serializer, json.decode(jsonString));
+  static DocumentHighlight? fromJson(dynamic json) {
+    return serializers.deserializeWith(DocumentHighlight.serializer, json);
   }
 
   static Serializer<DocumentHighlight> get serializer =>
@@ -1081,13 +1068,13 @@ class DocumentHighlightKind extends EnumClass {
 
 abstract class SymbolInformation
     implements Built<SymbolInformation, SymbolInformationBuilder> {
-  String get containerName;
+  String? get containerName;
 
-  SymbolKind get kind;
+  SymbolKind? get kind;
 
-  Location get location;
+  Location? get location;
 
-  String get name;
+  String? get name;
 
   SymbolInformation._();
 
@@ -1099,9 +1086,8 @@ abstract class SymbolInformation
         .encode(serializers.serializeWith(SymbolInformation.serializer, this));
   }
 
-  static SymbolInformation? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        SymbolInformation.serializer, json.decode(jsonString));
+  static SymbolInformation? fromJson(dynamic json) {
+    return serializers.deserializeWith(SymbolInformation.serializer, json);
   }
 
   static Serializer<SymbolInformation> get serializer =>
@@ -1196,7 +1182,7 @@ class SymbolKind extends EnumClass {
 
 abstract class CodeActionContext
     implements Built<CodeActionContext, CodeActionContextBuilder> {
-  BuiltList<Diagnostic> get diagnostics;
+  BuiltList<Diagnostic>? get diagnostics;
 
   CodeActionContext._();
 
@@ -1208,9 +1194,8 @@ abstract class CodeActionContext
         .encode(serializers.serializeWith(CodeActionContext.serializer, this));
   }
 
-  static CodeActionContext? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        CodeActionContext.serializer, json.decode(jsonString));
+  static CodeActionContext? fromJson(dynamic json) {
+    return serializers.deserializeWith(CodeActionContext.serializer, json);
   }
 
   static Serializer<CodeActionContext> get serializer =>
@@ -1218,15 +1203,15 @@ abstract class CodeActionContext
 }
 
 abstract class Diagnostic implements Built<Diagnostic, DiagnosticBuilder> {
-  Object get code;
+  Object? get code;
 
-  String get message;
+  String? get message;
 
-  Range get range;
+  Range? get range;
 
-  int get severity;
+  int? get severity;
 
-  String get source;
+  String? get source;
 
   Diagnostic._();
 
@@ -1236,9 +1221,8 @@ abstract class Diagnostic implements Built<Diagnostic, DiagnosticBuilder> {
     return json.encode(serializers.serializeWith(Diagnostic.serializer, this));
   }
 
-  static Diagnostic? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Diagnostic.serializer, json.decode(jsonString));
+  static Diagnostic? fromJson(dynamic json) {
+    return serializers.deserializeWith(Diagnostic.serializer, json);
   }
 
   static Serializer<Diagnostic> get serializer => _$diagnosticSerializer;
@@ -1246,7 +1230,7 @@ abstract class Diagnostic implements Built<Diagnostic, DiagnosticBuilder> {
 
 abstract class WorkspaceEdit
     implements Built<WorkspaceEdit, WorkspaceEditBuilder> {
-  BuiltMap<String, BuiltList<TextEdit>> get changes;
+  BuiltMap<String, BuiltList<TextEdit>>? get changes;
 
   WorkspaceEdit._();
 
@@ -1258,18 +1242,17 @@ abstract class WorkspaceEdit
         .encode(serializers.serializeWith(WorkspaceEdit.serializer, this));
   }
 
-  static WorkspaceEdit? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        WorkspaceEdit.serializer, json.decode(jsonString));
+  static WorkspaceEdit? fromJson(dynamic json) {
+    return serializers.deserializeWith(WorkspaceEdit.serializer, json);
   }
 
   static Serializer<WorkspaceEdit> get serializer => _$workspaceEditSerializer;
 }
 
 abstract class Diagnostics implements Built<Diagnostics, DiagnosticsBuilder> {
-  List<Diagnostic> get diagnostics;
+  BuiltList<Diagnostic>? get diagnostics;
 
-  String get uri;
+  String? get uri;
 
   Diagnostics._();
 
@@ -1280,9 +1263,8 @@ abstract class Diagnostics implements Built<Diagnostics, DiagnosticsBuilder> {
     return json.encode(serializers.serializeWith(Diagnostics.serializer, this));
   }
 
-  static Diagnostics? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Diagnostics.serializer, json.decode(jsonString));
+  static Diagnostics? fromJson(dynamic json) {
+    return serializers.deserializeWith(Diagnostics.serializer, json);
   }
 
   static Serializer<Diagnostics> get serializer => _$diagnosticsSerializer;
@@ -1291,9 +1273,9 @@ abstract class Diagnostics implements Built<Diagnostics, DiagnosticsBuilder> {
 abstract class ApplyWorkspaceEditParams
     implements
         Built<ApplyWorkspaceEditParams, ApplyWorkspaceEditParamsBuilder> {
-  WorkspaceEdit get edit;
+  WorkspaceEdit? get edit;
 
-  String get label;
+  String? get label;
 
   ApplyWorkspaceEditParams._();
 
@@ -1306,9 +1288,9 @@ abstract class ApplyWorkspaceEditParams
         serializers.serializeWith(ApplyWorkspaceEditParams.serializer, this));
   }
 
-  static ApplyWorkspaceEditParams? fromJson(String jsonString) {
+  static ApplyWorkspaceEditParams? fromJson(dynamic json) {
     return serializers.deserializeWith(
-        ApplyWorkspaceEditParams.serializer, json.decode(jsonString));
+        ApplyWorkspaceEditParams.serializer, json);
   }
 
   static Serializer<ApplyWorkspaceEditParams> get serializer =>
@@ -1317,9 +1299,9 @@ abstract class ApplyWorkspaceEditParams
 
 abstract class ShowMessageParams
     implements Built<ShowMessageParams, ShowMessageParamsBuilder> {
-  String get message;
+  String? get message;
 
-  MessageType get type;
+  MessageType? get type;
 
   ShowMessageParams._();
 
@@ -1331,9 +1313,8 @@ abstract class ShowMessageParams
         .encode(serializers.serializeWith(ShowMessageParams.serializer, this));
   }
 
-  static ShowMessageParams? fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        ShowMessageParams.serializer, json.decode(jsonString));
+  static ShowMessageParams? fromJson(dynamic json) {
+    return serializers.deserializeWith(ShowMessageParams.serializer, json);
   }
 
   static Serializer<ShowMessageParams> get serializer =>
@@ -1361,8 +1342,8 @@ class MessageType extends EnumClass {
 }
 
 abstract class LanguageServer {
-  Future<void> get onDone;
-  Future<void> shutdown();
+  Future<void>? get done;
+  Future<void> close();
   void exit();
 
   Future<ServerCapabilities> initialize(int clientPid, String rootUri,
@@ -1370,39 +1351,40 @@ abstract class LanguageServer {
   void initialized();
   void textDocumentDidOpen(TextDocumentItem document);
   void textDocumentDidChange(VersionedTextDocumentIdentifier documentId,
-      List<TextDocumentContentChangeEvent> changes);
+      Iterable<TextDocumentContentChangeEvent> changes);
   void textDocumentDidClose(TextDocumentIdentifier documentId);
   Future<CompletionList> textDocumentCompletion(
       TextDocumentIdentifier documentId, Position position);
   Future<Location> textDocumentDefinition(
       TextDocumentIdentifier documentId, Position position);
-  Future<List<Location>> textDocumentReferences(
+  Future<Iterable<Location>> textDocumentReferences(
     TextDocumentIdentifier documentId,
     Position position,
     ReferenceContext context,
   );
-  Future<List<Location>> textDocumentImplementation(
+  Future<Iterable<Location>> textDocumentImplementation(
       TextDocumentIdentifier documentId, Position position);
 
-  Future<List<DocumentHighlight>> textDocumentHighlight(
+  Future<Iterable<DocumentHighlight>> textDocumentHighlight(
       TextDocumentIdentifier documentId, Position position);
 
-  Future<List<SymbolInformation>> textDocumentSymbols(
+  Future<Iterable<SymbolInformation>> textDocumentSymbols(
     TextDocumentIdentifier documentId,
   );
 
-  Future<List<SymbolInformation>> workspaceSymbol(String query);
+  Future<Iterable<SymbolInformation>> workspaceSymbol(String query);
 
   Future<dynamic> textDocumentHover(
       TextDocumentIdentifier documentId, Position position);
 
-  Future<List<dynamic /*Command|CodeAction*/ >> textDocumentCodeAction(
+  Future<Iterable<dynamic /*Command|CodeAction*/ >> textDocumentCodeAction(
     TextDocumentIdentifier documentId,
     Range range,
     CodeActionContext context,
   );
 
-  Future<void> workspaceExecuteCommand(String command, List<dynamic> arguments);
+  Future<void> workspaceExecuteCommand(
+      String command, Iterable<dynamic> arguments);
 
   Future<WorkspaceEdit> textDocumentRename(
     TextDocumentIdentifier documentId,
@@ -1410,10 +1392,10 @@ abstract class LanguageServer {
     String newName,
   );
 
-  Stream<Diagnostics> get diagnostics;
-  Stream<ApplyWorkspaceEditParams> get workspaceEdits;
-  Stream<ShowMessageParams> get showMessages;
-  Stream<ShowMessageParams> get logMessages;
+  Stream<Diagnostics>? get diagnostics;
+  Stream<ApplyWorkspaceEditParams>? get workspaceEdits;
+  Stream<ShowMessageParams>? get showMessages;
+  Stream<ShowMessageParams>? get logMessages;
 
-  void setupExtraMethods(Server server) {}
+  void setupExtraMethods(rpc.Peer peer) {}
 }

@@ -10,7 +10,8 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onCommand:proto-x.helloWorld"
+    "onCommand:proto-x.helloWorld",
+    "onLanguage:proto-x"
   ],
   "main": "./dist/extension.js",
   "contributes": {
