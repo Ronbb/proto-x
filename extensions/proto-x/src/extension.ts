@@ -28,6 +28,12 @@ export function activate(context: ExtensionContext) {
     })
 
     socket.on("connect", console.log)
+    // socket.on("data", (buffer) => console.log("data", buffer.toString()))
+    ;(socket as any).rawWrite = socket.write
+    socket.write = ((buffer: any, _1: any, _2: any) => {
+      console.log("request", buffer.toString())
+      return (socket as any).rawWrite(buffer, _1, _2)
+    }) as any
 
     return {
       writer: socket,
@@ -41,7 +47,7 @@ export function activate(context: ExtensionContext) {
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     progressOnInitialization: true,
     synchronize: {
-      fileEvents: workspace.createFileSystemWatcher("**/.clientrc"),
+      fileEvents: workspace.createFileSystemWatcher("**/*.protox"),
     },
   }
 

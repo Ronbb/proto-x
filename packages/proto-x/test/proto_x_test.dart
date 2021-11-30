@@ -6,9 +6,8 @@ import 'package:source_span/source_span.dart';
 import 'package:string_scanner/string_scanner.dart';
 import 'package:test/test.dart';
 
-const text =
-    '''
-   syntax = "protox";
+const text = '''
+syntax = "protox";
 
 package main.A;
 
@@ -24,10 +23,10 @@ void main() {
       // Additional setup goes here.
     });
 
-    test('scan', () {
+    test('scan with regex', () {
       SourceFile file = SourceFile.fromString(
         text,
-        url: r'C:\Project\tmp\test.protox',
+        url: r'test.protox',
       );
       SpanScanner scanner = SpanScanner.within(file.span(0));
 
@@ -47,7 +46,7 @@ void main() {
     test('proto x', () {
       final file = SourceFile.fromString(
         text,
-        url: r'C:\Project\tmp\test.protox',
+        url: r'test.protox',
       );
       final scanner = SpanScanner.within(file.span(0));
       final grammar = protox.ProtoX();
@@ -66,7 +65,7 @@ void main() {
     test('grammar', () {
       SourceFile file = SourceFile.fromString(
         text,
-        url: r'C:\Project\tmp\test.protox',
+        url: r'test.protox',
       );
 
       final scanner = SpanScanner.within(file.span(0));

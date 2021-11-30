@@ -124,9 +124,10 @@ class ProtoLanguageServer implements LanguageServer {
       ReferenceContext.fromJson(params['context'].value)!;
 
   List<TextDocumentContentChangeEvent> _contentChanges(params) =>
-      (params['contentChanges'].value)
+      (params['contentChanges'].value as List)
           .map((change) => TextDocumentContentChangeEvent.fromJson(change))
-          .toList();
+          .toList()
+          .cast();
 
   String _query(params) => params['query'].value as String;
 
@@ -224,6 +225,14 @@ class ProtoLanguageServer implements LanguageServer {
         _codeActionContext(params),
       ).then((r) => r.map((e) => e.toJson()).toList());
     });
+    _registerRequest('textDocument/codeLens', (params) {
+      return textDocumentCodeLens(
+        _document(params),
+      ).then((r) => r.map((e) => e.toJson()).toList());
+    });
+    _registerRequest('textDocument/documentLink', (params) {
+      return [];
+    });
     _registerRequest('workspace/executeCommand', (params) {
       return workspaceExecuteCommand(
         params['command'].value,
@@ -254,7 +263,33 @@ class ProtoLanguageServer implements LanguageServer {
     ClientCapabilities clientCapabilities,
     String trace,
   ) async {
-    return ServerCapabilities();
+    return ServerCapabilities((builder) {
+      builder
+        ..codeActionProvider = true
+        ..codeLensProvider = (CodeLensOptionsBuilder()..resolveProvider = false)
+        ..completionProvider
+        ..definitionProvider = true
+        ..documentFormattingProvider = false
+        ..documentHighlightProvider = true
+        ..documentLinkProvider
+        ..documentOnTypeFormattingProvider =
+            (DocumentOnTypeFormattingOptionsBuilder())
+        ..documentRangeFormattingProvider = false
+        ..documentSymbolProvider = true
+        ..executeCommandProvider
+        ..hoverProvider = true
+        ..implementationProvider = true
+        ..referencesProvider = true
+        ..renameProvider = true
+        ..signatureHelpProvider
+        ..textDocumentSync = (TextDocumentSyncOptionsBuilder()
+          ..openClose = true
+          ..change = TextDocumentSyncKind.full
+          ..save = (SaveOptionsBuilder()..includeText = true)
+          ..willSave = true
+          ..willSaveWaitUntil = true)
+        ..workspaceSymbolProvider = true;
+    });
   }
 
   @override
@@ -289,11 +324,26 @@ class ProtoLanguageServer implements LanguageServer {
   }
 
   @override
+  Future<List> textDocumentCodeLens(
+    TextDocumentIdentifier documentId,
+  ) async {
+    return [];
+  }
+
+  @override
   Future<CompletionList> textDocumentCompletion(
     TextDocumentIdentifier documentId,
     Position position,
   ) async {
-    return CompletionList();
+    return CompletionList((builder) {
+      builder.items.addAll([
+        CompletionItem((builder) {
+          builder
+            ..label = 'message'
+            ..kind = CompletionItemKind.classKind;
+        }),
+      ]);
+    });
   }
 
   @override
@@ -308,13 +358,18 @@ class ProtoLanguageServer implements LanguageServer {
   void textDocumentDidChange(
     VersionedTextDocumentIdentifier documentId,
     Iterable<TextDocumentContentChangeEvent> changes,
-  ) {}
+  ) {
+    print(documentId);
+    print(changes);
+  }
 
   @override
   void textDocumentDidClose(TextDocumentIdentifier documentId) {}
 
   @override
-  void textDocumentDidOpen(TextDocumentItem document) {}
+  void textDocumentDidOpen(TextDocumentItem document) {
+    print(document);
+  }
 
   @override
   Future<List<DocumentHighlight>> textDocumentHighlight(

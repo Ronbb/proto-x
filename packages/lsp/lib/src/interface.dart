@@ -105,9 +105,8 @@ abstract class ServerCapabilities
           [void Function(ServerCapabilitiesBuilder) updates]) =
       _$ServerCapabilities;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(ServerCapabilities.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(ServerCapabilities.serializer, this));
   }
 
   static ServerCapabilities? fromJson(dynamic json) {
@@ -127,9 +126,8 @@ abstract class ClientCapabilities
           [void Function(ClientCapabilitiesBuilder)? updates]) =
       _$ClientCapabilities;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(ClientCapabilities.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(ClientCapabilities.serializer, this));
   }
 
   static ClientCapabilities? fromJson(dynamic json) {
@@ -178,8 +176,8 @@ abstract class TextDocumentClientCapabilities
           [void Function(TextDocumentClientCapabilitiesBuilder) updates]) =
       _$TextDocumentClientCapabilities;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(
+  Object? toJson() {
+    return (serializers.serializeWith(
         TextDocumentClientCapabilities.serializer, this));
   }
 
@@ -209,8 +207,8 @@ abstract class SynchronizationCapabilities
           [void Function(SynchronizationCapabilitiesBuilder) updates]) =
       _$SynchronizationCapabilities;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(
+  Object? toJson() {
+    return (serializers.serializeWith(
         SynchronizationCapabilities.serializer, this));
   }
 
@@ -234,9 +232,8 @@ abstract class HoverCapabilities
   factory HoverCapabilities([void Function(HoverCapabilitiesBuilder) updates]) =
       _$HoverCapabilities;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(HoverCapabilities.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(HoverCapabilities.serializer, this));
   }
 
   static HoverCapabilities? fromJson(dynamic json) {
@@ -266,8 +263,8 @@ abstract class WorkspaceClientCapabilities
           [void Function(WorkspaceClientCapabilitiesBuilder) updates]) =
       _$WorkspaceClientCapabilities;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(
+  Object? toJson() {
+    return (serializers.serializeWith(
         WorkspaceClientCapabilities.serializer, this));
   }
 
@@ -292,8 +289,8 @@ abstract class DynamicRegistrationCapability
           [void Function(DynamicRegistrationCapabilityBuilder) updates]) =
       _$DynamicRegistrationCapability;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(
+  Object? toJson() {
+    return (serializers.serializeWith(
         DynamicRegistrationCapability.serializer, this));
   }
 
@@ -318,9 +315,8 @@ abstract class CodeActionCapabilities
           [void Function(CodeActionCapabilitiesBuilder) updates]) =
       _$CodeActionCapabilities;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(CodeActionCapabilities.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(CodeActionCapabilities.serializer, this));
   }
 
   static CodeActionCapabilities? fromJson(dynamic json) {
@@ -342,9 +338,9 @@ abstract class CodeActionLiteralSupport
           [void Function(CodeActionLiteralSupportBuilder) updates]) =
       _$CodeActionLiteralSupport;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(CodeActionLiteralSupport.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(
+        CodeActionLiteralSupport.serializer, this));
   }
 
   static CodeActionLiteralSupport? fromJson(dynamic json) {
@@ -365,9 +361,8 @@ abstract class CodeActionKinds
   factory CodeActionKinds([void Function(CodeActionKindsBuilder) updates]) =
       _$CodeActionKinds;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(CodeActionKinds.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(CodeActionKinds.serializer, this));
   }
 
   static CodeActionKinds? fromJson(dynamic json) {
@@ -390,9 +385,8 @@ abstract class CompletionCapabilities
           [void Function(CompletionCapabilitiesBuilder) updates]) =
       _$CompletionCapabilities;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(CompletionCapabilities.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(CompletionCapabilities.serializer, this));
   }
 
   static CompletionCapabilities? fromJson(dynamic json) {
@@ -414,9 +408,9 @@ abstract class CompletionItemCapabilities
           [void Function(CompletionItemCapabilitiesBuilder) updates]) =
       _$CompletionItemCapabilities;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(CompletionItemCapabilities.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(
+        CompletionItemCapabilities.serializer, this));
   }
 
   static CompletionItemCapabilities? fromJson(dynamic json) {
@@ -437,9 +431,8 @@ abstract class CodeLensOptions
   factory CodeLensOptions([void Function(CodeLensOptionsBuilder) updates]) =
       _$CodeLensOptions;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(CodeLensOptions.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(CodeLensOptions.serializer, this));
   }
 
   static CodeLensOptions? fromJson(dynamic json) {
@@ -461,9 +454,8 @@ abstract class CompletionOptions
   factory CompletionOptions([void Function(CompletionOptionsBuilder) updates]) =
       _$CompletionOptions;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(CompletionOptions.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(CompletionOptions.serializer, this));
   }
 
   static CompletionOptions? fromJson(dynamic json) {
@@ -484,9 +476,8 @@ abstract class DocumentLinkOptions
           [void Function(DocumentLinkOptionsBuilder) updates]) =
       _$DocumentLinkOptions;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(DocumentLinkOptions.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(DocumentLinkOptions.serializer, this));
   }
 
   static DocumentLinkOptions? fromJson(dynamic json) {
@@ -511,8 +502,8 @@ abstract class DocumentOnTypeFormattingOptions
           [void Function(DocumentOnTypeFormattingOptionsBuilder) updates]) =
       _$DocumentOnTypeFormattingOptions;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(
+  Object? toJson() {
+    return (serializers.serializeWith(
         DocumentOnTypeFormattingOptions.serializer, this));
   }
 
@@ -535,9 +526,8 @@ abstract class ExecuteCommandOptions
           [void Function(ExecuteCommandOptionsBuilder) updates]) =
       _$ExecuteCommandOptions;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(ExecuteCommandOptions.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(ExecuteCommandOptions.serializer, this));
   }
 
   static ExecuteCommandOptions? fromJson(dynamic json) {
@@ -558,9 +548,8 @@ abstract class SignatureHelpOptions
           [void Function(SignatureHelpOptionsBuilder) updates]) =
       _$SignatureHelpOptions;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(SignatureHelpOptions.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(SignatureHelpOptions.serializer, this));
   }
 
   static SignatureHelpOptions? fromJson(dynamic json) {
@@ -589,9 +578,9 @@ abstract class TextDocumentSyncOptions
           [void Function(TextDocumentSyncOptionsBuilder) updates]) =
       _$TextDocumentSyncOptions;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(TextDocumentSyncOptions.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(
+        TextDocumentSyncOptions.serializer, this));
   }
 
   static TextDocumentSyncOptions? fromJson(dynamic json) {
@@ -630,8 +619,8 @@ abstract class SaveOptions implements Built<SaveOptions, SaveOptionsBuilder> {
   factory SaveOptions([void Function(SaveOptionsBuilder) updates]) =
       _$SaveOptions;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(SaveOptions.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(SaveOptions.serializer, this));
   }
 
   static SaveOptions? fromJson(dynamic json) {
@@ -656,9 +645,8 @@ abstract class TextDocumentItem
   factory TextDocumentItem([void Function(TextDocumentItemBuilder) updates]) =
       _$TextDocumentItem;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(TextDocumentItem.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(TextDocumentItem.serializer, this));
   }
 
   static TextDocumentItem? fromJson(dynamic json) {
@@ -683,8 +671,8 @@ abstract class VersionedTextDocumentIdentifier
           [void Function(VersionedTextDocumentIdentifierBuilder) updates]) =
       _$VersionedTextDocumentIdentifier;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(
+  Object? toJson() {
+    return (serializers.serializeWith(
         VersionedTextDocumentIdentifier.serializer, this));
   }
 
@@ -713,8 +701,8 @@ abstract class TextDocumentContentChangeEvent
           [void Function(TextDocumentContentChangeEventBuilder) updates]) =
       _$TextDocumentContentChangeEvent;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(
+  Object? toJson() {
+    return (serializers.serializeWith(
         TextDocumentContentChangeEvent.serializer, this));
   }
 
@@ -736,8 +724,8 @@ abstract class Range implements Built<Range, RangeBuilder> {
 
   factory Range([void Function(RangeBuilder) updates]) = _$Range;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(Range.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(Range.serializer, this));
   }
 
   static Range? fromJson(dynamic json) {
@@ -756,8 +744,8 @@ abstract class Position implements Built<Position, PositionBuilder> {
 
   factory Position([void Function(PositionBuilder) updates]) = _$Position;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(Position.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(Position.serializer, this));
   }
 
   static Position? fromJson(dynamic json) {
@@ -777,9 +765,8 @@ abstract class TextDocumentIdentifier
           [void Function(TextDocumentIdentifierBuilder) updates]) =
       _$TextDocumentIdentifier;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(TextDocumentIdentifier.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(TextDocumentIdentifier.serializer, this));
   }
 
   static TextDocumentIdentifier? fromJson(dynamic json) {
@@ -801,9 +788,8 @@ abstract class CompletionList
   factory CompletionList([void Function(CompletionListBuilder) updates]) =
       _$CompletionList;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(CompletionList.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(CompletionList.serializer, this));
   }
 
   static CompletionList? fromJson(dynamic json) {
@@ -845,9 +831,8 @@ abstract class CompletionItem
   factory CompletionItem([void Function(CompletionItemBuilder) updates]) =
       _$CompletionItem;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(CompletionItem.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(CompletionItem.serializer, this));
   }
 
   static CompletionItem? fromJson(dynamic json) {
@@ -867,8 +852,8 @@ abstract class TextEdit implements Built<TextEdit, TextEditBuilder> {
 
   factory TextEdit([void Function(TextEditBuilder) updates]) = _$TextEdit;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(TextEdit.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(TextEdit.serializer, this));
   }
 
   static TextEdit? fromJson(dynamic json) {
@@ -889,8 +874,8 @@ abstract class Command implements Built<Command, CommandBuilder> {
 
   factory Command([void Function(CommandBuilder) updates]) = _$Command;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(Command.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(Command.serializer, this));
   }
 
   static Command? fromJson(dynamic json) {
@@ -989,8 +974,8 @@ abstract class Location implements Built<Location, LocationBuilder> {
 
   factory Location([void Function(LocationBuilder) updates]) = _$Location;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(Location.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(Location.serializer, this));
   }
 
   static Location? fromJson(dynamic json) {
@@ -1009,9 +994,8 @@ abstract class ReferenceContext
   factory ReferenceContext([void Function(ReferenceContextBuilder) updates]) =
       _$ReferenceContext;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(ReferenceContext.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(ReferenceContext.serializer, this));
   }
 
   static ReferenceContext? fromJson(dynamic json) {
@@ -1033,9 +1017,8 @@ abstract class DocumentHighlight
   factory DocumentHighlight([void Function(DocumentHighlightBuilder) updates]) =
       _$DocumentHighlight;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(DocumentHighlight.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(DocumentHighlight.serializer, this));
   }
 
   static DocumentHighlight? fromJson(dynamic json) {
@@ -1081,9 +1064,8 @@ abstract class SymbolInformation
   factory SymbolInformation([void Function(SymbolInformationBuilder) updates]) =
       _$SymbolInformation;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(SymbolInformation.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(SymbolInformation.serializer, this));
   }
 
   static SymbolInformation? fromJson(dynamic json) {
@@ -1189,9 +1171,8 @@ abstract class CodeActionContext
   factory CodeActionContext([void Function(CodeActionContextBuilder) updates]) =
       _$CodeActionContext;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(CodeActionContext.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(CodeActionContext.serializer, this));
   }
 
   static CodeActionContext? fromJson(dynamic json) {
@@ -1217,8 +1198,8 @@ abstract class Diagnostic implements Built<Diagnostic, DiagnosticBuilder> {
 
   factory Diagnostic([void Function(DiagnosticBuilder) updates]) = _$Diagnostic;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(Diagnostic.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(Diagnostic.serializer, this));
   }
 
   static Diagnostic? fromJson(dynamic json) {
@@ -1237,9 +1218,8 @@ abstract class WorkspaceEdit
   factory WorkspaceEdit([void Function(WorkspaceEditBuilder) updates]) =
       _$WorkspaceEdit;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(WorkspaceEdit.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(WorkspaceEdit.serializer, this));
   }
 
   static WorkspaceEdit? fromJson(dynamic json) {
@@ -1259,8 +1239,8 @@ abstract class Diagnostics implements Built<Diagnostics, DiagnosticsBuilder> {
   factory Diagnostics([void Function(DiagnosticsBuilder) updates]) =
       _$Diagnostics;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(Diagnostics.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(Diagnostics.serializer, this));
   }
 
   static Diagnostics? fromJson(dynamic json) {
@@ -1283,9 +1263,9 @@ abstract class ApplyWorkspaceEditParams
           [void Function(ApplyWorkspaceEditParamsBuilder) updates]) =
       _$ApplyWorkspaceEditParams;
 
-  String toJson() {
-    return json.encode(
-        serializers.serializeWith(ApplyWorkspaceEditParams.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(
+        ApplyWorkspaceEditParams.serializer, this));
   }
 
   static ApplyWorkspaceEditParams? fromJson(dynamic json) {
@@ -1308,9 +1288,8 @@ abstract class ShowMessageParams
   factory ShowMessageParams([void Function(ShowMessageParamsBuilder) updates]) =
       _$ShowMessageParams;
 
-  String toJson() {
-    return json
-        .encode(serializers.serializeWith(ShowMessageParams.serializer, this));
+  Object? toJson() {
+    return (serializers.serializeWith(ShowMessageParams.serializer, this));
   }
 
   static ShowMessageParams? fromJson(dynamic json) {
@@ -1381,6 +1360,10 @@ abstract class LanguageServer {
     TextDocumentIdentifier documentId,
     Range range,
     CodeActionContext context,
+  );
+
+  Future<Iterable<dynamic /*Command|CodeAction*/ >> textDocumentCodeLens(
+    TextDocumentIdentifier documentId,
   );
 
   Future<void> workspaceExecuteCommand(
