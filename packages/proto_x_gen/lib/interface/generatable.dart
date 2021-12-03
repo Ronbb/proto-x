@@ -9,8 +9,8 @@ mixin GeneratableFileSystem on Generatable {
 
   @override
   Future<void> generate() async {
-    await create(entity.path);
+    await create();
   }
 
-  Future<void> create(String path);
+  Future<void> create();
 }

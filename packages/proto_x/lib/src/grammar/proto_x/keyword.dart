@@ -1,12 +1,12 @@
 part of 'proto_x.dart';
 
-class Keyword<S extends syntaxes.KeywordMixin> extends Grammar<S> {
-  final syntaxes.KeywordType type;
+class KeywordGrammar<S extends KeywordMixin> extends Grammar<S> {
+  final KeywordType type;
 
-  const Keyword(this.type);
+  const KeywordGrammar(this.type);
 
   @override
-  bool scan(GrammarContext<syntaxes.KeywordMixin> context) {
+  bool scan(GrammarContext<KeywordMixin> context) {
     try {
       final keyword = context.scanKeyword(type);
 

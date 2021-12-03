@@ -1,25 +1,25 @@
 part of '../proto_x.dart';
 
 extension ScanX on GrammarContext {
-  syntaxes.SyntaxSpanBuilder? lastSpan() {
+  SyntaxSpanBuilder? lastSpan() {
     final raw = scanner.lastSpan;
     if (raw != null) {
-      final from = syntaxes.SyntaxPosition.withDefault().toBuilder()
+      final from = SyntaxPosition.withDefault().toBuilder()
         ..column = scanner.lastSpan!.start.column
         ..line = scanner.lastSpan!.start.line;
-      final to = syntaxes.SyntaxPosition.withDefault().toBuilder()
+      final to = SyntaxPosition.withDefault().toBuilder()
         ..column = scanner.lastSpan!.end.column
         ..line = scanner.lastSpan!.end.line;
-      final span = syntaxes.SyntaxSpan.withDefault().toBuilder()
+      final span = SyntaxSpan.withDefault().toBuilder()
         ..from = from
         ..to = to;
       return span;
     }
   }
 
-  syntaxes.KeywordBuilder? scanKeyword(syntaxes.KeywordType type) {
+  KeywordBuilder? scanKeyword(KeywordType type) {
     if (scanner.scan(type.name)) {
-      final keyword = syntaxes.Keyword.withDefault().toBuilder()
+      final keyword = Keyword.withDefault().toBuilder()
         ..keywordType = type
         ..syntaxSpan = lastSpan();
 
@@ -27,37 +27,37 @@ extension ScanX on GrammarContext {
     }
   }
 
-  syntaxes.SemicolonBuilder? scanSemicolon() {
+  SemicolonBuilder? scanSemicolon() {
     if (scanner.scan(r';')) {
-      final semicolon = syntaxes.Semicolon.withDefault().toBuilder()
+      final semicolon = Semicolon.withDefault().toBuilder()
         ..syntaxSpan = lastSpan();
       return semicolon;
     }
   }
 
-  syntaxes.EqualSignBuilder? scanEqualSign() {
+  EqualSignBuilder? scanEqualSign() {
     if (scanner.scan(RegExp(r'='))) {
-      final equalSign = syntaxes.EqualSign.withDefault().toBuilder()
+      final equalSign = EqualSign.withDefault().toBuilder()
         ..syntaxSpan = lastSpan();
       return equalSign;
     }
   }
 
-  syntaxes.StringLiteralBuilder? scanStringLiteral({bool? unescape}) {
+  StringLiteralBuilder? scanStringLiteral({bool? unescape}) {
     // don't use lookahead or lookbehind here
     if (scanner.scan(RegExp(r'"([^"]|(?<=\\)")*"'))) {
       final matched = scanner.lastMatch![0];
       final trimmed = matched!.substring(1, matched.length - 1);
-      final stringLiteral = syntaxes.StringLiteral.withDefault().toBuilder()
+      final stringLiteral = StringLiteral.withDefault().toBuilder()
         ..syntaxSpan = lastSpan()
         ..string = unescape == true ? utils.unescape(trimmed) : trimmed;
       return stringLiteral;
     }
   }
 
-  syntaxes.PackageNameBuilder? scanPackageName() {
+  PackageNameBuilder? scanPackageName() {
     if (scanner.scan(RegExp(r'[^\s;]+'))) {
-      final packageName = syntaxes.PackageName.withDefault().toBuilder()
+      final packageName = PackageName.withDefault().toBuilder()
         ..syntaxSpan = lastSpan()
         ..path = ListBuilder(
           scanner.lastMatch![0]!.split('.'),
@@ -67,30 +67,30 @@ extension ScanX on GrammarContext {
     }
   }
 
-  static const Map<syntaxes.BlockBoundarySymbols,
-      Map<BlockBoundaryType, Pattern>> blockBoundarySymbolsMap = {
-    syntaxes.BlockBoundarySymbols.brace: {
+  static const Map<BlockBoundarySymbols, Map<BlockBoundaryType, Pattern>>
+      blockBoundarySymbolsMap = {
+    BlockBoundarySymbols.brace: {
       BlockBoundaryType.open: '{',
       BlockBoundaryType.close: '}',
     },
-    syntaxes.BlockBoundarySymbols.bracket: {
+    BlockBoundarySymbols.bracket: {
       BlockBoundaryType.open: '[',
       BlockBoundaryType.close: ']',
     },
-    syntaxes.BlockBoundarySymbols.parenthesis: {
+    BlockBoundarySymbols.parenthesis: {
       BlockBoundaryType.open: '(',
       BlockBoundaryType.close: ')',
     },
   };
 
-  syntaxes.BlockBoundaryBuilder? scanBlockBoundary({
-    required syntaxes.BlockBoundarySymbols symbol,
+  BlockBoundaryBuilder? scanBlockBoundary({
+    required BlockBoundarySymbols symbol,
     required BlockBoundaryType type,
   }) {
     final pattern = blockBoundarySymbolsMap[symbol]?[type];
     if (pattern != null) {
       if (scanner.scan(pattern)) {
-        final blockBoundary = syntaxes.BlockBoundary.withDefault().toBuilder()
+        final blockBoundary = BlockBoundary.withDefault().toBuilder()
           ..syntaxSpan = lastSpan();
 
         return blockBoundary;
@@ -102,9 +102,9 @@ extension ScanX on GrammarContext {
 
   static final intPattern = RegExp(r'-?[0-9]+');
 
-  syntaxes.MessageNameBuilder? scanMessageName() {
+  MessageNameBuilder? scanMessageName() {
     if (scanner.scan(namePattern)) {
-      final messageName = syntaxes.MessageName.withDefault().toBuilder()
+      final messageName = MessageName.withDefault().toBuilder()
         ..syntaxSpan = lastSpan()
         ..value = scanner.lastMatch![0]!;
 
@@ -112,11 +112,11 @@ extension ScanX on GrammarContext {
     }
   }
 
-  syntaxes.MessageFieldModifierBuilder? scanMessageFieldModifier() {
+  MessageFieldModifierBuilder? scanMessageFieldModifier() {
     if (scanner.matches(namePattern)) {
-      final syntaxes.MessageFieldModifiers modifier;
+      final MessageFieldModifiers modifier;
       try {
-        modifier = syntaxes.MessageFieldModifiers.valueOf(
+        modifier = MessageFieldModifiers.valueOf(
           scanner.lastMatch![0]!,
         );
         // move pointer to end of name
@@ -124,20 +124,19 @@ extension ScanX on GrammarContext {
       } catch (e) {
         return null;
       }
-      final fieldModifier =
-          syntaxes.MessageFieldModifier.withDefault().toBuilder()
-            ..syntaxSpan = lastSpan()
-            ..value = modifier;
+      final fieldModifier = MessageFieldModifier.withDefault().toBuilder()
+        ..syntaxSpan = lastSpan()
+        ..value = modifier;
 
       return fieldModifier;
     }
   }
 
-  syntaxes.MessageFieldTypeBuilder? scanMessageFieldType() {
+  MessageFieldTypeBuilder? scanMessageFieldType() {
     if (scanner.scan(namePattern)) {
-      final fieldType = syntaxes.MessageFieldType.withDefault().toBuilder()
+      final fieldType = MessageFieldType.withDefault().toBuilder()
         ..syntaxSpan = lastSpan()
-        ..value = syntaxes.MessageFieldTypes.valueOf(
+        ..value = MessageFieldTypes.valueOf(
           scanner.lastMatch![0]!,
         );
 
@@ -145,9 +144,9 @@ extension ScanX on GrammarContext {
     }
   }
 
-  syntaxes.MessageFieldNameBuilder? scanMessageFieldName() {
+  MessageFieldNameBuilder? scanMessageFieldName() {
     if (scanner.scan(namePattern)) {
-      final fieldName = syntaxes.MessageFieldName.withDefault().toBuilder()
+      final fieldName = MessageFieldName.withDefault().toBuilder()
         ..syntaxSpan = lastSpan()
         ..value = scanner.lastMatch![0]!;
 
@@ -155,9 +154,9 @@ extension ScanX on GrammarContext {
     }
   }
 
-  syntaxes.MessageFieldIndexBuilder? scanMessageIndex() {
+  MessageFieldIndexBuilder? scanMessageIndex() {
     if (scanner.scan(intPattern)) {
-      final fieldIndex = syntaxes.MessageFieldIndex.withDefault().toBuilder()
+      final fieldIndex = MessageFieldIndex.withDefault().toBuilder()
         ..syntaxSpan = lastSpan()
         ..value = int.parse(scanner.lastMatch![0]!);
 

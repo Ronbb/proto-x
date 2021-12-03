@@ -1,7 +1,7 @@
 part of 'proto_x.dart';
 
-class Space<S extends syntaxes.Syntax> extends Grammar<S> {
-  const Space({this.isRequired = false});
+class SpaceGrammar<S extends Syntax> extends Grammar<S> {
+  const SpaceGrammar({this.isRequired = false});
 
   final bool isRequired;
 

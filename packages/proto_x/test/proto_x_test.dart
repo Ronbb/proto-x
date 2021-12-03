@@ -1,7 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:proto_x/src/grammar/grammar.dart';
-import 'package:proto_x/src/grammar/proto_x/proto_x.dart' as protox;
-import 'package:proto_x/src/syntax/syntax.dart' as syntaxes;
+import 'package:proto_x/src/grammar/proto_x/proto_x.dart';
+import 'package:proto_x/src/syntax/syntax.dart';
 import 'package:source_span/source_span.dart';
 import 'package:string_scanner/string_scanner.dart';
 import 'package:test/test.dart';
@@ -49,10 +49,10 @@ void main() {
         url: r'test.protox',
       );
       final scanner = SpanScanner.within(file.span(0));
-      final grammar = protox.ProtoX();
+      final grammar = ProtoXGrammar();
       final context = GrammarContext(
         scanner: scanner,
-        syntax: syntaxes.ProtoX.withDefault(),
+        syntax: ProtoX.withDefault(),
       );
 
       expect(grammar.scan(context), isTrue);
@@ -70,27 +70,26 @@ void main() {
 
       final scanner = SpanScanner.within(file.span(0));
 
-      final grammarSyntaxDeclaration = protox.SyntaxDeclaration();
-      final contextSyntaxDeclaration =
-          GrammarContext<syntaxes.SyntaxDeclaration>(
+      final grammarSyntaxDeclaration = SyntaxDeclarationGrammar();
+      final contextSyntaxDeclaration = GrammarContext<SyntaxDeclaration>(
         scanner: scanner,
-        syntax: syntaxes.SyntaxDeclaration.withDefault(),
+        syntax: SyntaxDeclaration.withDefault(),
       );
       expect(grammarSyntaxDeclaration.scan(contextSyntaxDeclaration), isTrue);
       expect(contextSyntaxDeclaration.syntax.value.string, equals('protox'));
 
-      final grammarPackage = protox.Package();
-      final contextPackage = GrammarContext<syntaxes.Package>(
+      final grammarPackage = PackageGrammar();
+      final contextPackage = GrammarContext<Package>(
         scanner: scanner,
-        syntax: syntaxes.Package.withDefault(),
+        syntax: Package.withDefault(),
       );
       expect(grammarPackage.scan(contextPackage), isTrue);
       expect(contextPackage.syntax.name.path, equals(BuiltList(['main', 'A'])));
 
-      final grammarMessage = protox.Message();
-      final contextMessage = GrammarContext<syntaxes.Message>(
+      final grammarMessage = MessageGrammar();
+      final contextMessage = GrammarContext<Message>(
         scanner: scanner,
-        syntax: syntaxes.Message.withDefault(),
+        syntax: Message.withDefault(),
       );
       expect(grammarMessage.scan(contextMessage), isTrue);
       expect(contextMessage.syntax.name.value, equals('UserMessage'));
@@ -105,7 +104,7 @@ void main() {
       );
       expect(
         contextMessage.syntax.fields[0].fieldType.value,
-        equals(syntaxes.MessageFieldTypes.string),
+        equals(MessageFieldTypes.string),
       );
       expect(
         contextMessage.syntax.fields[1].fieldIndex.value,
@@ -117,7 +116,7 @@ void main() {
       );
       expect(
         contextMessage.syntax.fields[1].fieldType.value,
-        equals(syntaxes.MessageFieldTypes.string),
+        equals(MessageFieldTypes.string),
       );
     });
   });

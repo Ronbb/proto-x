@@ -1,13 +1,73 @@
 import 'dart:async';
 
+import 'package:change_case/change_case.dart';
+import 'package:dart_style/dart_style.dart';
+import 'package:proto_x/proto_x.dart' as $px;
 import 'package:proto_x_gen/generator/generator.dart';
 import 'package:proto_x_gen/interface/interface.dart';
 
+extension StyledFile on File {
+  static final formatter = DartFormatter();
+
+  Future<void> style() async {
+    final formatted = formatter.format(await entity.readAsString());
+    entity.writeAsString(formatted);
+  }
+}
+
 class DartGenerator extends Generator {
+  const DartGenerator({
+    required this.source,
+    required this.target,
+  });
+
+  final $px.SourceFile source;
+
+  final Uri target;
+
   @override
-  Future<void> generate() {
-    // TODO: implement generate
-    throw UnimplementedError();
+  Future<Directory> generate() async {
+    final scanner = $px.SpanScanner.within(source.span(0));
+    final grammar = $px.ProtoXGrammar();
+    final context = $px.GrammarContext(
+      scanner: scanner,
+      syntax: $px.ProtoX.withDefault(),
+    );
+
+    final result = grammar.scan(context);
+
+    if (!result) {
+      throw FormatException();
+    }
+
+    final root = Directory.create(target);
+
+    final generatedFile = File.create(
+      root.entity.uri.resolve('generated.dart'),
+    );
+
+    await generatedFile.create();
+    root.files.add(generatedFile);
+
+    for (final message in context.syntax.messages) {
+      final generatedClass = Class(
+        name: message.name.value,
+        fields: message.fields
+            .map(
+              (field) => Field(
+                name: field.fieldName.value,
+                isFinal: true,
+              ),
+            )
+            .toList(),
+      );
+
+      await generatedClass.writeTo(generatedFile);
+    }
+
+    await generatedFile.style();
+
+    return root;
   }
 }
 
@@ -72,14 +132,14 @@ class PartOf extends Line {
 }
 
 class Class extends Block {
-  const Class({
-    required this.name,
+  Class({
+    required String name,
     this.extendsFrom,
     this.mixins = const [],
     this.implementsFrom = const [],
     this.fields = const [],
     this.methods = const [],
-  });
+  }) : name = name.toPascalCase();
 
   final String name;
 
@@ -141,14 +201,14 @@ class Class extends Block {
 }
 
 class Field extends Line {
-  const Field({
-    required this.name,
+  Field({
+    required String name,
     this.isConst = false,
     this.isFinal = false,
     this.isStatic = false,
     this.isVariable = false,
     this.type,
-  });
+  }) : name = name.toCamelCase();
 
   final String name;
 
@@ -197,7 +257,7 @@ class Field extends Line {
 }
 
 class Argument extends Inline {
-  const Argument(this.name, [this.type]);
+  Argument(String name, [this.type]) : name = name.toCamelCase();
 
   final String name;
 
@@ -219,12 +279,12 @@ class Argument extends Inline {
 }
 
 class Method extends Block {
-  const Method({
-    required this.name,
+  Method({
+    required String name,
     this.returnType,
     this.arguments = const [],
     this.content = const [],
-  });
+  }) : name = name.toCamelCase();
 
   final String name;
 

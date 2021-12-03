@@ -1,26 +1,26 @@
 part of 'proto_x.dart';
 
-class SyntaxDeclaration extends ChainableGrammar<syntaxes.SyntaxDeclaration> {
-  const SyntaxDeclaration();
+class SyntaxDeclarationGrammar extends ChainableGrammar<SyntaxDeclaration> {
+  const SyntaxDeclarationGrammar();
 
   @override
-  final Iterable<Grammar<syntaxes.SyntaxDeclaration>> grammars = const [
-    Space(),
-    Keyword(syntaxes.KeywordType.syntax),
-    Space(),
-    EqualSign(),
-    Space(),
+  final Iterable<Grammar<SyntaxDeclaration>> grammars = const [
+    SpaceGrammar(),
+    KeywordGrammar(KeywordType.syntax),
+    SpaceGrammar(),
+    EqualSignGrammar(),
+    SpaceGrammar(),
     _SyntaxDeclarationLiteral(),
-    Space(),
-    Semicolon(),
+    SpaceGrammar(),
+    SemicolonGrammar(),
   ];
 }
 
-class _SyntaxDeclarationLiteral extends Grammar<syntaxes.SyntaxDeclaration> {
+class _SyntaxDeclarationLiteral extends Grammar<SyntaxDeclaration> {
   const _SyntaxDeclarationLiteral();
 
   @override
-  bool scan(GrammarContext<syntaxes.SyntaxDeclaration> context) {
+  bool scan(GrammarContext<SyntaxDeclaration> context) {
     final stringLiteral = context.scanStringLiteral(unescape: true);
     if (stringLiteral != null) {
       context.syntax = context.syntax.rebuild(

@@ -1,22 +1,22 @@
 part of 'proto_x.dart';
 
-class Message extends BlockGrammar<syntaxes.Message> {
-  const Message();
+class MessageGrammar extends BlockGrammar<Message> {
+  const MessageGrammar();
 
-  static const boundarySymbol = syntaxes.BlockBoundarySymbols.brace;
+  static const boundarySymbol = BlockBoundarySymbols.brace;
 
-  static GrammarContext<syntaxes.MessageField> _fieldContextBuilder(
-    GrammarContext<syntaxes.Message> context,
+  static GrammarContext<MessageField> _fieldContextBuilder(
+    GrammarContext<Message> context,
   ) {
     return GrammarContext(
       scanner: context.scanner,
-      syntax: syntaxes.MessageField.withDefault(),
+      syntax: MessageField.withDefault(),
     );
   }
 
   static void _fieldCaster(
-    GrammarContext<syntaxes.MessageField> previous,
-    GrammarContext<syntaxes.Message> next,
+    GrammarContext<MessageField> previous,
+    GrammarContext<Message> next,
   ) {
     next.syntax = next.syntax.rebuild((builder) {
       builder.fields.add(previous.syntax);
@@ -24,14 +24,14 @@ class Message extends BlockGrammar<syntaxes.Message> {
   }
 
   @override
-  final Grammar<syntaxes.Message>? begin = const _MessageBegin();
+  final Grammar<Message>? begin = const _MessageBegin();
 
   @override
-  final Grammar<syntaxes.Message>? end = const _MessageEnd();
+  final Grammar<Message>? end = const _MessageEnd();
 
   @override
-  final Iterable<Grammar<syntaxes.Message>> includes = const [
-    Space(isRequired: true),
+  final Iterable<Grammar<Message>> includes = const [
+    SpaceGrammar(isRequired: true),
     CastedGrammar(
       builder: _fieldContextBuilder,
       caster: _fieldCaster,
@@ -40,29 +40,29 @@ class Message extends BlockGrammar<syntaxes.Message> {
   ];
 }
 
-class _MessageBegin extends ChainableGrammar<syntaxes.Message> {
+class _MessageBegin extends ChainableGrammar<Message> {
   const _MessageBegin();
 
   @override
-  final Iterable<Grammar<syntaxes.Message>> grammars = const [
-    Space(),
-    Keyword(syntaxes.KeywordType.message),
-    Space(),
+  final Iterable<Grammar<Message>> grammars = const [
+    SpaceGrammar(),
+    KeywordGrammar(KeywordType.message),
+    SpaceGrammar(),
     _MessageName(),
-    Space(),
-    BlockBoundary(
-      symbol: Message.boundarySymbol,
+    SpaceGrammar(),
+    BlockBoundaryGrammar(
+      symbol: MessageGrammar.boundarySymbol,
       type: BlockBoundaryType.open,
     ),
-    Space(),
+    SpaceGrammar(),
   ];
 }
 
-class _MessageName extends Grammar<syntaxes.Message> {
+class _MessageName extends Grammar<Message> {
   const _MessageName();
 
   @override
-  bool scan(GrammarContext<syntaxes.Message> context) {
+  bool scan(GrammarContext<Message> context) {
     final messageName = context.scanMessageName();
     if (messageName != null) {
       context.syntax = context.syntax.rebuild((builder) {
@@ -74,46 +74,46 @@ class _MessageName extends Grammar<syntaxes.Message> {
   }
 }
 
-class _MessageEnd extends ChainableGrammar<syntaxes.Message> {
+class _MessageEnd extends ChainableGrammar<Message> {
   const _MessageEnd();
 
   @override
-  final Iterable<Grammar<syntaxes.Message>> grammars = const [
-    Space(),
-    BlockBoundary(
-      symbol: Message.boundarySymbol,
+  final Iterable<Grammar<Message>> grammars = const [
+    SpaceGrammar(),
+    BlockBoundaryGrammar(
+      symbol: MessageGrammar.boundarySymbol,
       type: BlockBoundaryType.close,
     ),
-    Space(),
+    SpaceGrammar(),
   ];
 }
 
-class _MessageField extends ChainableGrammar<syntaxes.MessageField> {
+class _MessageField extends ChainableGrammar<MessageField> {
   const _MessageField();
 
   @override
-  final Iterable<Grammar<syntaxes.MessageField>> grammars = const [
-    Space(),
+  final Iterable<Grammar<MessageField>> grammars = const [
+    SpaceGrammar(),
     _MessageFieldModifier(),
-    Space(),
+    SpaceGrammar(),
     _MessageFieldType(),
-    Space(),
+    SpaceGrammar(),
     _MessageFieldName(),
-    Space(),
-    EqualSign(),
-    Space(),
+    SpaceGrammar(),
+    EqualSignGrammar(),
+    SpaceGrammar(),
     _MessageFieldIndex(),
-    Space(),
-    Semicolon(),
-    Space(),
+    SpaceGrammar(),
+    SemicolonGrammar(),
+    SpaceGrammar(),
   ];
 }
 
-class _MessageFieldModifier extends Grammar<syntaxes.MessageField> {
+class _MessageFieldModifier extends Grammar<MessageField> {
   const _MessageFieldModifier();
 
   @override
-  bool scan(GrammarContext<syntaxes.MessageField> context) {
+  bool scan(GrammarContext<MessageField> context) {
     final fieldModifier = context.scanMessageFieldModifier();
     if (fieldModifier != null) {
       context.syntax = context.syntax.rebuild((builder) {
@@ -125,11 +125,11 @@ class _MessageFieldModifier extends Grammar<syntaxes.MessageField> {
   }
 }
 
-class _MessageFieldType extends Grammar<syntaxes.MessageField> {
+class _MessageFieldType extends Grammar<MessageField> {
   const _MessageFieldType();
 
   @override
-  bool scan(GrammarContext<syntaxes.MessageField> context) {
+  bool scan(GrammarContext<MessageField> context) {
     final fieldType = context.scanMessageFieldType();
     if (fieldType != null) {
       context.syntax = context.syntax.rebuild((builder) {
@@ -141,11 +141,11 @@ class _MessageFieldType extends Grammar<syntaxes.MessageField> {
   }
 }
 
-class _MessageFieldName extends Grammar<syntaxes.MessageField> {
+class _MessageFieldName extends Grammar<MessageField> {
   const _MessageFieldName();
 
   @override
-  bool scan(GrammarContext<syntaxes.MessageField> context) {
+  bool scan(GrammarContext<MessageField> context) {
     final fieldName = context.scanMessageFieldName();
     if (fieldName != null) {
       context.syntax = context.syntax.rebuild((builder) {
@@ -157,11 +157,11 @@ class _MessageFieldName extends Grammar<syntaxes.MessageField> {
   }
 }
 
-class _MessageFieldIndex extends Grammar<syntaxes.MessageField> {
+class _MessageFieldIndex extends Grammar<MessageField> {
   const _MessageFieldIndex();
 
   @override
-  bool scan(GrammarContext<syntaxes.MessageField> context) {
+  bool scan(GrammarContext<MessageField> context) {
     final fieldIndex = context.scanMessageIndex();
     if (fieldIndex != null) {
       context.syntax = context.syntax.rebuild((builder) {

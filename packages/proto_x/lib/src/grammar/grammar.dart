@@ -1,7 +1,7 @@
 import 'package:string_scanner/string_scanner.dart';
-import 'package:proto_x/src/syntax/syntax.dart' as syntaxes;
+import 'package:proto_x/src/syntax/syntax.dart';
 
-class GrammarContext<S extends syntaxes.Syntax> {
+class GrammarContext<S extends Syntax> {
   final SpanScanner scanner;
   S syntax;
 
@@ -11,7 +11,7 @@ class GrammarContext<S extends syntaxes.Syntax> {
   });
 }
 
-abstract class Grammar<S extends syntaxes.Syntax> {
+abstract class Grammar<S extends Syntax> {
   bool scan(GrammarContext<S> context);
 
   bool check(GrammarContext<S> context) => context.syntax.error == null;
@@ -19,7 +19,7 @@ abstract class Grammar<S extends syntaxes.Syntax> {
   const Grammar();
 }
 
-abstract class ChainableGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
+abstract class ChainableGrammar<S extends Syntax> extends Grammar<S> {
   Iterable<Grammar<S>> get grammars;
 
   const ChainableGrammar();
@@ -44,7 +44,7 @@ abstract class ChainableGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
   }
 }
 
-abstract class BlockGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
+abstract class BlockGrammar<S extends Syntax> extends Grammar<S> {
   Grammar<S>? get begin => null;
   Grammar<S>? get end => null;
   Iterable<Grammar<S>> get includes;
@@ -85,15 +85,13 @@ abstract class BlockGrammar<S extends syntaxes.Syntax> extends Grammar<S> {
   }
 }
 
-typedef GrammarCaster<S extends syntaxes.Syntax, OS extends syntaxes.Syntax>
-    = void Function(GrammarContext<OS> previous, GrammarContext<S> next);
+typedef GrammarCaster<S extends Syntax, OS extends Syntax> = void Function(
+    GrammarContext<OS> previous, GrammarContext<S> next);
 
-typedef GrammarContextBuilder<S extends syntaxes.Syntax,
-        OS extends syntaxes.Syntax>
+typedef GrammarContextBuilder<S extends Syntax, OS extends Syntax>
     = GrammarContext<OS> Function(GrammarContext<S> context);
 
-class CastedGrammar<S extends syntaxes.Syntax, OS extends syntaxes.Syntax>
-    extends Grammar<S> {
+class CastedGrammar<S extends Syntax, OS extends Syntax> extends Grammar<S> {
   final GrammarContextBuilder<S, OS> builder;
   final GrammarCaster<S, OS> caster;
   final Grammar<OS> grammar;

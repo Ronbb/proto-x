@@ -1,7 +1,7 @@
 part of 'proto_x.dart';
 
-class EqualSign<S extends syntaxes.EqualSignMixin> extends Grammar<S> {
-  const EqualSign();
+class EqualSignGrammar<S extends EqualSignMixin> extends Grammar<S> {
+  const EqualSignGrammar();
 
   @override
   bool scan(GrammarContext<S> context) {

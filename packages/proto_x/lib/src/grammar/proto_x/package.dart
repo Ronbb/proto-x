@@ -1,24 +1,24 @@
 part of 'proto_x.dart';
 
-class Package extends ChainableGrammar<syntaxes.Package> {
-  const Package();
+class PackageGrammar extends ChainableGrammar<Package> {
+  const PackageGrammar();
 
   @override
-  final Iterable<Grammar<syntaxes.Package>> grammars = const [
-    Space(),
-    Keyword(syntaxes.KeywordType.package),
-    Space(),
+  final Iterable<Grammar<Package>> grammars = const [
+    SpaceGrammar(),
+    KeywordGrammar(KeywordType.package),
+    SpaceGrammar(),
     _PackageName(),
-    Space(),
-    Semicolon(),
+    SpaceGrammar(),
+    SemicolonGrammar(),
   ];
 }
 
-class _PackageName extends Grammar<syntaxes.Package> {
+class _PackageName extends Grammar<Package> {
   const _PackageName();
 
   @override
-  bool scan(GrammarContext<syntaxes.Package> context) {
+  bool scan(GrammarContext<Package> context) {
     final packageName = context.scanPackageName();
     if (packageName != null) {
       context.syntax = context.syntax.rebuild(

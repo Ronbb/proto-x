@@ -1,7 +1,7 @@
 part of 'proto_x.dart';
 
-class Semicolon<S extends syntaxes.SemicolonMixin> extends Grammar<S> {
-  const Semicolon();
+class SemicolonGrammar<S extends SemicolonMixin> extends Grammar<S> {
+  const SemicolonGrammar();
 
   @override
   bool scan(GrammarContext<S> context) {

@@ -5,11 +5,11 @@ enum BlockBoundaryType {
   close,
 }
 
-class BlockBoundary<S extends syntaxes.BlockMixin> extends Grammar<S> {
-  final syntaxes.BlockBoundarySymbols symbol;
+class BlockBoundaryGrammar<S extends BlockMixin> extends Grammar<S> {
+  final BlockBoundarySymbols symbol;
   final BlockBoundaryType type;
 
-  const BlockBoundary({required this.symbol, required this.type});
+  const BlockBoundaryGrammar({required this.symbol, required this.type});
 
   @override
   bool scan(GrammarContext<S> context) {
@@ -37,7 +37,7 @@ class BlockBoundary<S extends syntaxes.BlockMixin> extends Grammar<S> {
       return false;
     } catch (e) {
       context.syntax = (context.syntax as dynamic).rebuild((builder) {
-        final error = syntaxes.SyntaxError.withDefault().toBuilder();
+        final error = SyntaxError.withDefault().toBuilder();
         error
           ..message = e.toString()
           ..position = context.lastSpan()!.to;
