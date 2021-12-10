@@ -10,8 +10,8 @@ class File with Generatable, GeneratableFileSystem {
 
   @override
   Future<void> create() async {
-    if (await entity.exists()) {
-      entity.delete();
+    if (entity.existsSync()) {
+      await entity.delete();
     }
     await entity.create(recursive: true);
   }

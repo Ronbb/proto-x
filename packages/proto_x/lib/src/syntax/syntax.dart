@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:collection/collection.dart';
@@ -19,6 +21,8 @@ part 'utils/syntax_error.dart';
 part 'utils/syntax_getter.dart';
 part 'utils/syntax_type.dart';
 part 'utils/syntax_span.dart';
+
+part 'well_known_message/well_known_message.dart';
 
 part 'syntax.g.dart';
 

@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
 import 'package:proto_x/proto_x.dart';
-import 'package:proto_x_gen/generator/dart.dart' as dart;
+import 'package:proto_x_gen/generator/dart/dart.dart' as dart;
 import 'package:test/test.dart';
 
 const text = '''
 syntax = "protox";
 
-package main.A;
+package main.a;
 
 message UserMessage {
     string user_name = 1;
@@ -21,15 +21,15 @@ void main() {
     final formatter = DartFormatter();
     test('class', () async {
       final a = dart.Class(
-        name: 'OtherClass',
+        name: dart.TypeName('OtherClass'),
         fields: [
           dart.Field(
-            name: 'otherField',
-            type: 'OtherField',
+            name: dart.CamelName('otherField'),
+            type: dart.TypeName('OtherField'),
           )
         ],
       );
-      final code = await a.code();
+      final code = a.code();
       print(formatter.format(code));
 
       expect(code, isNotEmpty);
