@@ -132,10 +132,13 @@ class DartGenerator extends Generator {
             Return(
               MapBlock(
                 message.fields.map(
-                  (field) => MapEntry(
-                    StringLiteral(CamelName(field.fieldName.value).toString()),
-                    CustomInline(field.fieldName.value),
-                  ),
+                  (field) {
+                    final name = CamelName(field.fieldName.value);
+                    return MapEntry(
+                      StringLiteral(name.toString()),
+                      name,
+                    );
+                  },
                 ),
               ),
             ),
@@ -179,6 +182,7 @@ class DartGenerator extends Generator {
     }
 
     final root = Directory.create(target);
+    root.create();
 
     final generatedFile = File.create(
       root.entity.uri.resolve('generated.dart'),
