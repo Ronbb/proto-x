@@ -6,7 +6,8 @@ import 'package:source_span/source_span.dart';
 import 'package:string_scanner/string_scanner.dart';
 import 'package:test/test.dart';
 
-const text = '''
+const text =
+    '''
 syntax = "protox";
 
 package main.A;
@@ -104,7 +105,7 @@ void main() {
       );
       expect(
         contextMessage.syntax.fields[0].fieldType.value,
-        equals(MessageFieldTypes.string),
+        equals('string'),
       );
       expect(
         contextMessage.syntax.fields[1].fieldIndex.value,
@@ -116,7 +117,7 @@ void main() {
       );
       expect(
         contextMessage.syntax.fields[1].fieldType.value,
-        equals(MessageFieldTypes.string),
+        equals('string'),
       );
     });
   });

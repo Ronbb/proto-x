@@ -29,6 +29,10 @@ abstract class Line extends Code {
 
 abstract class Inline extends Code {
   const Inline();
+
+  CustomLine operator +(Inline inline) {
+    return CustomLine([toString(), inline.toString()]);
+  }
 }
 
 abstract class Block extends Code {
@@ -69,6 +73,10 @@ class CustomLine extends Line {
   @override
   String code() {
     return inlines.join(separator);
+  }
+
+  CustomLine operator +(Inline inline) {
+    return CustomLine([...inlines, inline.toString()]);
   }
 }
 

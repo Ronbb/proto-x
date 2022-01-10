@@ -18,13 +18,21 @@ extension StyledFile on File {
   }
 }
 
+final _jsonType = TypeName(
+  'Map',
+  genericArguments: [
+    TypeName('String'),
+    TypeName('dynamic'),
+  ],
+);
+
 class DartGenerator extends Generator {
   const DartGenerator({
     required this.source,
     required this.target,
   });
 
-  final $px.SourceFile source;
+  final Iterable<$px.SourceFile> source;
 
   final Uri target;
 
@@ -35,29 +43,52 @@ class DartGenerator extends Generator {
       name: className,
       fields: message.fields.map(
         (field) => Field(
-          name: CamelName(field.fieldName.value),
-          type: TypeName(field.fieldType.value.name),
+          name: VariableName(field.fieldName.value),
+          type: _type(field),
           isFinal: true,
         ),
       ),
-      constructor: Constructor(
-        className,
-        isConst: true,
-        parameters: Parameters(
-          namedParameters: message.fields.map(
-            (field) => NamedParameter(
-              CamelName(field.fieldName.value),
-              withThis: true,
-              isRequired: true,
+      constructors: [
+        Constructor(
+          className,
+          isConst: true,
+          constructorName: VariableName('all'),
+          parameters: Parameters(
+            namedParameters: message.fields.map(
+              (field) => NamedParameter(
+                VariableName(field.fieldName.value),
+                withThis: true,
+                isRequired: true,
+              ),
             ),
           ),
         ),
-      ),
-      methods: [
-        Method(
-          name: CamelName('create'),
-          isStatic: true,
-          returnType: className,
+        Constructor(
+          className,
+          isConst: true,
+          parameters: Parameters(
+            namedParameters: message.fields.map(
+              (field) => NamedParameter(
+                VariableName(field.fieldName.value),
+                withThis: true,
+                defaultValue: _defaultValue(_type(field), px),
+              ),
+            ),
+          ),
+        ),
+      ],
+      factories: [
+        Factory(
+          className,
+          VariableName('fromJson'),
+          parameters: Parameters(
+            requiredPositionedParameters: [
+              Parameter(
+                VariableName('json'),
+                type: _jsonType,
+              ),
+            ],
+          ),
           content: [
             Return(
               CustomBlock(
@@ -65,13 +96,56 @@ class DartGenerator extends Generator {
                   return className;
                 },
                 end: () {
+                  final jsonName = VariableName('json');
                   return Arguments(
                     message.fields.map(
                       (field) {
-                        return NamedArgument(
-                          CamelName(field.fieldName.value),
-                          _defaultValue(field.fieldType.value.name, px),
+                        final typeName = _type(field);
+                        final baseType = TypeName(field.fieldType.value);
+                        final name = VariableName(field.fieldName.value);
+                        final nameLiteral = StringLiteral(name.toString());
+                        final jsonValue = CustomInline(
+                          '$jsonName[$nameLiteral]',
                         );
+                        final isRepeated = field.fieldModifier?.value ==
+                            $px.MessageFieldModifiers.repeated;
+                        final wellKnown = px.getWellKnown(baseType.value);
+
+                        Inline value = jsonValue;
+
+                        Inline appendBaseDefault(Inline value) {
+                          return CustomInline(
+                            '$value ?? ${_defaultJsonValue(baseType, px)}',
+                          );
+                        }
+
+                        Inline fixByType(Inline value) {
+                          if (wellKnown != null) {
+                            if (wellKnown.name.endsWith('64')) {
+                              return CustomInline('Int64.parseInt($value)');
+                            }
+                          } else {
+                            return CustomInline(
+                              '$baseType.fromJson($value)',
+                            );
+                          }
+
+                          return value;
+                        }
+
+                        if (isRepeated) {
+                          value = CustomInline(
+                            '''List.unmodifiable(
+                                $jsonValue?.map((v) => ${fixByType(appendBaseDefault(CustomInline('v')))})
+                                ?? const []
+                            )
+                            ''',
+                          );
+                        } else {
+                          value = fixByType(appendBaseDefault(value));
+                        }
+
+                        return NamedArgument(name, value);
                       },
                     ),
                   );
@@ -79,18 +153,17 @@ class DartGenerator extends Generator {
               ),
             ),
           ],
-        ),
+        )
+      ],
+      methods: [
         Method(
-          name: CamelName('copyWith'),
+          name: VariableName('copyWith'),
           returnType: className,
           parameters: Parameters(
             namedParameters: message.fields.map(
               (field) => NamedParameter(
-                CamelName(field.fieldName.value),
-                type: TypeName(
-                  field.fieldType.value.name,
-                  nullable: true,
-                ),
+                VariableName(field.fieldName.value),
+                type: _type(field, nullable: true),
               ),
             ),
           ),
@@ -104,7 +177,7 @@ class DartGenerator extends Generator {
                   return Arguments(
                     message.fields.map(
                       (field) {
-                        final fieldName = CamelName(field.fieldName.value);
+                        final fieldName = VariableName(field.fieldName.value);
                         return NamedArgument(
                           fieldName,
                           CustomInline(
@@ -120,20 +193,14 @@ class DartGenerator extends Generator {
           ],
         ),
         Method(
-          name: CamelName('toJson'),
-          returnType: TypeName(
-            'Map',
-            genericArguments: [
-              TypeName('String'),
-              TypeName('dynamic'),
-            ],
-          ),
+          name: VariableName('toJson'),
+          returnType: _jsonType,
           content: [
             Return(
               MapBlock(
                 message.fields.map(
                   (field) {
-                    final name = CamelName(field.fieldName.value);
+                    final name = VariableName(field.fieldName.value);
                     return MapEntry(
                       StringLiteral(name.toString()),
                       name,
@@ -148,13 +215,22 @@ class DartGenerator extends Generator {
     );
   }
 
-  Code _defaultValue(String messageName, $px.ProtoX px) {
-    final wellKnown = px.getWellKnown(messageName);
+  Inline _defaultValue(TypeName typeName, $px.ProtoX px) {
+    if (typeName.value.toLowerCase() == 'list') {
+      return CustomInline('const []');
+    }
+
+    final wellKnown = px.getWellKnown(typeName.value);
     if (wellKnown != null) {
+      final type = wellKnown.name;
       final defaultValue = wellKnown.defaultValue;
 
-      if (defaultValue is String) {
-        return StringLiteral(defaultValue);
+      if (defaultValue is $px.StringLiteral) {
+        return StringLiteral(defaultValue.string);
+      }
+
+      if (defaultValue is int && type.endsWith('64')) {
+        return CustomInline('Int64.ZERO');
       }
 
       if (defaultValue is Uint8List) {
@@ -163,11 +239,50 @@ class DartGenerator extends Generator {
 
       return CustomInline(wellKnown.defaultValue.toString());
     }
-    return CustomInline('${TypeName(messageName)}.create()');
+    return CustomInline('const $typeName()');
   }
 
-  @override
-  Future<Directory> generate() async {
+  Inline _defaultJsonValue(TypeName typeName, $px.ProtoX px) {
+    if (typeName.value.toLowerCase() == 'list') {
+      return CustomInline('const []');
+    }
+
+    final wellKnown = px.getWellKnown(typeName.value);
+    if (wellKnown != null) {
+      final type = wellKnown.name;
+      final defaultValue = wellKnown.defaultValue;
+
+      if (defaultValue is $px.StringLiteral) {
+        return StringLiteral(defaultValue.string);
+      }
+
+      if (defaultValue is int && type.endsWith('64')) {
+        return StringLiteral('');
+      }
+
+      if (defaultValue is Uint8List) {
+        return CustomInline('Uint8List(0)');
+      }
+
+      return CustomInline(wellKnown.defaultValue.toString());
+    }
+    return CustomInline('const {}');
+  }
+
+  TypeName _type($px.MessageField field, {bool nullable = false}) {
+    final isRepeated =
+        field.fieldModifier?.value == $px.MessageFieldModifiers.repeated;
+    final base = TypeName(
+      field.fieldType.value,
+      nullable: !isRepeated && nullable,
+    );
+    if (isRepeated) {
+      return TypeName('List', genericArguments: [base], nullable: nullable);
+    }
+    return base;
+  }
+
+  $px.GrammarContext<$px.ProtoX> _one($px.SourceFile source) {
     final scanner = $px.SpanScanner.within(source.span(0));
     final grammar = $px.ProtoXGrammar();
     final context = $px.GrammarContext(
@@ -178,26 +293,40 @@ class DartGenerator extends Generator {
     final result = grammar.scan(context);
 
     if (!result) {
-      throw FormatException();
+      throw FormatException(context.scanner.location.toolString);
     }
 
+    return context;
+  }
+
+  @override
+  Future<Directory> generate() async {
+    final contexts = source.map(_one);
+
     final root = Directory.create(target);
-    root.create();
+    await root.create();
 
     final generatedFile = File.create(
       root.entity.uri.resolve('generated.dart'),
     );
 
-    generatedFile.create();
+    await generatedFile.create();
     root.files.add(generatedFile);
 
-    for (final message in context.syntax.messages) {
-      final generatedClass = _class(message, context.syntax);
+    final fixnum = Import('package:fixnum/fixnum.dart');
+    await fixnum.writeTo(generatedFile);
 
-      generatedClass.writeTo(generatedFile);
+    for (final context in contexts) {
+      print('context: ' + context.scanner.location.toolString);
+      for (final message in context.syntax.messages) {
+        print('message: ' + message.name.value);
+        final generatedClass = _class(message, context.syntax);
+
+        await generatedClass.writeTo(generatedFile);
+      }
     }
 
-    generatedFile.style();
+    await generatedFile.style();
 
     return root;
   }

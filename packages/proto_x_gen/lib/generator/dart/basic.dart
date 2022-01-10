@@ -1,6 +1,6 @@
 part of 'dart.dart';
 
-class Name extends Code {
+class Name extends Inline {
   const Name({
     this.value = '',
     this.caseType,
@@ -77,8 +77,8 @@ class DotName extends Name {
         );
 }
 
-class CamelName extends Name {
-  const CamelName(
+class VariableName extends Name {
+  const VariableName(
     String name, {
     bool isPrivate = false,
   }) : super(
@@ -87,10 +87,10 @@ class CamelName extends Name {
           isPrivate: isPrivate,
         );
 
-  static const empty = CamelName('');
+  static const empty = VariableName('');
 }
 
-class StringLiteral extends Code {
+class StringLiteral extends Inline {
   const StringLiteral(
     this.value, {
     this.quotes = "'",
@@ -186,7 +186,8 @@ class Class extends Block {
     this.extendsFrom,
     this.mixins = const [],
     this.implementsFrom = const [],
-    this.constructor,
+    this.constructors = const [],
+    this.factories = const [],
     this.fields = const [],
     this.methods = const [],
   });
@@ -199,13 +200,15 @@ class Class extends Block {
 
   final Iterable<Name> implementsFrom;
 
-  final Constructor? constructor;
+  final List<Constructor> constructors;
+
+  final Iterable<Factory> factories;
 
   final Iterable<Field> fields;
 
   final Iterable<Method> methods;
 
-  bool get hasConstructor => constructor != null;
+  bool get hasConstructor => constructors.isNotEmpty;
 
   bool get hasExtends => extendsFrom != null;
 
@@ -217,7 +220,8 @@ class Class extends Block {
   Iterable<Code> children() {
     return [
       ...fields,
-      if (hasConstructor) constructor!,
+      ...constructors,
+      ...factories,
       ...methods,
     ];
   }
@@ -258,8 +262,9 @@ class Class extends Block {
 class Constructor extends Closure {
   Constructor(
     this.className, {
-    this.constructorName = CamelName.empty,
+    this.constructorName = VariableName.empty,
     Parameters parameters = Parameters.empty,
+    this.initializedParameters = const {},
     this.isConst = true,
     Iterable<Code> content = const [],
   }) : super(
@@ -271,12 +276,34 @@ class Constructor extends Closure {
 
   final TypeName className;
 
-  final CamelName constructorName;
+  final VariableName constructorName;
+
+  final Map<VariableName, Code> initializedParameters;
 
   bool get hasContent => content.isNotEmpty;
 
+  bool get hasInitializedParameters => initializedParameters.isNotEmpty;
+
   @override
   bool get hasBody => hasContent;
+
+  @override
+  String afterParameters() {
+    final buffer = StringBuffer();
+    if (hasInitializedParameters) {
+      buffer.write(':');
+
+      final pairs = <String>[];
+
+      for (final entry in initializedParameters.entries) {
+        pairs.add('${entry.key} = ${entry.value}');
+      }
+
+      buffer.writeAll(pairs, ',');
+    }
+
+    return buffer.toString();
+  }
 
   @override
   String start() {
@@ -327,11 +354,21 @@ class Closure extends Block {
     return arrow || !hasBody ? ';' : '}';
   }
 
+  String beforeParameters() {
+    return '';
+  }
+
+  String afterParameters() {
+    return '';
+  }
+
   @override
   String start() {
     final buffer = StringBuffer();
 
+    buffer.writeSpace(beforeParameters());
     buffer.writeSpace(parameters);
+    buffer.writeSpace(afterParameters());
 
     if (isAsync) {
       buffer.write('async');
@@ -349,34 +386,27 @@ class Closure extends Block {
   }
 }
 
-class Factory extends Block {
+class Factory extends Closure {
   Factory(
-    this.name, {
-    this.content = const [],
-    this.parameters = Parameters.empty,
-  });
+    this.className,
+    this.factoryName, {
+    Iterable<Code> content = const [],
+    bool arrow = false,
+    Parameters parameters = Parameters.empty,
+  }) : super(
+          arrow: arrow,
+          content: content,
+          parameters: parameters,
+          isAsync: false,
+        );
 
-  final CamelName name;
+  final TypeName className;
 
-  final Iterable<Code> content;
-
-  final Parameters parameters;
-
-  @override
-  Iterable<Code> children() {
-    return content;
-  }
-
-  @override
-  String end() {
-    // TODO: implement end
-    throw UnimplementedError();
-  }
+  final VariableName factoryName;
 
   @override
   String start() {
-    // TODO: implement start
-    throw UnimplementedError();
+    return 'factory $className.$factoryName${super.start()}';
   }
 }
 
@@ -390,7 +420,7 @@ class Field extends Line {
     this.type = TypeName.empty,
   });
 
-  final CamelName name;
+  final VariableName name;
 
   final bool isStatic;
 
@@ -450,7 +480,7 @@ class Argument extends Inline {
 class NamedArgument extends Argument {
   NamedArgument(this.name, Code content) : super(content);
 
-  final CamelName name;
+  final VariableName name;
 
   @override
   String code() {
@@ -490,7 +520,7 @@ class Parameter extends Inline {
     this.defaultValue,
   });
 
-  final CamelName name;
+  final VariableName name;
 
   final TypeName type;
 
@@ -528,7 +558,7 @@ class Parameter extends Inline {
 
 class NamedParameter extends Parameter {
   NamedParameter(
-    CamelName name, {
+    VariableName name, {
     bool withThis = false,
     TypeName type = TypeName.empty,
     Code? defaultValue,
@@ -621,7 +651,7 @@ class Method extends Closure {
           content: content,
         );
 
-  final CamelName name;
+  final VariableName name;
 
   final TypeName returnType;
 

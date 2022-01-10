@@ -11,8 +11,12 @@ syntax = "protox";
 package main.a;
 
 message UserMessage {
-    string user_name = 1;
-    string text = 2;
+  string user_name = 1;
+  string text = 2;
+}
+
+message UserGroup {
+  UserMessage user = 1;
 }
 ''';
 
@@ -24,7 +28,7 @@ void main() {
         name: dart.TypeName('OtherClass'),
         fields: [
           dart.Field(
-            name: dart.CamelName('otherField'),
+            name: dart.VariableName('otherField'),
             type: dart.TypeName('OtherField'),
           )
         ],
@@ -37,7 +41,7 @@ void main() {
 
     test('dart generator', () async {
       final generator = dart.DartGenerator(
-        source: SourceFile.fromString(text),
+        source: [SourceFile.fromString(text)],
         target: Directory.systemTemp.uri.resolve('proto_x_generated'),
       );
       final directory = await generator.generate();

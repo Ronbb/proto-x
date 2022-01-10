@@ -21,6 +21,10 @@ final List<WellKnownMessage> _wellKnownMessages = [
     defaultValue: 0,
   ),
   WellKnownMessage<int>(
+    name: 'int',
+    defaultValue: 0,
+  ),
+  WellKnownMessage<int>(
     name: 'int32',
     defaultValue: 0,
   ),
@@ -64,9 +68,9 @@ final List<WellKnownMessage> _wellKnownMessages = [
     name: 'bool',
     defaultValue: false,
   ),
-  WellKnownMessage<String>(
+  WellKnownMessage<StringLiteral>(
     name: 'string',
-    defaultValue: '',
+    defaultValue: StringLiteral.withDefault(),
   ),
   WellKnownMessage<Uint8List>(
     name: 'bytes',
