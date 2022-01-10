@@ -118,6 +118,8 @@ class MessageFieldModifiers extends EnumClass {
   // TODO
   static const MessageFieldModifiers unknown = _$messageFieldModifiersUnknown;
 
+  static const MessageFieldModifiers repeated = _$messageFieldModifiersRepeated;
+
   const MessageFieldModifiers._(String name) : super(name);
 
   static BuiltSet<MessageFieldModifiers> get values =>
@@ -131,7 +133,7 @@ abstract class MessageFieldType
   @override
   SyntaxType get syntaxType => SyntaxType.messageFieldType;
 
-  MessageFieldTypes get value;
+  String get value;
 
   MessageFieldType._();
 
@@ -142,21 +144,9 @@ abstract class MessageFieldType
     return MessageFieldType((builder) {
       builder
         ..syntaxSpan = SyntaxSpan.withDefault().toBuilder()
-        ..value = MessageFieldTypes.unknown;
+        ..value = '';
     });
   }
-}
-
-class MessageFieldTypes extends EnumClass {
-  // TODO
-  static const MessageFieldTypes string = _$messageFieldTypesString;
-  static const MessageFieldTypes unknown = _$messageFieldTypesUnknown;
-
-  const MessageFieldTypes._(String name) : super(name);
-
-  static BuiltSet<MessageFieldTypes> get values => _$messageFieldTypesValues;
-  static MessageFieldTypes valueOf(String name) =>
-      _$messageFieldTypesValueOf(name);
 }
 
 abstract class MessageFieldName

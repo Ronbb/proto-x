@@ -93,11 +93,15 @@ final BuiltSet<CommentType> _$commentTypeValues =
 
 const MessageFieldModifiers _$messageFieldModifiersUnknown =
     const MessageFieldModifiers._('unknown');
+const MessageFieldModifiers _$messageFieldModifiersRepeated =
+    const MessageFieldModifiers._('repeated');
 
 MessageFieldModifiers _$messageFieldModifiersValueOf(String name) {
   switch (name) {
     case 'unknown':
       return _$messageFieldModifiersUnknown;
+    case 'repeated':
+      return _$messageFieldModifiersRepeated;
     default:
       throw new ArgumentError(name);
   }
@@ -106,28 +110,7 @@ MessageFieldModifiers _$messageFieldModifiersValueOf(String name) {
 final BuiltSet<MessageFieldModifiers> _$messageFieldModifiersValues =
     new BuiltSet<MessageFieldModifiers>(const <MessageFieldModifiers>[
   _$messageFieldModifiersUnknown,
-]);
-
-const MessageFieldTypes _$messageFieldTypesString =
-    const MessageFieldTypes._('string');
-const MessageFieldTypes _$messageFieldTypesUnknown =
-    const MessageFieldTypes._('unknown');
-
-MessageFieldTypes _$messageFieldTypesValueOf(String name) {
-  switch (name) {
-    case 'string':
-      return _$messageFieldTypesString;
-    case 'unknown':
-      return _$messageFieldTypesUnknown;
-    default:
-      throw new ArgumentError(name);
-  }
-}
-
-final BuiltSet<MessageFieldTypes> _$messageFieldTypesValues =
-    new BuiltSet<MessageFieldTypes>(const <MessageFieldTypes>[
-  _$messageFieldTypesString,
-  _$messageFieldTypesUnknown,
+  _$messageFieldModifiersRepeated,
 ]);
 
 const SyntaxType _$syntaxTypeBlock = const SyntaxType._('block');
@@ -1626,7 +1609,7 @@ class MessageFieldModifierBuilder
 
 class _$MessageFieldType extends MessageFieldType {
   @override
-  final MessageFieldTypes value;
+  final String value;
   @override
   final SyntaxSpan syntaxSpan;
   @override
@@ -1681,9 +1664,9 @@ class MessageFieldTypeBuilder
     implements Builder<MessageFieldType, MessageFieldTypeBuilder> {
   _$MessageFieldType? _$v;
 
-  MessageFieldTypes? _value;
-  MessageFieldTypes? get value => _$this._value;
-  set value(MessageFieldTypes? value) => _$this._value = value;
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
 
   SyntaxSpanBuilder? _syntaxSpan;
   SyntaxSpanBuilder get syntaxSpan =>

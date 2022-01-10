@@ -136,9 +136,7 @@ extension ScanX on GrammarContext {
     if (scanner.scan(namePattern)) {
       final fieldType = MessageFieldType.withDefault().toBuilder()
         ..syntaxSpan = lastSpan()
-        ..value = MessageFieldTypes.valueOf(
-          scanner.lastMatch![0]!,
-        );
+        ..value = scanner.lastMatch![0]!;
 
       return fieldType;
     }
