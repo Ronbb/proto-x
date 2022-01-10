@@ -12,6 +12,8 @@ class GrammarContext<S extends Syntax> {
 }
 
 abstract class Grammar<S extends Syntax> {
+  bool get isRequired => true;
+
   bool scan(GrammarContext<S> context);
 
   bool check(GrammarContext<S> context) => context.syntax.error == null;
@@ -27,7 +29,7 @@ abstract class ChainableGrammar<S extends Syntax> extends Grammar<S> {
   @override
   bool scan(GrammarContext<S> context) {
     for (final grammar in grammars) {
-      if (!grammar.scan(context)) {
+      if (!grammar.scan(context) && grammar.isRequired) {
         return false;
       }
     }
@@ -53,8 +55,12 @@ abstract class BlockGrammar<S extends Syntax> extends Grammar<S> {
 
   @override
   bool scan(GrammarContext<S> context) {
-    if (begin?.scan(context) == false || context.scanner.isDone) {
-      return false;
+    final begin = this.begin;
+    if (begin != null) {
+      if ((!begin.scan(context) && begin.isRequired) ||
+          context.scanner.isDone) {
+        return false;
+      }
     }
 
     out:
@@ -109,6 +115,6 @@ class CastedGrammar<S extends Syntax, OS extends Syntax> extends Grammar<S> {
       caster(previousContext, context);
       return check(context);
     }
-    return false;
+    return !isRequired;
   }
 }

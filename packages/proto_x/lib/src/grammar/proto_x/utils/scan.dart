@@ -102,9 +102,23 @@ extension ScanX on GrammarContext {
 
   static final intPattern = RegExp(r'-?[0-9]+');
 
+  bool skipComma({bool skipSpace = true}) {
+    return scanner.scan(skipSpace ? RegExp(r'\s*,\s*') : ',');
+  }
+
   MessageNameBuilder? scanMessageName() {
     if (scanner.scan(namePattern)) {
       final messageName = MessageName.withDefault().toBuilder()
+        ..syntaxSpan = lastSpan()
+        ..value = scanner.lastMatch![0]!;
+
+      return messageName;
+    }
+  }
+
+  MessageExtensionBuilder? scanMessageExtension() {
+    if (scanner.scan(namePattern)) {
+      final messageName = MessageExtension.withDefault().toBuilder()
         ..syntaxSpan = lastSpan()
         ..value = scanner.lastMatch![0]!;
 

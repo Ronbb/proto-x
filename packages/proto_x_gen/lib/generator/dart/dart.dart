@@ -10,7 +10,9 @@ import 'package:proto_x_gen/interface/interface.dart';
 part 'basic.dart';
 
 extension StyledFile on File {
-  static final formatter = DartFormatter();
+  static final formatter = DartFormatter(
+    fixes: StyleFix.all,
+  );
 
   Future<void> style() async {
     final formatted = formatter.format(await entity.readAsString());
@@ -38,10 +40,20 @@ class DartGenerator extends Generator {
 
   Class _class($px.Message message, $px.ProtoX px) {
     final className = TypeName(message.name.value);
+    final allFields = <$px.MessageField>[
+      ...message.fields,
+      for (var extension in message.extensions.values)
+        ...px.messages
+            .firstWhere((message) => message.name.value == extension.value)
+            .fields,
+    ];
 
     return Class(
       name: className,
-      fields: message.fields.map(
+      implementsFrom: message.extensions.values.map(
+        (extensions) => TypeName(extensions.value),
+      ),
+      fields: allFields.map(
         (field) => Field(
           name: VariableName(field.fieldName.value),
           type: _type(field),
@@ -54,7 +66,7 @@ class DartGenerator extends Generator {
           isConst: true,
           constructorName: VariableName('all'),
           parameters: Parameters(
-            namedParameters: message.fields.map(
+            namedParameters: allFields.map(
               (field) => NamedParameter(
                 VariableName(field.fieldName.value),
                 withThis: true,
@@ -67,7 +79,7 @@ class DartGenerator extends Generator {
           className,
           isConst: true,
           parameters: Parameters(
-            namedParameters: message.fields.map(
+            namedParameters: allFields.map(
               (field) => NamedParameter(
                 VariableName(field.fieldName.value),
                 withThis: true,
@@ -98,9 +110,8 @@ class DartGenerator extends Generator {
                 end: () {
                   final jsonName = VariableName('json');
                   return Arguments(
-                    message.fields.map(
+                    allFields.map(
                       (field) {
-                        final typeName = _type(field);
                         final baseType = TypeName(field.fieldType.value);
                         final name = VariableName(field.fieldName.value);
                         final nameLiteral = StringLiteral(name.toString());
@@ -160,7 +171,7 @@ class DartGenerator extends Generator {
           name: VariableName('copyWith'),
           returnType: className,
           parameters: Parameters(
-            namedParameters: message.fields.map(
+            namedParameters: allFields.map(
               (field) => NamedParameter(
                 VariableName(field.fieldName.value),
                 type: _type(field, nullable: true),
@@ -175,7 +186,7 @@ class DartGenerator extends Generator {
                 },
                 end: () {
                   return Arguments(
-                    message.fields.map(
+                    allFields.map(
                       (field) {
                         final fieldName = VariableName(field.fieldName.value);
                         return NamedArgument(
@@ -198,7 +209,7 @@ class DartGenerator extends Generator {
           content: [
             Return(
               MapBlock(
-                message.fields.map(
+                allFields.map(
                   (field) {
                     final name = VariableName(field.fieldName.value);
                     return MapEntry(

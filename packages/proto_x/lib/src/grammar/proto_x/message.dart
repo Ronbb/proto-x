@@ -50,6 +50,8 @@ class _MessageBegin extends ChainableGrammar<Message> {
     SpaceGrammar(),
     _MessageName(),
     SpaceGrammar(),
+    _MessageExtensions(),
+    SpaceGrammar(),
     BlockBoundaryGrammar(
       symbol: MessageGrammar.boundarySymbol,
       type: BlockBoundaryType.open,
@@ -71,6 +73,58 @@ class _MessageName extends Grammar<Message> {
       return true;
     }
     return false;
+  }
+}
+
+class _MessageExtensions extends BlockGrammar<Message> {
+  const _MessageExtensions();
+
+  @override
+  bool get isRequired => false;
+
+  @override
+  Grammar<Message>? get begin => const _MessageExtensionsBegin();
+
+  @override
+  Iterable<Grammar<Message>> get includes => const [_MessageExtensionsItem()];
+}
+
+class _MessageExtensionsBegin extends ChainableGrammar<Message> {
+  const _MessageExtensionsBegin();
+
+  @override
+  Iterable<Grammar<Message>> get grammars => [
+        SpaceGrammar(),
+        KeywordGrammar(KeywordType.uses),
+        SpaceGrammar(),
+      ];
+}
+
+class _MessageExtensionsItem extends Grammar<Message> {
+  const _MessageExtensionsItem();
+
+  @override
+  bool scan(GrammarContext<Message> context) {
+    final extensions = MessageExtensions.withDefault().toBuilder();
+    while (true) {
+      final extension = context.scanMessageExtension();
+      if (extension != null) {
+        extensions.extensions.add(extension.build());
+      } else {
+        break;
+      }
+      context.skipComma();
+    }
+
+    if (extensions.extensions.isEmpty) {
+      return false;
+    }
+
+    context.syntax = context.syntax.rebuild((builder) {
+      builder.extensions = extensions;
+    });
+
+    return true;
   }
 }
 

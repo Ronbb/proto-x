@@ -8,12 +8,14 @@ abstract class Message
 
   BuiltList<MessageField> get fields;
   MessageName get name;
+  MessageExtensions get extensions;
 
   @override
   Iterable<Syntax?> get syntaxes => [
         block,
         keyword,
         name,
+        extensions,
         ...fields,
       ];
 
@@ -26,7 +28,8 @@ abstract class Message
       builder
         ..block = Block.withDefault().toBuilder()
         ..keyword = Keyword.withDefault().toBuilder()
-        ..name = MessageName.withDefault().toBuilder();
+        ..name = MessageName.withDefault().toBuilder()
+        ..extensions = MessageExtensions.withDefault().toBuilder();
     });
   }
 }
@@ -185,6 +188,45 @@ abstract class MessageFieldIndex
       builder
         ..syntaxSpan = SyntaxSpan.withDefault().toBuilder()
         ..value = 0;
+    });
+  }
+}
+
+abstract class MessageExtensions
+    implements Built<MessageExtensions, MessageExtensionsBuilder>, Syntax {
+  @override
+  SyntaxType get syntaxType => SyntaxType.messageExtendsions;
+
+  BuiltList<MessageExtension> get values;
+
+  MessageExtensions._();
+
+  factory MessageExtensions([void Function(MessageExtensionsBuilder) updates]) =
+      _$MessageExtensions;
+
+  factory MessageExtensions.withDefault() {
+    return MessageExtensions((builder) {
+      builder.syntaxSpan = SyntaxSpan.withDefault().toBuilder();
+    });
+  }
+}
+
+abstract class MessageExtension
+    implements Built<MessageExtension, MessageExtensionBuilder>, Syntax {
+  @override
+  SyntaxType get syntaxType => SyntaxType.messageExtendsion;
+  String get value;
+
+  MessageExtension._();
+
+  factory MessageExtension([void Function(MessageExtensionBuilder) updates]) =
+      _$MessageExtension;
+
+  factory MessageExtension.withDefault() {
+    return MessageExtension((builder) {
+      builder
+        ..syntaxSpan = SyntaxSpan.withDefault().toBuilder()
+        ..value = '';
     });
   }
 }

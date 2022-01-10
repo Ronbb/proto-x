@@ -12,9 +12,13 @@ syntax = "protox";
 
 package main.A;
 
-message UserMessage {
-    string user_name = 1;
-    string text = 2;
+message BaseMessage {
+  string message_id = 100;
+}
+
+message UserMessage uses BaseMessage {
+  string user_name = 1;
+  string text = 2;
 }
 ''';
 
@@ -57,7 +61,7 @@ void main() {
       );
 
       expect(grammar.scan(context), isTrue);
-      expect(context.syntax.messages.length, equals(1));
+      expect(context.syntax.messages.length, equals(2));
       expect(context.syntax.packages.length, equals(1));
       expect(context.syntax.syntaxDeclarations.length, equals(1));
       expect(context.syntax.syntaxSpan.to.line, greaterThan(0));

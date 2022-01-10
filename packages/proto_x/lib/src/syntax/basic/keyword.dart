@@ -23,6 +23,7 @@ class KeywordType extends EnumClass {
   static const KeywordType syntax = _$keywordTypeSyntax;
   static const KeywordType package = _$keywordTypePackage;
   static const KeywordType message = _$keywordTypeMessage;
+  static const KeywordType uses = _$keywordTypeExtension;
 
   const KeywordType._(String name) : super(name);
 

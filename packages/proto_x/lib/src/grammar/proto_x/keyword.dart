@@ -3,7 +3,13 @@ part of 'proto_x.dart';
 class KeywordGrammar<S extends KeywordMixin> extends Grammar<S> {
   final KeywordType type;
 
-  const KeywordGrammar(this.type);
+  @override
+  final bool isRequired;
+
+  const KeywordGrammar(
+    this.type, {
+    this.isRequired = true,
+  });
 
   @override
   bool scan(GrammarContext<KeywordMixin> context) {
@@ -17,7 +23,7 @@ class KeywordGrammar<S extends KeywordMixin> extends Grammar<S> {
 
         return true;
       }
-      return false;
+      return !isRequired;
     } catch (e) {
       rethrow;
     }

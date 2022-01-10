@@ -3,6 +3,7 @@ part of 'proto_x.dart';
 class SpaceGrammar<S extends Syntax> extends Grammar<S> {
   const SpaceGrammar({this.isRequired = false});
 
+  @override
   final bool isRequired;
 
   @override

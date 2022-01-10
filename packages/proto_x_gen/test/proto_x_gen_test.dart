@@ -10,7 +10,11 @@ syntax = "protox";
 
 package main.a;
 
-message UserMessage {
+message BaseMessage {
+  string id = 100;
+}
+
+message UserMessage uses BaseMessage {
   string user_name = 1;
   string text = 2;
 }

@@ -7,6 +7,8 @@ class SyntaxType extends EnumClass {
   static const SyntaxType equalSign = _$syntaxTypeEqualSign;
   static const SyntaxType keyword = _$syntaxTypeKeyword;
   static const SyntaxType message = _$syntaxTypeMessage;
+  static const SyntaxType messageExtendsions = _$syntaxTypeMessageExtendsions;
+  static const SyntaxType messageExtendsion = _$syntaxTypeMessageExtendsion;
   static const SyntaxType messageField = _$syntaxTypeMessageField;
   static const SyntaxType messageFieldIndex = _$syntaxTypeMessageFieldIndex;
   static const SyntaxType messageFieldModifier =

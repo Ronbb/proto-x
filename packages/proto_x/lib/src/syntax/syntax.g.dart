@@ -46,6 +46,7 @@ final BuiltSet<BlockBoundarySymbols> _$blockBoundarySymbolsValues =
 const KeywordType _$keywordTypeSyntax = const KeywordType._('syntax');
 const KeywordType _$keywordTypePackage = const KeywordType._('package');
 const KeywordType _$keywordTypeMessage = const KeywordType._('message');
+const KeywordType _$keywordTypeExtension = const KeywordType._('uses');
 
 KeywordType _$keywordTypeValueOf(String name) {
   switch (name) {
@@ -55,6 +56,8 @@ KeywordType _$keywordTypeValueOf(String name) {
       return _$keywordTypePackage;
     case 'message':
       return _$keywordTypeMessage;
+    case 'uses':
+      return _$keywordTypeExtension;
     default:
       throw new ArgumentError(name);
   }
@@ -65,6 +68,7 @@ final BuiltSet<KeywordType> _$keywordTypeValues =
   _$keywordTypeSyntax,
   _$keywordTypePackage,
   _$keywordTypeMessage,
+  _$keywordTypeExtension,
 ]);
 
 const CommentType _$commentTypeUnknown = const CommentType._('unknown');
@@ -120,6 +124,10 @@ const SyntaxType _$syntaxTypeComment = const SyntaxType._('comment');
 const SyntaxType _$syntaxTypeEqualSign = const SyntaxType._('equalSign');
 const SyntaxType _$syntaxTypeKeyword = const SyntaxType._('keyword');
 const SyntaxType _$syntaxTypeMessage = const SyntaxType._('message');
+const SyntaxType _$syntaxTypeMessageExtendsions =
+    const SyntaxType._('messageExtendsions');
+const SyntaxType _$syntaxTypeMessageExtendsion =
+    const SyntaxType._('messageExtendsion');
 const SyntaxType _$syntaxTypeMessageField = const SyntaxType._('messageField');
 const SyntaxType _$syntaxTypeMessageFieldIndex =
     const SyntaxType._('messageFieldIndex');
@@ -153,6 +161,10 @@ SyntaxType _$valueOf(String name) {
       return _$syntaxTypeKeyword;
     case 'message':
       return _$syntaxTypeMessage;
+    case 'messageExtendsions':
+      return _$syntaxTypeMessageExtendsions;
+    case 'messageExtendsion':
+      return _$syntaxTypeMessageExtendsion;
     case 'messageField':
       return _$syntaxTypeMessageField;
     case 'messageFieldIndex':
@@ -190,6 +202,8 @@ final BuiltSet<SyntaxType> _$values =
   _$syntaxTypeEqualSign,
   _$syntaxTypeKeyword,
   _$syntaxTypeMessage,
+  _$syntaxTypeMessageExtendsions,
+  _$syntaxTypeMessageExtendsion,
   _$syntaxTypeMessageField,
   _$syntaxTypeMessageFieldIndex,
   _$syntaxTypeMessageFieldModifier,
@@ -1019,6 +1033,8 @@ class _$Message extends Message {
   @override
   final MessageName name;
   @override
+  final MessageExtensions extensions;
+  @override
   final SyntaxError? error;
   @override
   final Block block;
@@ -1031,12 +1047,14 @@ class _$Message extends Message {
   _$Message._(
       {required this.fields,
       required this.name,
+      required this.extensions,
       this.error,
       required this.block,
       required this.keyword})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(fields, 'Message', 'fields');
     BuiltValueNullFieldError.checkNotNull(name, 'Message', 'name');
+    BuiltValueNullFieldError.checkNotNull(extensions, 'Message', 'extensions');
     BuiltValueNullFieldError.checkNotNull(block, 'Message', 'block');
     BuiltValueNullFieldError.checkNotNull(keyword, 'Message', 'keyword');
   }
@@ -1054,6 +1072,7 @@ class _$Message extends Message {
     return other is Message &&
         fields == other.fields &&
         name == other.name &&
+        extensions == other.extensions &&
         error == other.error &&
         block == other.block &&
         keyword == other.keyword;
@@ -1062,7 +1081,11 @@ class _$Message extends Message {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, fields.hashCode), name.hashCode), error.hashCode),
+        $jc(
+            $jc(
+                $jc($jc($jc(0, fields.hashCode), name.hashCode),
+                    extensions.hashCode),
+                error.hashCode),
             block.hashCode),
         keyword.hashCode));
   }
@@ -1072,6 +1095,7 @@ class _$Message extends Message {
     return (newBuiltValueToStringHelper('Message')
           ..add('fields', fields)
           ..add('name', name)
+          ..add('extensions', extensions)
           ..add('error', error)
           ..add('block', block)
           ..add('keyword', keyword))
@@ -1090,6 +1114,12 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
   MessageNameBuilder? _name;
   MessageNameBuilder get name => _$this._name ??= new MessageNameBuilder();
   set name(MessageNameBuilder? name) => _$this._name = name;
+
+  MessageExtensionsBuilder? _extensions;
+  MessageExtensionsBuilder get extensions =>
+      _$this._extensions ??= new MessageExtensionsBuilder();
+  set extensions(MessageExtensionsBuilder? extensions) =>
+      _$this._extensions = extensions;
 
   SyntaxErrorBuilder? _error;
   SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
@@ -1110,6 +1140,7 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
     if ($v != null) {
       _fields = $v.fields.toBuilder();
       _name = $v.name.toBuilder();
+      _extensions = $v.extensions.toBuilder();
       _error = $v.error?.toBuilder();
       _block = $v.block.toBuilder();
       _keyword = $v.keyword.toBuilder();
@@ -1137,6 +1168,7 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
           new _$Message._(
               fields: fields.build(),
               name: name.build(),
+              extensions: extensions.build(),
               error: _error?.build(),
               block: block.build(),
               keyword: keyword.build());
@@ -1147,6 +1179,8 @@ class MessageBuilder implements Builder<Message, MessageBuilder> {
         fields.build();
         _$failedField = 'name';
         name.build();
+        _$failedField = 'extensions';
+        extensions.build();
         _$failedField = 'error';
         _error?.build();
         _$failedField = 'block';
@@ -1968,6 +2002,256 @@ class MessageFieldIndexBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'MessageFieldIndex', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MessageExtensions extends MessageExtensions {
+  @override
+  final BuiltList<MessageExtension> values;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$MessageExtensions(
+          [void Function(MessageExtensionsBuilder)? updates]) =>
+      (new MessageExtensionsBuilder()..update(updates)).build();
+
+  _$MessageExtensions._(
+      {required this.values, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        values, 'MessageExtensions', 'extensions');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'MessageExtensions', 'syntaxSpan');
+  }
+
+  @override
+  MessageExtensions rebuild(void Function(MessageExtensionsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageExtensionsBuilder toBuilder() =>
+      new MessageExtensionsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MessageExtensions &&
+        values == other.values &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc(0, values.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MessageExtensions')
+          ..add('extensions', values)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class MessageExtensionsBuilder
+    implements Builder<MessageExtensions, MessageExtensionsBuilder> {
+  _$MessageExtensions? _$v;
+
+  ListBuilder<MessageExtension>? _extensions;
+  ListBuilder<MessageExtension> get extensions =>
+      _$this._extensions ??= new ListBuilder<MessageExtension>();
+  set extensions(ListBuilder<MessageExtension>? extensions) =>
+      _$this._extensions = extensions;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  MessageExtensionsBuilder();
+
+  MessageExtensionsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _extensions = $v.values.toBuilder();
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MessageExtensions other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MessageExtensions;
+  }
+
+  @override
+  void update(void Function(MessageExtensionsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MessageExtensions build() {
+    _$MessageExtensions _$result;
+    try {
+      _$result = _$v ??
+          new _$MessageExtensions._(
+              values: extensions.build(),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'extensions';
+        extensions.build();
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MessageExtensions', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MessageExtension extends MessageExtension {
+  @override
+  final String value;
+  @override
+  final SyntaxSpan syntaxSpan;
+  @override
+  final SyntaxError? error;
+
+  factory _$MessageExtension(
+          [void Function(MessageExtensionBuilder)? updates]) =>
+      (new MessageExtensionBuilder()..update(updates)).build();
+
+  _$MessageExtension._(
+      {required this.value, required this.syntaxSpan, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(value, 'MessageExtension', 'value');
+    BuiltValueNullFieldError.checkNotNull(
+        syntaxSpan, 'MessageExtension', 'syntaxSpan');
+  }
+
+  @override
+  MessageExtension rebuild(void Function(MessageExtensionBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MessageExtensionBuilder toBuilder() =>
+      new MessageExtensionBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MessageExtension &&
+        value == other.value &&
+        syntaxSpan == other.syntaxSpan &&
+        error == other.error;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, value.hashCode), syntaxSpan.hashCode), error.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MessageExtension')
+          ..add('value', value)
+          ..add('syntaxSpan', syntaxSpan)
+          ..add('error', error))
+        .toString();
+  }
+}
+
+class MessageExtensionBuilder
+    implements Builder<MessageExtension, MessageExtensionBuilder> {
+  _$MessageExtension? _$v;
+
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
+
+  SyntaxSpanBuilder? _syntaxSpan;
+  SyntaxSpanBuilder get syntaxSpan =>
+      _$this._syntaxSpan ??= new SyntaxSpanBuilder();
+  set syntaxSpan(SyntaxSpanBuilder? syntaxSpan) =>
+      _$this._syntaxSpan = syntaxSpan;
+
+  SyntaxErrorBuilder? _error;
+  SyntaxErrorBuilder get error => _$this._error ??= new SyntaxErrorBuilder();
+  set error(SyntaxErrorBuilder? error) => _$this._error = error;
+
+  MessageExtensionBuilder();
+
+  MessageExtensionBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _syntaxSpan = $v.syntaxSpan.toBuilder();
+      _error = $v.error?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MessageExtension other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MessageExtension;
+  }
+
+  @override
+  void update(void Function(MessageExtensionBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MessageExtension build() {
+    _$MessageExtension _$result;
+    try {
+      _$result = _$v ??
+          new _$MessageExtension._(
+              value: BuiltValueNullFieldError.checkNotNull(
+                  value, 'MessageExtension', 'value'),
+              syntaxSpan: syntaxSpan.build(),
+              error: _error?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'syntaxSpan';
+        syntaxSpan.build();
+        _$failedField = 'error';
+        _error?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MessageExtension', _$failedField, e.toString());
       }
       rethrow;
     }
