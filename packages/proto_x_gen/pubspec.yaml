@@ -1,6 +1,6 @@
 name: proto_x_gen
 description: A simple command-line application.
-version: 1.0.0
+version: 0.0.1-pre
 # homepage: https://www.example.com
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   change_case: ^1.0.1
   dart_style: ^2.2.0
   glob: ^2.0.2
-  proto_x: ^0.0.1
+  proto_x: ^0.0.1-pre
 
 dev_dependencies:
   lints: ^1.0.0

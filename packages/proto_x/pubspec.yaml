@@ -1,6 +1,6 @@
 name: proto_x
 description: A starting point for Dart libraries or applications.
-version: 0.0.1
+version: 0.0.1-pre
 # homepage: https://www.example.com
 
 environment:
