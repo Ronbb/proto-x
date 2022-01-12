@@ -1,7 +1,9 @@
 name: proto_x_gen
 description: A simple command-line application.
 version: 0.0.1-pre
-# homepage: https://www.example.com
+publish_to: https://pub.dev
+homepage: https://github.com/Ronbb/proto-x
+repository: https://github.com/Ronbb/proto-x.git
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -16,7 +18,6 @@ dependencies:
 dev_dependencies:
   lints: ^1.0.0
   test: ^1.16.0
-
-dependency_overrides:
-  proto_x:
-    path: ../proto_x
+# dependency_overrides:
+#   proto_x:
+#     path: ../proto_x
